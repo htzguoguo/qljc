@@ -1,0 +1,64 @@
+
+    <div class="box thumbnail">
+        <div class="photo">
+            {{#avatar}}
+            {{#avatar.url}}
+            <img src="{{avatar.url}}" alt="Contact photo"   />
+            {{/avatar.url}}
+            {{/avatar}}
+            {{^avatar}}
+            <img src="./common/images/contact.png" alt="Contact photo" />
+            {{/avatar}}
+
+            <div class="action-bar clearfix">
+                <div class="action-buttons pull-right">
+                    <button id="delete" class="btn btn-danger btn-xs">delete</button>
+                    <button id="view" class="btn btn-primary btn-xs">view</button>
+                </div>
+            </div>
+        </div>
+        <div class="caption-container">
+            <div class="caption">
+                <h5>{{name}}</h5>
+                 {{#phone}}
+                <p class="phone no-margin">{{phone}}</p>
+                {{/phone}}
+                {{#email}}
+                <p class="email no-margin">{{email}}</p>
+                {{/email}}
+                <div class="bottom">
+                    <ul class="social-networks">
+
+                        {{#facebook}}
+                        <li>
+                            <a href="{{facebook}}" title="Google Drive">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        {{/facebook}}
+                        {{#twitter}}
+                        <li>
+                            <a href="{{twitter}}" title="Twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        {{/twitter}}
+                        {{#google}}
+                        <li>
+                            <a href="{{google}}" title="Google Drive">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        {{/google}}
+                        {{#github}}
+                        <li>
+                            <a href="{{github}}" title="Github">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </li>
+                       {{/github}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,104 @@
+<link href="assets/apps/css/login.css" rel="stylesheet" type="text/css">
+
+
+<!-- BEGIN : LOGIN PAGE 5-1 -->
+<div class="user-login-5">
+    <div class="row bs-reset">
+        <div class="col-md-6 bs-reset mt-login-5-bsfix">
+            <div class="login-bg" style="background-image:url(assets/apps/images/login/bg1.jpg)">
+               <!-- <img class="login-logo" src="assets/apps/images/login/logo.png" />-->
+               <!-- <span><b>天津市交通科学研究院</b></span>-->
+            </div>
+        </div>
+        <div class="col-md-6 login-container bs-reset mt-login-5-bsfix">
+            <div class="login-content">
+                <h1 style="color: dodgerblue;margin-bottom: 0px;">天津市交通科学研究院</h1>
+                <h1 style="margin-top: 0px;">用户登录</h1>
+               <!-- <p> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>-->
+                <form action="javascript:;" class="login-form" method="post" autocomplete="off">
+
+                    <div class="alert alert-danger alert-styled-right alert-bordered" style="display: none;">
+                        <button type="button" class="close" data-close="alert"><span>×</span><span class="sr-only">Close</span></button>
+                        <span class="text-semibold"></span>
+                    </div>
+
+                   <!-- <div class="alert alert-styled-right alert-styled-custom alert-arrow-right alpha-teal alert-bordered" style="display: none;">
+                        <button type="button" class="close" data-close="alert"><span>×</span><span class="sr-only">Close</span></button>
+                        <span class="text-semibold"> </span>
+                    </div>-->
+
+                    <!--<div class="alert alert-danger " style="display: none;">
+                        <button class="close" data-close="alert"></button>
+                        <span>请输入用户名和密码. </span>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-xs-6 has-feedback has-feedback-left">
+                            <input class="form-control form-control-solid placeholder-no-fix form-group name" style="margin-bottom: 10px;" type="text" value="{{userName}}" autocomplete="new-password" placeholder="用户名" name="username" required/> </div>
+                        <div class="col-xs-6 has-feedback has-feedback-left">
+                            <input class="form-control form-control-solid placeholder-no-fix form-group pw" style="margin-bottom: 10px;" type="password" value="{{accessToken}}" autocomplete="new-password" placeholder="密码" name="password" required/> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="rem-password">
+                                <label class="rememberme mt-checkbox mt-checkbox-outline">
+                                    <input type="checkbox" name="remember" class="remember-password" value="1" /> 记住密码
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 text-right">
+                            <div class="forgot-password">
+                                <a href="javascript:;" id="forget-password" class="forget-password">忘记密码？</a>
+                            </div>
+
+                          <!--  <button class="btn green ok" >登录</button>-->
+
+                            <button   class="btn bg-blue  ok">登录 <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <!-- BEGIN FORGOT PASSWORD FORM -->
+                <div class="forget-form" action="javascript:;" method="post">
+                    <h3 class="font-green">忘记密码？</h3>
+                    <p> 请在下方输入您的电子邮箱来重置密码 </p>
+                    <div class="form-group">
+                        <input class="form-control placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email" /> </div>
+                    <div class="form-actions">
+                        <button type="button" id="back-btn" class="btn green btn-outline">返回</button>
+                        <button type="submit" class="btn btn-success uppercase pull-right">提交</button>
+                    </div>
+                </div>
+                <!-- END FORGOT PASSWORD FORM -->
+            </div>
+            <div class="login-footer">
+                <div class="row bs-reset">
+                    <div class="col-xs-5 bs-reset">
+                        <ul class="login-social">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-social-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-social-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="icon-social-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-7 bs-reset">
+                        <div class="login-copyright text-right">
+                            <p>Copyright &copy; Keenthemes 2015</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
