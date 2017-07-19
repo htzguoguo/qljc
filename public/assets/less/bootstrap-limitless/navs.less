@@ -84,8 +84,9 @@
         // Actual tabs (as links)
         > a {
             margin-right: 0;
-            color: @color-grey-400;
+            color: @color-grey-300;
             border-radius: 0;
+            text-transform: uppercase;
 
             // Hover/focus states
             &:hover,
@@ -93,6 +94,11 @@
                 background-color: transparent;
                 border-color: transparent;
                 color: @text-color;
+            }
+
+            // Ripple fix
+            &.legitRipple {
+                margin-bottom: -1px;
             }
 
             // Right aligned icons
@@ -134,7 +140,7 @@
                     &,
                     &:hover,
                     &:focus {
-                        border-top-color: @brand-primary;
+                        border-top-color: @color-pink-400;
                     }
                 }
             }
@@ -302,6 +308,9 @@
 
         // Setup desktop view
         @media (min-width: @screen-sm-min) {
+            .box-shadow(@shadow-depth1);
+
+            // Bordered content
             .tab-content-bordered & {
                 .border-bottom-radius(0);
             }
@@ -311,34 +320,15 @@
 
     // Tabs with solid background
     &.nav-tabs-solid {
-
-        // Links color
-        > li > a {
-            color: @text-color;
-            
-            // Remove border
-            &,
-            &:hover,
-            &:focus {
-                border-color: transparent;
-            }
-        }
-
-        // Apply background color to active tab. Replace it with any variable or color
-        > .active > a,
-        > .active > a:hover,
-        > .active > a:focus {
-            background-color: @component-active-bg;
-            border-color: @component-active-bg;
-            color: #fff;
-        }
-
-        // Setup desktop view
         @media (min-width: @screen-sm-min) {
-
-            // Set permanent background color
-            background-color: @nav-tabs-solid-bg;
+            background-color: darken(@body-bg, 10%);
             border: 0;
+            .box-shadow(@shadow-depth1);
+
+            // Inside panels
+            .panel & {
+                background-color: @nav-tabs-solid-bg;
+            }
 
             // Add border radius
             > li {
@@ -346,6 +336,17 @@
 
                 // Link styles
                 > a {
+                    border-width: 0;
+
+                    // Bottom highlight
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        height: 2px;
+                    }
 
                     // Hover state
                     &:hover,
@@ -355,10 +356,33 @@
                 }
             }
 
+            // Apply background color to active tab. Replace it with any variable or color
+            > .active > a,
+            > .active > a:hover,
+            > .active > a:focus {
+                background-color: transparent;
+                border-width: 0;
+
+                // Highlight color
+                &:after {
+                    background-color: @color-pink-300;
+                }
+            }
+
             // Style dropdown link
             > .open:not(.active) > a {
                 background-color: @nav-tabs-solid-hover-bg;
-                border-color: transparent;
+            }
+
+            // Rounded
+            &.nav-tabs-component {
+                > li:first-child > a:after {
+                    border-radius: 0 0 0 @border-radius-base;
+                }
+
+                &.nav-justified > li:last-child > a:after {
+                    border-radius: 0 0 @border-radius-base 0;
+                }
             }
         }
     }
@@ -380,19 +404,31 @@
                 // Icon
                 > i {
                     display: block;
-                    margin: 5px 0;
+                    margin: 0 0 @padding-base-vertical;
                 }
             }
 
             // Sizes
             &.nav-lg > li > a {
                 padding-bottom: (@line-height-computed-large - (@padding-base-vertical * 1.5));
+
+                > i {
+                    margin-bottom: @padding-large-vertical;
+                }
             }
             &.nav-sm > li > a {
                 padding-bottom: (@line-height-computed-small - (@padding-base-vertical * 1.5));
+
+                > i {
+                    margin-bottom: @padding-small-vertical;
+                }
             }
             &.nav-xs > li > a {
                 padding-bottom: (@line-height-computed-mini - (@padding-base-vertical * 1.5));
+
+                > i {
+                    margin-bottom: @padding-xs-vertical;
+                }
             }
         }
     }
@@ -408,6 +444,7 @@
     @media (min-width: @screen-sm-min) {
         font-size: 0;
 
+        // Menu items
         > li {
             display: inline-block;
             font-size: @font-size-base;
@@ -421,8 +458,8 @@
         position: relative;
         background-color: #fff;
         padding: @list-spacing 0;
-        border: 1px solid @panel-default-border;
         border-radius: @border-radius-base;
+        .box-shadow(@shadow-depth1);
 
         // Tab nav item
         > li {
@@ -430,7 +467,8 @@
 
             // Add permanent link styles
             > a {
-                border: 0;
+                border-width: 0 0 0 2px;
+                border-left-color: transparent;
 
                 // Hover state
                 &:hover,
@@ -458,19 +496,9 @@
                 &,
                 &:hover,
                 &:focus {
-                    border: 0;
+                    border-width: 0 0 0 2px;
+                    border-left-color: @color-pink-400;
                     background-color: @nav-tabs-mobile-link-active-bg;
-
-                    // Highlight
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: -1px;
-                        bottom: 0;
-                        width: 2px;
-                        background-color: @brand-primary;
-                    }
                 }
             }
 
@@ -489,27 +517,21 @@
             }
         }
 
-        // Remove highlight in solid and colored tabs
-        &.nav-tabs-solid,
-        &[class*=bg-] {
-            > li.active > a {
-                &:after {
-                    content: none;
-                }
-            }
-        }
-
         // Add text header to the tabs section
         &:before {
             content: 'Contents';
             color: inherit;
-            font-size: @font-size-small;
-            line-height: @line-height-small;
             margin-top: (@content-padding-base - @list-spacing);
-            margin-left: @content-padding-base;
+            margin-left: @padding-base-horizontal;
             margin-bottom: @content-padding-base;
-            text-transform: uppercase;
             .opacity(0.5);
+        }
+
+        // Remove left border for solid and custom tabs
+        &[class*=bg-] {
+            > li > a {
+                border-left-width: 0!important;
+            }
         }
 
         // Tabs with solid background
@@ -674,8 +696,6 @@
         // Basic tabs
         > .nav-tabs {
             border-left: 1px solid @nav-tabs-border-color;
-            margin-bottom: 0;
-            margin-top: @line-height-computed;
 
             // Nav items
             > li {
@@ -768,6 +788,7 @@
         // Links rendered as pills
         > a {
             color: @gray-dark;
+            text-transform: uppercase;
         }
 
         // Inline links
@@ -907,6 +928,7 @@
 }
 
 
+
 // Nav variations
 // -------------------------
 
@@ -926,7 +948,7 @@
     > li > a {
         border-radius: 0;
         margin-bottom: 0;
-        
+
         // Hover state
         &:hover,
         &:focus {
@@ -966,15 +988,13 @@
 
     // Setup mobile view
     @media (max-width: @screen-xs-max) {
-        border-bottom: 1px solid @panel-default-border;
-
-        // Give them the same look
         > li {
             &.active > a {
                 &,
                 &:hover,
                 &:focus {
-                    border: 0;
+                    border-width: 0 0 0 2px;
+                    border-left-color: @color-pink-400;
                 }
             }
         }

@@ -16,21 +16,41 @@
 // Base
 .navbar {
     margin-bottom: 0;
-    border-width: 1px 0;
+    border-width: 0;
     padding-left: 0;
     padding-right: 0;
-
+    .box-shadow(@shadow-depth1);
+    
+    // Desktop view
     @media (min-width: @grid-float-breakpoint) {
         padding-left: @navbar-padding-horizontal;
         padding-right: @navbar-padding-horizontal;
     }
 }
 
+
+//
 // Navbar as a stand alone component
+//
+
 .navbar-component {
     border-radius: @border-radius-base;
     margin-bottom: @line-height-computed;
-    border-width: 1px;
+    .box-shadow(@shadow-depth1);
+
+    // Set horizontal padding
+    .navbar&,
+    > .navbar {
+        @media (min-width: @grid-float-breakpoint) {
+            padding-left: @navbar-padding-horizontal;
+            padding-right: @navbar-padding-horizontal;
+        }
+    }
+    
+    // Remove shadow from children navbars
+    > .navbar {
+        .box-shadow(none);
+    }
 
     // Inside page header
     .page-header & {
@@ -38,10 +58,15 @@
         margin-right: @grid-gutter-width;
     }
 
-    // Default navbar
-    &.navbar-default {
-        border-color: @panel-default-border;
-        background-color: @panel-bg;
+    // Default navbar inside panel    
+    .panel &.navbar-default {
+        border-width: 1px;
+        .box-shadow(none);
+    }
+    
+    // Inverse navbar inside panel 
+    .panel &.navbar-inverse {
+        .box-shadow(none);
     }
 
     // First child border radius
@@ -57,7 +82,11 @@
     }
 }
 
+
+//
 // Navbar with affix component
+//
+
 .affix {
     &.navbar,
     &.navbar-collapse {
@@ -89,16 +118,17 @@
         float: right;
         margin-right: (@navbar-padding-horizontal - @content-padding-base);
 
+        // Nav item
         > li {
             float: left;
 
+            // Links
             > a {
                 padding-left: @content-padding-base;
                 padding-right: @content-padding-base;
             }
         }
     }
-
 
     // Mobile view setup
     @media (max-width: @grid-float-breakpoint-max) {
@@ -148,13 +178,18 @@
 // Fixed navbar setup
 // -------------------------
 
-// Make navbars static on mobile
+// Reverse shadow in bottom navbar
+.navbar-fixed-bottom,
+.navbar-fixed-bottom > .navbar {
+    .box-shadow(@shadow-depth1-reversed);
+}
+
+// Make top navbars static on mobile
 @media (max-width: @grid-float-breakpoint-max) {
     .navbar-fixed-top {
         position: static;
     }
 }
-
 
 // Fixed navbar vertical spacing
 @media (min-width: @grid-float-breakpoint) {
@@ -165,35 +200,35 @@
 
     // Top
     .navbar-top-lg {
-        padding-top: @navbar-height-large + 2;
+        padding-top: @navbar-height-large;
 
         // Sticky fixed sidebar
         .sidebar-fixed.affix {
-            top: @navbar-height-large + @line-height-computed + 2;
+            top: @navbar-height-large + @line-height-computed;
         }
     }
     .navbar-top {
-        padding-top: @navbar-height + 2;
+        padding-top: @navbar-height;
 
         // Sticky fixed sidebar
         .sidebar-fixed.affix {
-            top: @navbar-height + @line-height-computed + 2;
+            top: @navbar-height + @line-height-computed;
         }
     }
     .navbar-top-sm {
-        padding-top: @navbar-height-small + 2;
+        padding-top: @navbar-height-small;
 
         // Sticky fixed sidebar
         .sidebar-fixed.affix {
-            top: @navbar-height-small + @line-height-computed + 2;
+            top: @navbar-height-small + @line-height-computed;
         }
     }
     .navbar-top-xs {
-        padding-top: @navbar-height-mini + 2;
+        padding-top: @navbar-height-mini;
 
         // Sticky fixed sidebar
         .sidebar-fixed.affix {
-            top: @navbar-height-mini + @line-height-computed + 2;
+            top: @navbar-height-mini + @line-height-computed;
         }
     }
 
@@ -204,82 +239,83 @@
 
     // Top navbars. Double navbar height
     .navbar-top-lg-lg {
-        padding-top: @navbar-height-large + @navbar-height-large + 4;
+        padding-top: @navbar-height-large + @navbar-height-large;
     }
     .navbar-top-lg-md,
     .navbar-top-md-lg {
-        padding-top: @navbar-height + @navbar-height-large + 4;
+        padding-top: @navbar-height + @navbar-height-large;
     }
     .navbar-top-lg-sm,
     .navbar-top-md-md,
     .navbar-top-sm-lg {
-        padding-top: @navbar-height + @navbar-height + 4;
+        padding-top: @navbar-height + @navbar-height;
     }
     .navbar-top-lg-xs,
     .navbar-top-md-sm,
     .navbar-top-sm-md,
     .navbar-top-xs-lg {
-        padding-top: @navbar-height + @navbar-height-small + 4;
+        padding-top: @navbar-height + @navbar-height-small;
     }
     .navbar-top-md-xs,
     .navbar-top-sm-sm,
     .navbar-top-xs-md {
-        padding-top: @navbar-height + @navbar-height-mini + 4;
+        padding-top: @navbar-height + @navbar-height-mini;
     }
     .navbar-top-sm-xs,
     .navbar-top-xs-sm {
-        padding-top: @navbar-height-small + @navbar-height-mini + 4;
+        padding-top: @navbar-height-small + @navbar-height-mini;
     }
     .navbar-top-xs-xs {
-        padding-top: @navbar-height-mini + @navbar-height-mini + 4;
+        padding-top: @navbar-height-mini + @navbar-height-mini;
     }
 }
 
 // Bottom
 .navbar-bottom-lg {
-    padding-bottom: @navbar-height-large + 2;
+    padding-bottom: @navbar-height-large;
 }
 .navbar-bottom {
-    padding-bottom: @navbar-height + 2;
+    padding-bottom: @navbar-height;
 }
 .navbar-bottom-sm {
-    padding-bottom: @navbar-height-small + 2;
+    padding-bottom: @navbar-height-small;
 }
 .navbar-bottom-xs {
-    padding-bottom: @navbar-height-mini + 2;
+    padding-bottom: @navbar-height-mini;
 }
 
 // Bottom navbars. Double navbar height vertical borders
 .navbar-bottom-lg-lg {
-    padding-bottom: @navbar-height-large + @navbar-height-large + 4;
+    padding-bottom: @navbar-height-large + @navbar-height-large;
 }
 .navbar-bottom-lg-md,
 .navbar-bottom-md-lg {
-    padding-bottom: @navbar-height + @navbar-height-large + 4;
+    padding-bottom: @navbar-height + @navbar-height-large;
 }
 .navbar-bottom-lg-sm,
 .navbar-bottom-md-md,
 .navbar-bottom-sm-lg {
-    padding-bottom: @navbar-height + @navbar-height + 4;
+    padding-bottom: @navbar-height + @navbar-height;
 }
 .navbar-bottom-lg-xs,
 .navbar-bottom-md-sm,
 .navbar-bottom-sm-md,
 .navbar-bottom-xs-lg {
-    padding-bottom: @navbar-height + @navbar-height-small + 4;
+    padding-bottom: @navbar-height + @navbar-height-small;
 }
 .navbar-bottom-md-xs,
 .navbar-bottom-sm-sm,
 .navbar-bottom-xs-md {
-    padding-bottom: @navbar-height + @navbar-height-mini + 4;
+    padding-bottom: @navbar-height + @navbar-height-mini;
 }
 .navbar-bottom-sm-xs,
 .navbar-bottom-xs-sm {
-    padding-bottom: @navbar-height-small + @navbar-height-mini + 4;
+    padding-bottom: @navbar-height-small + @navbar-height-mini;
 }
 .navbar-bottom-xs-xs {
-    padding-bottom: @navbar-height-mini + @navbar-height-mini + 4;
+    padding-bottom: @navbar-height-mini + @navbar-height-mini;
 }
+
 
 
 // Brand/project name
@@ -306,6 +342,25 @@
     > li > a {
         padding-top: @navbar-padding-vertical;
         padding-bottom: @navbar-padding-vertical;
+
+        // Add bottom highlight
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            width: 2px;
+
+            // Desktop view
+            @media (min-width: @grid-float-breakpoint) {
+                top: auto;
+                right: 0;
+                width: auto;
+                height: 2px;
+            }
+        }
 
 
         //
@@ -348,13 +403,24 @@
     }
 
     // Language switch images
-    .language-switch a > img {
-        position: relative;
-        top: -1px;
+    .language-switch {
+
+        // Top level items
+        > a > img {
+            position: relative;
+            top: -1px;
+        }
+
+        // Inside dropdown menu
+        .dropdown-menu > li > a > img {
+            margin-top: (@line-height-computed - 11) / 2;
+        }
     }
 
     // User dropdown
     > .dropdown-user {
+
+        // Links
         > a {
 
             // Set vertical padding
@@ -367,6 +433,10 @@
             // User name
             > span {
                 display: inline-block;
+            }
+
+            // Add horizontal spacing if image is used
+            > img + span {
                 padding-left: @element-horizontal-spacing;
             }
         }
@@ -399,7 +469,10 @@
 
     // Make dropdown menu static on mobile
     @media (max-width: @grid-float-breakpoint-max) {
-        border-bottom: 1px solid fade(#fff, 10%);
+        .navbar-collapse & {
+            padding-top: @list-spacing;
+            padding-bottom: @list-spacing;
+        }
 
         // Dropdowns get custom display when collapsed
         .open .dropdown-menu {
@@ -451,16 +524,18 @@
                 position: static;
                 float: right;
             }
+
+            // Status mark
+            .status-mark {
+                position: static;
+                float: right;
+                margin-top: ((@line-height-computed - 8) / 2);
+            }
         }
 
         // Caret in user dropdown
         > .dropdown-user .caret {
             margin-top: (@icon-font-size / 2);
-        }
-
-        // Add border if inside default navbar
-        .navbar-default & {
-            border-bottom: 1px solid @navbar-default-border;
         }
 
         // Remove border from the last nav
@@ -540,7 +615,6 @@
         .navbar-mini-vertical-align(@input-height-base);
     }
 
-
     // Checkboxes, radios, toggles
     .checkbox-switchery[class*=switchery-] {
         margin-bottom: 0;
@@ -557,11 +631,6 @@
         // Set min width
         .form-control {
             min-width: 200px;
-        }
-
-        // Single file uploader
-        .uploader {
-            width: 200px;
         }
 
         // Add left margin to form rows
@@ -587,9 +656,8 @@
 // Dropdown menus
 // -------------------------
 
-// Menu position and menu carets
+// Menu components
 .navbar-nav > li > .dropdown-menu {
-    margin-top: 1px;
     border-top-width: 0;
 
     // Media list
@@ -601,8 +669,6 @@
 
 // Menu position and menu caret support for dropups via extra dropup class
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
-    margin-top: 0;
-    margin-bottom: 1px;
     border-top-width: 1px;
     border-bottom-width: 0;
     .border-top-radius(@border-radius-base);
@@ -652,6 +718,7 @@
             margin: @navbar-padding-vertical @navbar-padding-horizontal;
         }
 
+        // Multiple buttons
         & + & {
             margin-left: 0;
         }
@@ -724,31 +791,22 @@
 
 // Default navbar
 .navbar-default {
-    border-top-color: transparent;
-
-    // Add class for darken default navbar
-    &.navbar-default-secondary {
-        background-color: darken(@navbar-default-bg, 1.5%);
-    }
-
-    // After page header content
-    .page-header-content + & {
-        border-top-color: @navbar-default-border;
-    }
-
-    // Bottom position
-    &.navbar-fixed-bottom {
-        border-top-color: @navbar-default-border;
-        border-bottom-color: @navbar-default-bg;
-    }
-
-    // Add top border to the first navbar
-    .navbar-fixed-bottom > &:first-child {
-        border-top-color: @navbar-default-border;
-    }
 
     // Dropdown menu items
     .navbar-nav {
+        
+        // Highlight in default navbar
+        > .active > a:after {
+            background-color: @color-indigo-300;
+        }
+        
+        // Dropdown menu
+        > li > .dropdown-menu {
+            border-top-width: 1px;
+            border-top-color: @navbar-default-border;
+        }
+
+        // Mobile setup    
         @media (max-width: @grid-float-breakpoint-max) {
 
             // Dropdowns get custom display when collapsed
@@ -782,6 +840,13 @@
 
     // Setup mobile view
     @media (max-width: @grid-float-breakpoint-max) {
+
+        // Navbar collapse
+        .navbar-collapse {
+            .navbar-nav {
+                border-bottom: 1px solid @navbar-default-border;
+            }
+        }
 
         // Active submenu link color in solid menu
         .dropdown-menu[class*=bg-] {
@@ -836,21 +901,45 @@
 
 // Inverse navbar
 .navbar-inverse {
-    border-bottom-color: fade(#fff, 10%);
     color: @navbar-inverse-color;
-
-    // Navbar collapse
-    .navbar-collapse {
-        border-color: fade(#000, 20%);
-    }
 
     // Navbar form
     .navbar-form {
-        border-color: fade(#fff, 10%);
+
+        // Form components
+        .form-control,
+        .form-control-feedback,
+        .input-group-addon {
+            color: #fff;
+        }
+
+        // Inputs
+        .form-control {
+            border-bottom-color: fade(#fff, 30%);
+            .placeholder(@input-placeholder-light);
+
+            // Focused
+            &:focus {
+                border-bottom-color: #fff;
+                .box-shadow(0 1px 0 #fff);
+            }
+        }
     }
 
     // Nav dropdowns
     .navbar-nav {
+
+        // Mute link color
+        > li > a {
+            color: fade(#fff, 90%);
+        }
+
+        // Highlight in default navbar
+        > .active > a:after {
+            background-color: #fff;
+        }
+
+        // Mobile setup
         @media (max-width: @grid-float-breakpoint-max) {
 
             // Dropdowns get custom display
@@ -862,7 +951,7 @@
                 // Muted and annotation texts
                 .text-muted,
                 .media-annotation {
-                    color: fade(#fff, 80%)
+                    color: fade(#fff, 80%);
                 }
 
                 // Linked media list colors
@@ -881,6 +970,58 @@
                             background-color: fade(#000, 10%);
                             color: @navbar-inverse-link-color;
                         }
+                    }
+                }
+
+                // Checkbox
+                .checker {
+                    span {
+                        border-color: #fff;
+                        color: #fff;
+
+                        // Checked
+                        &.checked {
+                            border-color: transparent;
+                        }
+                    }
+                }
+
+                // Radio
+                .choice {
+                    span {
+                        border-color: #fff;
+                    }
+                }
+
+                // Form controls
+                .form-control,
+                .form-control-feedback,
+                .input-group-addon,
+                .select2-selection__placeholder {
+                    color: #fff;
+                }
+
+                // Inputs
+                .form-control {
+                    border-bottom-color: fade(#fff, 30%);
+                    .placeholder(@input-placeholder-light);
+
+                    // Focused
+                    &:focus {
+                        border-bottom-color: #fff;
+                        .box-shadow(0 1px 0 #fff);
+                    }
+                }
+
+                // Select2 selects
+                .select2-selection--single:not([class*=bg-]):not([class*=border-]) {
+                    border-bottom-color: fade(#fff, 30%);
+                }
+                .select2-container--focus,
+                .select2-container--open {
+                    .select2-selection--single:not([class*=bg-]):not([class*=border-]) {
+                        border-bottom-color: #fff;
+                        .box-shadow(0 1px 0 #fff);
                     }
                 }
 
@@ -931,20 +1072,12 @@
                 }
             }
 
-            // Make checkboxes and radios white
-            .checker,
-            .choice {
-                > span {
-                    border-color: #fff;
-                    color: #fff;
-                }
-            }
-
             // Make tabs transparent
             .nav-tabs {
                 background-color: transparent;
                 border: 0;
 
+                // Links
                 > li > a {
                     background-color: transparent;
                 }
@@ -958,6 +1091,11 @@
         // Add darker bg to collapse
         .navbar-collapse {
             background-color: fade(#000, 5%);
+
+            &,
+            .navbar-nav {
+                border-bottom: 1px solid fade(#fff, 10%);
+            }
         }
 
         // Add bottom border to navbar text
@@ -997,11 +1135,28 @@
 
         // Make flat elements white
         .label-flat,
-        .badge-flat,
-        .btn-flat {
+        .badge-flat {
             border-color: #fff;
             color: #fff;
         }
+        .btn-flat {
+            &,
+            &:hover,
+            &:focus {
+                border-color: #fff;
+                color: #fff!important;
+            }
+        }
+    }
+}
+
+// Raised navbar navigation
+.navbar-nav-material {
+    > li > a {
+        text-transform: uppercase;
+        font-size: @font-size-small;
+        position: relative;
+        font-weight: 500;
     }
 }
 
@@ -1131,6 +1286,7 @@
             left: @grid-gutter-width;
             right: @grid-gutter-width;
 
+            .navbar-component &,
             .layout-boxed & {
                 left: 0;
                 right: 0;
@@ -1182,7 +1338,6 @@
 
 // Mega menu footer
 .dropdown-content-footer {
-    background-color: @panel-footer-bg;
     color: @text-color;
     border-top: 1px solid @dropdown-border;
     .border-bottom-radius(@border-radius-base);
@@ -1190,7 +1345,7 @@
     // Links
     a {
         display: block;
-        padding: @padding-base-vertical;
+        padding: @content-padding-small @content-padding-large;
         text-align: center;
         color: @text-color;
 
@@ -1310,7 +1465,7 @@
         > a {
             display: block;
             color: @dropdown-link-color;
-            padding: (@padding-base-vertical + 1) @padding-base-horizontal;
+            padding: @padding-base-vertical @padding-base-horizontal;
             border-radius: @border-radius-base;
 
             &:hover,
@@ -1359,7 +1514,6 @@
             }
         }
     }
-
 
     // Setup mobile view
     @media (max-width: @grid-float-breakpoint-max) {
@@ -1588,6 +1742,7 @@
         &.underlined {
             border-bottom-color: fade(#fff, 10%);
 
+            // In default navbar
             .navbar-default & {
                 border-bottom-color: @gray-lighter;
             }

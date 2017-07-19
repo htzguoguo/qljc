@@ -11,7 +11,7 @@ _.extend( AppBase.prototype, {
         "use strict";
         var mainView = this.startController(MainView);
         $( 'body' ).append( mainView.template );
-        window.app.router.navigate('contacts', {trigger: true});
+        window.app.router.navigate('projects', {trigger: true});
     }
 } );
 module.exports = AppBase;

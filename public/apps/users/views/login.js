@@ -170,7 +170,7 @@ module.exports = Base.extend( {
                      }else {
                          userSession.destory( );
                      }*/
-                     window.app.router.navigate('contacts', {trigger: true});
+                     window.app.router.navigate('projects', {trigger: true});
                  }
                  else {
                      $('.alert-danger span.text-semibold', $('.login-form')).html('用户名或者密码错误');

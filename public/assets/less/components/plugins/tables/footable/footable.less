@@ -75,49 +75,49 @@
 // ------------------------------
 
 .footable-row-detail-inner {
-display: table;
-table-layout: fixed;
-width: 100%;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 }
 .footable-row-detail-row {
-display: table-row;
+    display: table-row;
 }
 .footable-row-detail-group {
-display: block;
-font-weight: 700;
-margin-top: @line-height-computed;
-margin-bottom: @padding-base-vertical;
+    display: block;
+    font-weight: 700;
+    margin-top: @line-height-computed;
+    margin-bottom: @padding-base-vertical;
 
-&:first-child {
-margin-top: @padding-base-vertical;
-}
+    &:first-child {
+        margin-top: @padding-base-vertical;
+    }
 }
 .footable-row-detail-name {
-display: table-cell;
-padding-right: 40px;
-font-weight: 500;
+    display: table-cell;
+    padding-right: 40px;
+    font-weight: 500;
 }
 .footable-row-detail-value {
-display: table-cell;
-padding: @padding-base-vertical 0;
+    display: table-cell;
+    padding: @padding-base-vertical 0;
 }
 
 // Make dropdown menus full width
 @media (max-width: @screen-xs) {
-.footable-row-detail-inner {
-position: relative;
-}
+    .footable-row-detail-inner {
+        position: relative;
+    }
 
-.footable-row-detail {
-.dropdown,
-.dropup,
-.btn-group {
-position: static;
-}
+    .footable-row-detail {
+        .dropdown,
+        .dropup,
+        .btn-group {
+            position: static;
+        }
 
-.dropdown-menu {
-left: 0;
-right: 0;
-}
-}
+        .dropdown-menu {
+            left: 0;
+            right: 0;
+        }
+    }
 }

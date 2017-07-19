@@ -381,7 +381,6 @@
         .noui-slider,
         .input-group,
         .selectboxit-container .selectboxit-options,
-        .uploader,
         .heading-form .form-control {
             width: 220px;
         }
@@ -418,16 +417,16 @@
 
         // Floating buttons
         .btn-float {
-            margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + 2)) / 2) - 1); // Difference between base height and button height
+            margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size)) / 2)); // Difference between base height and button height
 
             // If has text
             &.has-text {
-                margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + @line-height-computed + 5)) / 2) - 1); // Difference between base height and button height with text
+                margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + @line-height-computed + 5)) / 2)); // Difference between base height and button height with text
             }
 
             // If float link
             &.btn-link {
-                margin-top: (((@input-height-base - (@icon-font-size + @line-height-computed + (@btn-float-padding * 2) - 6)) / 2) - 1);
+                margin-top: (((@input-height-base - (@icon-font-size + @line-height-computed + (@btn-float-padding * 2) - 6)) / 2));
             }
         }
 
@@ -653,7 +652,7 @@
     .heading-elements,
     .breadcrumb-elements {
 
-        // If collapsible
+        // If collapsible        
         &:not(.not-collapsible) {
             display: none;
         }
@@ -743,7 +742,7 @@
             background-color: @body-bg;
             left: 0;
             right: 0;
-            border-top: 1px solid darken(@body-bg, 10%);
+            border-top: 1px solid darken(@body-bg, 5%);
             z-index: (@zindex-navbar + 2);
             padding-bottom: @line-height-computed;
             margin-left: -(@grid-gutter-width);

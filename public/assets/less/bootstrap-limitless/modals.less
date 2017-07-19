@@ -16,7 +16,7 @@
 // Actual modal
 .modal-content {
     border-radius: @border-radius-base;
-    .box-shadow(0 1px 4px rgba(0,0,0,.2));
+    .box-shadow(@shadow-depth4);
 }
 
 // Modal header
@@ -42,6 +42,7 @@
         color: #fff;
     }
 
+    // Close button
     .close {
         position: absolute;
         right: @modal-inner-padding;

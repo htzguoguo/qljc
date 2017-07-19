@@ -14,7 +14,6 @@
 // ------------------------------
 
 .panel-toolbar-inbox {
-	background-color: #fcfcfc;
 
 	// Add top border radius if first in panel
 	.panel > &:first-child {
@@ -25,15 +24,8 @@
 	> .navbar {
 		background-color: transparent;
 		border-width: 0;
+		.box-shadow(none);
 	}
-
-	// Make default buttons white in default navbar
-	> .navbar-default {
-		.btn-default {
-			background-color: #fff;
-		}
-	}
-
 
 	// Desktop view
     @media (min-width: @grid-float-breakpoint) {

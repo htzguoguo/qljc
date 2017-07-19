@@ -32,11 +32,9 @@ $(function() {
 
     // Calculate min height
     function containerHeight() {
-       /* var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();*/
+        var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
 
-      //  $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
-
-     /*   $('.page-container').css( 'min-height' , availableHeight  );*/
+        $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
     }
 
     // Initialize
@@ -133,26 +131,6 @@ $(function() {
     // Element controls
     //
     // ========================================
-    var handleAlerts = function() {
-        $('body').on('click', '[data-close="alert"]', function(e) {
-            $(this).parent('.alert').hide();
-            $(this).closest('.note').hide();
-            e.preventDefault();
-        });
-
-        $('body').on('click', '[data-close="note"]', function(e) {
-            $(this).closest('.note').hide();
-            e.preventDefault();
-        });
-
-        $('body').on('click', '[data-remove="note"]', function(e) {
-            $(this).closest('.note').remove();
-            e.preventDefault();
-        });
-    };
-
-    handleAlerts();
-
 
 
     // Reload elements

@@ -32,7 +32,6 @@
     // Account for labels in navs
     .list-group-item.active > &,
     .nav-pills > .active > a > &,
-    .nav-tabs-solid > .active > a > &,
     .nav-tabs[class*=bg-] > li > a > & {
         color: @badge-active-color;
         background-color: @badge-active-bg;
@@ -207,7 +206,7 @@
 
 // Base
 .label-icon {
-    padding: @padding-base-vertical;
+    padding: 4px;
     border-radius: @btn-border-radius-small;
     line-height: 1;
 
@@ -217,7 +216,7 @@
     }
 
     &.label-flat {
-        padding: @padding-base-vertical - 1;
+        padding: @padding-base-vertical - 2;
     }
 }
 
@@ -226,7 +225,7 @@
     padding: @padding-xlarge-vertical;
 
     &.label-flat {
-        padding: @padding-xlarge-vertical - 1;
+        padding: @padding-xlarge-vertical - 2;
     }
 }
 
@@ -235,7 +234,7 @@
     padding: @padding-large-vertical;
 
     &.label-flat {
-        padding: @padding-large-vertical - 1;
+        padding: @padding-large-vertical - 2;
     }
 }
 
@@ -244,7 +243,7 @@
     padding: @padding-small-vertical;
 
     &.label-flat {
-        padding: @padding-small-vertical - 1;
+        padding: @padding-small-vertical - 2;
     }
 }
 
@@ -253,7 +252,7 @@
     padding: @padding-xs-vertical;
 
     &.label-flat {
-        padding: @padding-xs-vertical - 1;
+        padding: @padding-xs-vertical - 2;
     }
 }
 

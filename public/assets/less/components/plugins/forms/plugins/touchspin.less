@@ -26,8 +26,6 @@
         > .btn {
             height: @input-height-base;
             line-height: @line-height-base;
-            margin-left: -1px;
-            border-radius: 0;
         }
 
         // Icon
@@ -42,14 +40,13 @@
 
         // Arrow up
         .bootstrap-touchspin-up {
-            border: 1px solid @input-border;
-            border-radius: 0;
+            .border-right-radius(0);
         }
 
         // Arrow down
         .bootstrap-touchspin-down {
-            border: 1px solid @input-border;
-            .border-right-radius(@input-border-radius);
+            margin-left: 1px;
+            .border-left-radius(0);
         }
     }
 
@@ -82,12 +79,33 @@
 // Elements
 // ------------------------------
 
-// Prefix
-.bootstrap-touchspin-prefix {
-    border-right: 0;
+.bootstrap-touchspin-postfix {
+    padding-right: 0;
+
+    // In default size
+    & + .input-group-btn,
+    & + .input-group-btn-vertical {
+            padding-left: @padding-base-horizontal;
+    }
+
+    // In large size
+    .input-group-lg & {
+        padding-right: 0;
+
+        & + .input-group-btn,
+        & + .input-group-btn-vertical {
+                padding-left: @padding-large-horizontal;
+        }
+    }
+
+    // In small size
+    .input-group-sm & {
+        padding-right: 0;
+
+        & + .input-group-btn,
+        & + .input-group-btn-vertical {
+                padding-left: @padding-small-horizontal;
+        }
+    }
 }
 
-// Postfix
-.bootstrap-touchspin-postfix {
-    border-left: 0;
-}

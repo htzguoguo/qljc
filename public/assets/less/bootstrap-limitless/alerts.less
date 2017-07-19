@@ -17,6 +17,7 @@
     position: relative;
     padding-left: (@alert-padding + 5);
     padding-right: (@alert-padding + 5);
+    .box-shadow(@shadow-depth1);
 
     // Alert heading
     .alert-heading {
@@ -98,6 +99,9 @@
 
 // Alert as a component
 .alert-component {
+    border-width: 0;
+
+    // Styled alerts
     &[class*=alert-styled-] {
         background-color: #fff;
     }
@@ -186,7 +190,6 @@
             border-left-color: fade(#000, 15%)!important;
         }
     }
-
 
     // Styled alert with right icon
     &.alert-styled-right {

@@ -42,7 +42,11 @@
     min-width: 180px;
     padding: @list-spacing 0;
     color: @text-color;
-    .box-shadow(0 1px 3px fade(#000, 10%));
+    .box-shadow(@shadow-depth2);
+
+    &:not([class*=border-]) {
+        border-width: 0;
+    }
 
     // Dividers (basically an hr) within the dropdown
     .divider {
@@ -62,7 +66,7 @@
 
     // Links within the dropdown menu
     > li > a {
-        padding: (@padding-base-vertical + 1) @content-padding-base;
+        padding: @padding-base-vertical @padding-base-horizontal;
         outline: 0;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -153,8 +157,8 @@
 
         // Label instead of link
         > label {
-            padding: (@padding-base-vertical + 1) @content-padding-base;
-            padding-left: (@content-padding-base + @content-padding-small + @checkbox-size);
+            padding: @padding-base-vertical @padding-base-horizontal;
+            padding-left: (@padding-base-horizontal + @content-padding-small + @checkbox-size);
             display: block;
             cursor: pointer;
 
@@ -163,7 +167,7 @@
             .choice,
             > input[type=checkbox],
             > input[type=radio] {
-                left: @content-padding-base;
+                left: @padding-base-horizontal;
                 top: auto;
                 margin-top: ((@line-height-computed - @checkbox-size) / 2);
             }
@@ -177,13 +181,13 @@
 
         // Right checkbox position
         &.checkbox-right > label {
-            padding-left: @content-padding-base;
-            padding-right: (@content-padding-base + @content-padding-small + @checkbox-size);
+            padding-left: @padding-base-horizontal;
+            padding-right: (@padding-base-horizontal + @content-padding-small + @checkbox-size);
 
             .checker,
             > input[type=checkbox] {
                 left: auto;
-                right: @content-padding-base;
+                right: @padding-base-horizontal;
             }
         }
 
@@ -194,7 +198,7 @@
             .choice,
             > input[type=radio] {
                 left: auto;
-                right: @content-padding-base;
+                right: @padding-base-horizontal;
             }
         }
     }
@@ -206,17 +210,17 @@
 
         // Set left spacing
         > label > .switchery {
-            left: @content-padding-base;
+            left: @padding-base-horizontal;
         }
 
         // Set right spacing
         &.checkbox-right[class*=switchery-] {
             > label {
-                padding-left: @content-padding-base;
+                padding-left: @padding-base-horizontal;
 
                 > .switchery {
                     left: auto;
-                    right: @content-padding-base;
+                    right: @padding-base-horizontal;
                 }
             }
         }
@@ -226,7 +230,7 @@
             margin-bottom: 0;
 
             > label {
-                padding-left: (((@switchery-small-size + 1) * 2) + (@content-padding-base * 2));
+                padding-left: (((@switchery-small-size + 1) * 2) + (@padding-base-horizontal * 2));
             }
         }
 
@@ -235,7 +239,7 @@
             margin-bottom: 0;
 
             > label {
-                padding-left: (((@switchery-mini-size + 1) * 2) + (@content-padding-base * 2));
+                padding-left: (((@switchery-mini-size + 1) * 2) + (@padding-base-horizontal * 2));
             }
         }
 
@@ -245,14 +249,14 @@
             // Small
             &.switchery-sm {
                 > label {
-                    padding-right: (((@switchery-small-size + 1) * 2) + (@content-padding-base * 2));
+                    padding-right: (((@switchery-small-size + 1) * 2) + (@padding-base-horizontal * 2));
                 }
             }
 
             // Mini
             &.switchery-xs {
                 > label {
-                    padding-right: (((@switchery-mini-size + 1) * 2) + (@content-padding-base * 2));
+                    padding-right: (((@switchery-mini-size + 1) * 2) + (@padding-base-horizontal * 2));
                 }
             }
         }
@@ -379,7 +383,7 @@
 
         // Link
         > a {
-            padding-right: ((@content-padding-base * 2) + (@icon-font-size / 2));
+            padding-right: ((@padding-base-horizontal * 2) + (@icon-font-size / 2));
             position: relative;
 
             // Arrow icon
@@ -389,7 +393,7 @@
                 position: absolute;
                 top: 50%;
                 margin-top: -(@icon-font-size / 2);
-                right: @content-padding-base;
+                right: @padding-base-horizontal;
                 font-size: @icon-font-size;
                 font-weight: 400;
                 line-height: 1;
@@ -439,7 +443,7 @@
         > .dropdown-menu {
             top: 0;
             left: 100%;
-            margin-top: -(@list-spacing + 1); // List spacing  + 1px border
+            margin-top: -(@list-spacing);
 
             // Reverse in dropdown and bottom navbars
             .dropup &,
@@ -447,7 +451,7 @@
                 top: auto;
                 bottom: 0;
                 margin-top: 0;
-                margin-bottom: -(@list-spacing + 1); // List spacing  + 1px border
+                margin-bottom: -(@list-spacing);
             }
         }
 
@@ -464,7 +468,7 @@
                 top: auto;
                 bottom: 0;
                 margin-top: 0;
-                margin-bottom: -(@list-spacing + 1);
+                margin-bottom: -(@list-spacing);
             }
         }
 
@@ -494,13 +498,13 @@
                     // Second level
                     > li {
                         > a {
-                            padding-left: (@content-padding-base * 2);
+                            padding-left: (@padding-base-horizontal * 2);
                         }
 
                         // Third level
                         > ul > li {
                             > a {
-                                padding-left: (@content-padding-base * 3);
+                                padding-left: (@padding-base-horizontal * 3);
                             }
                         }
                     }
@@ -531,7 +535,7 @@
 // -------------------------
 
 .dropdown-header {
-    padding: (@padding-base-vertical + 1) @content-padding-base;
+    padding: @padding-base-vertical @padding-base-horizontal;
     font-size: @font-size-mini;
     line-height: @line-height-mini;
     color: @text-muted;
@@ -542,7 +546,7 @@
     &.highlight {
         margin-top: 0;
         background-color: @dropdown-annotation-bg;
-        color: @gray-light;
+        color: @text-muted;
 
         // Add top spacing
         li + &,

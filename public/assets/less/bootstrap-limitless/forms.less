@@ -5,7 +5,7 @@
 *  Overrides for bootstrap form related components
 *
 *  Version: 1.1
-*  Latest update: Mar 10, 2015
+*  Latest update: Mar 10, 2016
 *
 * ---------------------------------------------------------------------------- */
 
@@ -55,7 +55,6 @@ label {
 select[multiple],
 select[size] {
     height: 200px;
-    padding: @padding-base-vertical;
 
     // Option
     option {
@@ -75,41 +74,55 @@ input[type="checkbox"]:focus {
     outline: 0;
 }
 
+// Remove borders from file input
+input[type="file"] {
+    &,
+    &:focus {
+        border-color: transparent;
+        .box-shadow(none);
+    }
+}
+
 
 // Common form controls
 // -------------------------
 
 .form-control {
+    padding-left: 0;
+    padding-right: 0;
+    border-width: 1px 0;
+    border-color: transparent;
+    border-bottom-color: @input-border;
+    border-radius: 0;
     .box-shadow(none);
 
     // Remove outline and shadow on focus
     &:focus {
         outline: 0;
-        .box-shadow(none);
-    }
-    &[class*=bg-]:focus {
         border-color: transparent;
+        border-bottom-color: @input-border-highlight-color;
+        .box-shadow(@input-box-shadow);
     }
 
-    // Placeholder in colored input
-    &[class*=bg-] {
-        .placeholder(@input-placeholder-light);
+    // Disabled inputs
+    &[disabled],
+    fieldset[disabled] & {
+        border-bottom-style: dashed;
+        color: @text-muted;
+    }
+
+    // Read-only inputs
+    &[readonly] {
+        border-bottom-style: dashed;
+        border-bottom-color: @input-border;
+        color: @input-color;
+        .box-shadow(none);
     }
 }
 
 
 // Form controls options
 // -------------------------
-
-// Rounded input
-.input-rounded {
-    border-radius: 100px;
-}
-
-// Roundless input
-.input-roundless {
-    border-radius: 0;
-}
 
 // Transparent input
 .form-control-unstyled {
@@ -185,11 +198,22 @@ textarea {
     > .control-label {
         position: relative;
         top: @padding-base-vertical;
+        margin-bottom: 0;
         .opacity(0);
 
         // Top spacing for contextual icon
         ~ .form-control-feedback {
-            top: (@line-height-computed + @padding-base-vertical);
+            top: @line-height-computed;
+        }
+
+        // If label has bottom margin
+        &.has-margin {
+            margin-bottom: @padding-base-vertical;
+
+            // Top spacing for contextual icon
+            ~ .form-control-feedback {
+                top: (@line-height-computed + @padding-base-vertical);
+            }
         }
     }
 
@@ -303,33 +327,75 @@ textarea {
 
 // XLarge
 .input-xlg {
-    .input-size(@input-height-xlarge; @padding-xlarge-vertical; @padding-xlarge-horizontal; @font-size-xlarge; @line-height-xlarge; @input-border-radius-large);
+    .input-size(@input-height-xlarge; @padding-xlarge-vertical; 0; @font-size-xlarge; @line-height-xlarge; 0);
 }
 .form-group-xlg {
     .form-control {
-        .input-size(@input-height-xlarge; @padding-xlarge-vertical; @padding-xlarge-horizontal; @font-size-xlarge; @line-height-xlarge; @input-border-radius-large);
+        height: @input-height-xlarge;
+        padding: @padding-xlarge-vertical 0;
+        font-size: @font-size-xlarge;
+        line-height: @line-height-xlarge;
     }
     .form-control-static {
         height: @input-height-xlarge;
         min-height: (@line-height-computed + @font-size-xlarge);
-        padding: @padding-xlarge-vertical @padding-xlarge-horizontal;
+        padding: @padding-xlarge-vertical 0;
         font-size: @font-size-xlarge;
         line-height: @line-height-xlarge;
     }
 }
 
+// Large
+.input-lg {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+}
+.form-group-lg {
+    .form-control {
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0;
+    }
+    .form-control-static {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+// Small
+.input-sm {
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+}
+.form-group-sm {
+    .form-control {
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0;
+    }
+    .form-control-static {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 // Mini
 .input-xs {
-    .input-size(@input-height-mini; @padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @input-border-radius-small);
+    .input-size(@input-height-mini; @padding-xs-vertical; 0; @font-size-small; @line-height-small; 0);
 }
 .form-group-xs {
     .form-control {
-        .input-size(@input-height-mini; @padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @input-border-radius-small);
+        height: @input-height-mini;
+        padding: @padding-xs-vertical 0;
+        font-size: @font-size-small;
+        line-height: @line-height-small;
     }
     .form-control-static {
         height: @input-height-mini;
         min-height: (@line-height-computed + @font-size-small);
-        padding: @padding-xs-vertical @padding-xs-horizontal;
+        padding: @padding-xs-vertical 0;
         font-size: @font-size-small;
         line-height: @line-height-small;
     }
@@ -348,64 +414,99 @@ textarea {
 
     // Ensure icons don't overlap text
     .form-control {
-        padding-right: @input-height-base;
+        padding-right: @icon-font-size + @padding-base-horizontal;
 
         &.input-xlg {
-            padding-right: @input-height-xlarge;
+            padding-right: @icon-font-size + @padding-xlarge-horizontal;
         }
 
         &.input-lg {
-            padding-right: @input-height-large;
+            padding-right: @icon-font-size + @padding-large-horizontal;
         }
 
         &.input-sm {
-            padding-right: @input-height-small;
+            padding-right: @icon-font-size + @padding-small-horizontal;
         }
 
         &.input-xs {
-            padding-right: @input-height-mini;
+            padding-right: @icon-font-size + @padding-xs-horizontal;
         }
+    }
+
+    // Inside form groups
+    &.input-group .form-control {
+        &:extend(.has-feedback .form-control);
+    }
+    &.input-group-xlg .form-control {
+        &:extend(.has-feedback .form-control.input-xlg);
+    }
+    &.input-group-lg .form-control {
+        &:extend(.has-feedback .form-control.input-lg);
+    }
+    &.input-group-sm .form-control {
+        &:extend(.has-feedback .form-control.input-sm);
+    }
+    &.input-group-xs .form-control {
+        &:extend(.has-feedback .form-control.input-xs);
     }
 }
 
 // Feedback icon
 .form-control-feedback {
-    width: @input-height-base + 2;
+    width: @icon-font-size;
     color: @input-color;
     z-index: 3;
 
-    // Change color if comes after colored input
-    input[class*=bg-] + & {
-        color: #fff;
+    // Inside input group
+    .input-group > & {
+        height: @input-height-base;
+        line-height: @input-height-base;
     }
 }
 
 // Left icon position
 .has-feedback-left {
+
+    // Ensure icons don't overlap text
     .form-control {
-        padding-right: @padding-base-horizontal;
-        padding-left: @input-height-base;
+        padding-right: 0!important;
+        padding-left: @icon-font-size + @padding-base-horizontal;
 
         &.input-xlg {
-            padding-right: @padding-xlarge-vertical;
-            padding-left: @input-height-xlarge;
+            padding-left: @icon-font-size + @padding-xlarge-horizontal;
         }
 
         &.input-lg {
-            padding-right: @padding-large-horizontal;
-            padding-left: @input-height-large;
+            padding-left: @icon-font-size + @padding-large-horizontal;
         }
 
         &.input-sm {
-            padding-right: @padding-small-horizontal;
-            padding-left: @input-height-small;
+            padding-left: @icon-font-size + @padding-small-horizontal;
         }
 
         &.input-xs {
-            padding-right: @padding-xs-horizontal;
-            padding-left: @input-height-mini;
+            padding-left: @icon-font-size + @padding-xs-horizontal;
         }
     }
+
+    // Inside form groups
+    &.input-group .form-control {
+        &:extend(.has-feedback-left .form-control);
+    }
+    &.input-group-xlg .form-control {
+        &:extend(.has-feedback-left .form-control.input-xlg);
+    }
+    &.input-group-lg .form-control {
+        &:extend(.has-feedback-left .form-control.input-lg);
+    }
+    &.input-group-sm .form-control {
+        &:extend(.has-feedback-left .form-control.input-sm);
+    }
+    &.input-group-xs .form-control {
+        &:extend(.has-feedback-left .form-control.input-xs);
+    }
+
+    // Feedback
     .form-control-feedback {
         right: auto;
         left: 0;
@@ -419,8 +520,8 @@ textarea {
 
 // XLarge
 .input-xlg + .form-control-feedback,
-.form-group-xlg > .form-control-feedback {
-    width: @input-height-xlarge + 2;
+.form-group-xlg > .form-control-feedback,
+.input-group-xlg > .form-control-feedback {
     height: @input-height-xlarge;
     line-height: @input-height-xlarge;
 }
@@ -428,19 +529,27 @@ textarea {
 // Large
 .input-lg + .form-control-feedback,
 .form-group-lg > .form-control-feedback {
-    width: @input-height-large + 2;
+    width: @icon-font-size;
+}
+.input-group-lg > .form-control-feedback {
+    height: @input-height-large;
+    line-height: @input-height-large;
 }
 
 // Small
 .input-sm + .form-control-feedback,
 .form-group-sm > .form-control-feedback {
-    width: @input-height-small + 2;
+    width: @icon-font-size;
+}
+.input-group-sm > .form-control-feedback {
+    height: @input-height-small;
+    line-height: @input-height-small;
 }
 
 // Mini
 .input-xs + .form-control-feedback,
-.form-group-xs > .form-control-feedback {
-    width: @input-height-mini + 2;
+.form-group-xs > .form-control-feedback,
+.input-group-xs > .form-control-feedback {
     height: @input-height-mini;
     line-height: @input-height-mini;
 }
@@ -450,14 +559,33 @@ textarea {
 // Feedback states
 //
 
-.has-success,
-.has-warning,
-.has-error {
-    .form-control:focus {
-        .box-shadow(none);
+.has-success .form-control {
+    border-color: transparent transparent @state-success-text;
+    .box-shadow(none);
+
+    &:focus {
+        border-color: transparent transparent @state-success-text;
+        .box-shadow(0 1px 0 @state-success-text);
     }
 }
+.has-warning .form-control {
+    border-color: transparent transparent @state-warning-text;
+    .box-shadow(none);
 
+    &:focus {
+        border-color: transparent transparent @state-warning-text;
+        .box-shadow(0 1px 0 @state-warning-text);
+    }
+}
+.has-error .form-control {
+    border-color: transparent transparent @state-danger-text;
+    .box-shadow(none);
+
+    &:focus {
+        border-color: transparent transparent @state-danger-text;
+        .box-shadow(0 1px 0 @state-danger-text);
+    }
+}
 
 
 // Help text
@@ -571,25 +699,25 @@ textarea {
 
     // Bottom padding for stacked control labels
     .control-label {
-        @media (min-width: @screen-xs) {
+        @media (min-width: @screen-xs-min) {
             &[class*=col-xs-] {
                 padding-top: (@padding-base-vertical + 1);
             }
         }
 
-        @media (min-width: @screen-md) {
+        @media (min-width: @screen-md-min) {
             &[class*=col-md-] {
                 padding-top: (@padding-base-vertical + 1);
             }
         }
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-sm-min) {
             &[class*=col-sm-] {
                 padding-top: (@padding-base-vertical + 1);
             }
         }
 
-        @media (min-width: @screen-lg) {
+        @media (min-width: @screen-lg-min) {
             &[class*=col-lg-] {
                 padding-top: (@padding-base-vertical + 1);
             }
@@ -605,7 +733,7 @@ textarea {
     .has-feedback-left {
         .form-control-feedback {
             right: auto;
-            left: (@grid-gutter-width / 2);
+            left: floor((@grid-gutter-width / 2));
         }
 
         > .form-control-feedback {

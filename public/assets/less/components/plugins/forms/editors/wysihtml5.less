@@ -19,8 +19,9 @@
     resize: vertical;
     background-color: #fff;
     overflow: auto;
-    padding: @content-padding-large;
     outline: 0;
+    border: 1px solid @panel-default-border;
+    padding: @content-padding-large;
 }
 
 // Editor area
@@ -32,6 +33,8 @@
 // Container
 .wysihtml5-sandbox {
     width: 100%!important;
+    border-top-width: 0!important;
+    padding-top: 0!important;
 }
 
 // Modals
@@ -49,10 +52,10 @@
 // Base
 .wysihtml5-toolbar {
     margin: 0;
-    padding: @content-padding-base @content-padding-large;
-    padding-bottom: 0;
+    padding: @content-padding-large;
+    padding-top: 0;
     display: block;
-    background-color: @panel-footer-bg;
+    background-color: @panel-bg;
     border: 1px solid @panel-default-border;
     border-bottom: 0;
     .border-top-radius(@border-radius-base);
@@ -61,7 +64,7 @@
     > li {
         display: inline-block;
         list-style: none;
-        margin: 0 @content-padding-base @content-padding-base 0;
+        margin: @content-padding-large @content-padding-large 0 0;
     }
 
     // Dropdown menu

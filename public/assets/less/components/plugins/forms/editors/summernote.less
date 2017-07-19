@@ -49,7 +49,7 @@
 .note-icon-align:before{content:"\f107"}
 .note-icon-arrows-alt:before{content:"\f108"}
 .note-icon-bold:before{content:"\f109"}
-.note-icon-caret:before{content:"\f10a";}
+.note-icon-caret:before{content:"\f10a"}
 .note-icon-chain-broken:before{content:"\f10b"}
 .note-icon-circle:before{content:"\f10c"}
 .note-icon-close:before{content:"\f10d"}
@@ -90,6 +90,7 @@
 .note-editor {
     border: 1px solid @panel-default-border;
     border-radius: @border-radius-base;
+    .box-shadow(none);
 
     // Droppable
     .note-dropzone {
@@ -123,12 +124,11 @@
 
     // Toolbar
     .note-toolbar {
-        background-color: @panel-footer-bg;
-        border-bottom: 1px solid @panel-default-border;
-        padding: @content-padding-base @content-padding-large;
+        background-color: transparent;
+        border-bottom: 0;
+        padding: @content-padding-large;
         padding-top: 0;
         margin: 0;
-        border-radius: @border-radius-base;
     }
 
     // Fullscreen mode
@@ -183,6 +183,7 @@
     // Editable area
     .note-editable {
         padding: @content-padding-large;
+        padding-top: 0;
         overflow: auto;
         outline: 0;
         min-height: 150px;
@@ -253,13 +254,14 @@
 // Popover/toolbar elements
 // ----------------------------------------
 
+// Base
 .note-popover .popover-content,
 .note-toolbar {
 
     // Buttons
     > .note-btn-group {
-        margin-top: @content-padding-base;
-        margin-right: @content-padding-base;
+        margin-top: @content-padding-large;
+        margin-right: @content-padding-large;
         margin-left: 0;
 
         // Icon caret
@@ -336,6 +338,7 @@
     .note-color {
         .dropdown-menu {
             min-width: 330px;
+            white-space: nowrap;
 
             // Buttons
             .btn-group {
@@ -351,7 +354,7 @@
                 .note-color-reset {
                     padding: @padding-small-vertical @padding-small-horizontal;
                     cursor: pointer;
-                    background-color: @btn-default-bg;
+                    background-color: #F5F5F5;
                     text-align: center;
                     margin-bottom: 10px;
                 }
@@ -378,6 +381,7 @@
     .dropdown-menu {
         min-width: 90px;
 
+        // Right position
         &.right {
             right: 0;
             left: auto;
@@ -393,6 +397,7 @@
             }
         }
 
+        // Items
         li {
             a {
                 i {
@@ -433,7 +438,6 @@
         margin-right: @content-padding-base;
     }
 }
-
 
 
 // Dialog
@@ -526,7 +530,6 @@
 }
 
 
-
 // Handle
 // ----------------------------------------
 
@@ -563,7 +566,6 @@
         .note-control-sizing {
             background-color: #fff;
         }
-
 
         // Control direction
         .note-control-nw {

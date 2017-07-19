@@ -227,7 +227,7 @@
 		// Text, excluding select2 container
 		> span:first-child {
 			float: left;
-			margin: (@padding-base-vertical + 1) @content-padding-base;
+			margin: (@padding-base-vertical + 1) @content-padding-large;
 			margin-left: 0;
 		}
 	}
@@ -241,7 +241,7 @@
 	.select2-container {
 		width: auto;
 	}
-	.select2-choice {
+	.select2-selection {
 		min-width: 60px;
 	}
 }
@@ -266,7 +266,7 @@
 			display: inline-block;
 			position: absolute;
 			top: 50%;
-			right: @padding-base-horizontal;
+			right: 0;
 			margin-top: -(@font-size-small / 2);
 			color: @text-muted;
 			line-height: 1;
@@ -277,7 +277,7 @@
 		// Text spacing
 		> span {
 			float: left;
-			margin: (@padding-base-vertical + 1) @content-padding-base;
+			margin: (@padding-base-vertical + 1) @content-padding-large;
 			margin-left: 0;
 		}
 	}
@@ -287,14 +287,20 @@
 		outline: 0;
 		width: 200px;
 		height: @input-height-base;
-		padding: @padding-base-vertical @padding-base-horizontal;
-		padding-right: ((@padding-base-horizontal * 2) + @font-size-small);
+		padding: @padding-base-vertical 0;
+		padding-right: (@font-size-small * 2);
 		font-size: @font-size-base;
 		line-height: @line-height-base;
 		color: @input-color;
 		background-color: @input-bg;
-		border: 1px solid @input-border;
-		border-radius: @input-border-radius;
+		border: 1px solid transparent;
+		border-width: 1px 0;
+		border-bottom-color: @input-border;
+
+		&:focus {
+			border-bottom-color: @input-border-highlight-color;
+			.box-shadow(@input-box-shadow);
+		}
 	}
 
 	// Right display option
@@ -323,14 +329,13 @@
 	// Button
 	.paginate_button {
 		display: inline-block;
-		padding: @padding-base-vertical;
+		padding: (@padding-base-vertical + 1);
 		min-width: @input-height-base;
 		margin-left: 2px;
 		text-align: center;
 		text-decoration: none;
 		cursor: pointer;
 		color: @text-color;
-		border: 1px solid transparent;
 		border-radius: @border-radius-base;
 
 		// First item
@@ -360,7 +365,7 @@
 			&:hover,
 			&:focus {
 				cursor: default;
-				background-color: @pagination-disabled-bg;
+				background-color: transparent;
 				color: @pagination-disabled-color;
 			}
 		}
@@ -452,10 +457,10 @@
 		border-top: 1px solid @panel-default-border;
 	}
 
-	> .dataTables_wrapper {
+	.dataTables_wrapper {
 		.datatable-footer {
 			border-top: 0;
-			
+
 			.dataTables_length,
 			.dataTables_filter,
 			.dataTables_info,
@@ -510,7 +515,7 @@
 .datatable-scroll-lg,
 .datatable-scroll,
 .datatable-scroll-sm {
-  min-height: .01%;
+	min-height: .01%;
 }
 
 // Scroller

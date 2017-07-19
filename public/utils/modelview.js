@@ -30,7 +30,7 @@ ModelView = module.exports = BaseView.extend( {
     },
     serializeData : function () {
         "use strict";
-        let data;
+        var data;
         // Serialize only if a model is present
         if ( this.model ) {
             data = this.model.toJSON();

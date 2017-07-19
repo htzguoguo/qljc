@@ -33,7 +33,6 @@
 .selectboxit-btn,
 .bootstrap-select .btn-default,
 .select2-results__option,
-.select2-selection__choice__remove,
 .dropdown-menu > li > a,
 .dropdown-menu > li > label,
 .wizard .actions a,
@@ -97,7 +96,8 @@ a.badge,
 
 // Opacity
 .close,
-.tag [data-role="remove"] {
+.tag [data-role="remove"],
+.select2-selection__choice__remove {
     .transition(opacity ease-in-out 0.15s);
 }
 
@@ -111,6 +111,13 @@ a.badge,
 .table th,
 .table td,
 .htContextMenu td,
+.sidebar-user-material-menu > a,
+.navbar-nav > .active > a:after,
 .ranges ul li {
     .transition(background-color ease-in-out 0.15s);
+}
+
+// Transform
+.sidebar-user-material-menu > a > .caret {
+	.transition(-webkit-transform ease-in-out 0.15s);
 }

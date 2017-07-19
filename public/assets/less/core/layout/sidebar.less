@@ -23,7 +23,7 @@
 	// Content
 	.sidebar-content {
 		background-color: @sidebar-dark-bg;
-		border: 1px solid transparent;
+		.box-shadow(@shadow-depth1);
 	}
 
 	// For desktop only
@@ -66,8 +66,6 @@
 	// Content
 	.sidebar-content {
 		background-color: @sidebar-light-bg;
-		border-color: @panel-default-border;
-		.box-shadow(0 1px 1px fade(#000, 5%));
 	}
 }
 
@@ -77,7 +75,6 @@
 	border-radius: @border-radius-base;
 	margin-bottom: @line-height-computed;
 }
-
 
 
 // Sidebar control buttons
@@ -120,7 +117,7 @@
 
 	// Small titles
 	&:not(.h5):not(.h6) > span {
-		margin-top: (@font-size-base - @font-size-mini);
+		padding-top: (@font-size-base - @font-size-mini);
 		text-transform: uppercase;
 		font-weight: 500;
 		font-size: @font-size-mini;
@@ -166,6 +163,151 @@
 .category-content {
 	position: relative;
 	padding: @content-padding-large;
+}
+
+
+
+// User menu
+// ------------------------------
+
+// Base
+.sidebar-user-material {
+
+	// Add backgroupd image    
+    .category-content {
+		background: url(../images/backgrounds/user_bg4.jpg) center center no-repeat;
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    background-size: cover;
+    }
+        
+    // Navigation menu wrapper
+	.navigation-wrapper {
+		background-color: fade(#000, 10%);
+		border-bottom: 1px solid fade(#fff, 10%);
+		
+		// In default sidebar
+    	.sidebar-default & {
+    		background-color: fade(#000, 1%);
+    		border-bottom-color: @panel-default-border;
+    	}
+	}
+    	
+    // Navigation menu
+	.navigation {
+		padding: @list-spacing 0;
+	}
+
+	// Add top border radius if comes first
+	&:first-child .category-content {
+		.border-top-radius(@border-radius-base);
+	}
+}
+
+// User menu
+.sidebar-user-material-menu {
+	margin: -(@content-padding-large);
+	margin-top: @line-height-computed;
+	
+	// Link
+	> a {
+    	padding: @content-padding-small @content-padding-large;
+    	display: block;
+		color: #fff;
+		background-color: fade(#000, 10%);
+		text-shadow: 0 0 1px fade(#000, 50%);
+		
+		// Hover effect
+		&:hover,
+		&:focus,
+		&[aria-expanded="true"] {
+			background-color: fade(#000, 15%);
+		}
+		
+		// Caret and icons
+		> i {
+			float: right;
+			margin-top: ((@line-height-computed - @icon-font-size) / 2);
+		}
+		
+		// Caret arrow animation
+		> .caret {
+			.transition-duration(0.35s);
+		}
+		
+		// Rotate caret
+		&[aria-expanded="true"] > .caret {
+			.rotate(180deg);
+		}
+	}    	
+}
+
+// User info
+.sidebar-user-material-content {
+	text-align: center;
+	
+	// Link
+	> a {
+		display: inline-block;
+		.box-shadow(@shadow-depth1);
+		
+		// Thumbnail
+		> img {
+			height: 80px;
+		}
+	}
+	
+	// User name
+	> h6 {
+		margin-bottom: 0;
+	}
+	
+	// Label colors
+	> h6,
+	> span {
+		color: #fff;
+		text-shadow: 0 0 1px fade(#000, 50%);
+	}
+}
+
+// Inside mini sidebar
+.sidebar-xs {
+	
+	// Hide text
+	.sidebar-user-material-content {
+		display: none;
+	}
+
+	// Remove spacing from category
+	.sidebar-user-material > .category-content {
+		padding: 0;
+	}
+
+	// Menu button
+	.sidebar-user-material-menu {
+		margin: 0;
+
+		// Link
+		> a {
+			text-align: center;
+			padding: ((@sidebar-mini-width - @icon-font-size) / 2);
+			line-height: 1;
+		}
+
+		// Hide text
+		> a > span {
+			display: none;
+		}
+
+		// Icon or caret
+		> a > i {
+			float: none;
+			margin-top: 0;
+		}
+	}
 }
 
 
@@ -825,6 +967,7 @@
 			background-color: @sidebar-dark-bg;
 			border-radius: @border-radius-base;
 			margin-bottom: @line-height-computed;
+			.box-shadow(@shadow-depth1);
 		}
 
 		// In light sidebar
@@ -840,8 +983,6 @@
 			// Make categories white
 			.sidebar-category {
 				background-color: @sidebar-light-bg;
-				border: 1px solid @panel-default-border;
-				.box-shadow(0 1px 1px fade(#000, 5%));
 			}
 		}
 	}
@@ -941,14 +1082,14 @@
 							top: 0;
 							right: -(@sidebar-base-width);
 							background-color: @navigation-dark-active-label-bg;
-							border: 1px solid @navigation-dark-active-border;
-							padding: (@navigation-padding-base-vertical - 1) @navigation-padding-base-horizontal;
+							padding: @navigation-padding-base-vertical @navigation-padding-base-horizontal;
 							width: @sidebar-base-width;
 							text-align: left;
 							color: @navigation-dark-active-label-color;
 							cursor: pointer;
 							.border-right-radius(@border-radius-base);
-
+							.box-shadow(@shadow-depth1);
+							
 							// Label/badge
 							.label,
 							.badge {
@@ -962,6 +1103,11 @@
 							margin: 2px 0;
 							display: block;
 							float: none;
+						}
+						
+						// Allow overflow in ripple
+						&.legitRipple {
+							overflow: visible;
 						}
 					}
 
@@ -1026,8 +1172,8 @@
 						width: @sidebar-base-width;
 						display: none;
 						background-color: @sidebar-dark-bg;
-						border-left: 1px solid fade(#fff, 10%);
 						border-radius: 0 0 @border-radius-base 0;
+						.box-shadow(@shadow-depth1);
 
 						> li {
 							> a {
@@ -1041,12 +1187,12 @@
 
 							> ul > li {
 								> a {
-									padding-left: (@content-padding-large * 1.5);
+									padding-left: (@navigation-padding-base-horizontal * 1.5);
 								}
 
 								> ul > li {
 									> a {
-										padding-left: (@content-padding-large * 3);
+										padding-left: (@navigation-padding-base-horizontal * 3);
 									}
 								}
 							}
@@ -1132,10 +1278,9 @@
 			.navigation {
 				> li {
 					> a > span {
-						background-color: @navigation-light-active-bg;
-						border-color: @navigation-light-active-border;
+						background-color: @navigation-light-active-label-bg;
 						color: @navigation-light-active-label-color;
-						
+												
 						// Label/badge
 						.label,
 						.badge {
@@ -1143,9 +1288,9 @@
 						}
 					}
 					
+					// Children list
 					> ul {
 						background-color: @sidebar-light-bg;
-						border: 1px solid @panel-default-border;
 						border-top: 0;
 					}
 
@@ -1154,7 +1299,7 @@
 						&:not(.active) > a {
 							background-color: @dropdown-link-hover-bg;
 							color: @text-color;
-						}
+						}						
 					}
 				}
 			}
@@ -1197,10 +1342,11 @@
 	// Panel group
 	.panel-group .panel {
 		border-radius: 0;
-		border-width: 0 0 1px 0;
+		border-bottom: 1px solid @panel-inner-border;
+		.box-shadow(none);
 
 		&:first-child {
-			border-top-width: 1px;
+			border-top: 1px solid @panel-inner-border;
 		}
 		& + .panel {
 			margin-top: 0;
@@ -1284,7 +1430,7 @@
 
 	// Forms
 	.form-group:last-child {
-	  margin-bottom: 0;
+		margin-bottom: 0;
 	}
 }
 
@@ -1298,7 +1444,7 @@
 	.nav-tabs {
 		border-width: 0 0 1px 0;
 
-		// Desktop view setup
+		// Desktop view
 		@media (min-width: @grid-float-breakpoint) {
 			border-width: 1px;
 
@@ -1350,12 +1496,18 @@
 				}
 			}
 		}
+
+		// Mobile view
+		@media (max-width: @grid-float-breakpoint-max) {
+			border-bottom: 1px solid fade(#fff, 10%);
+			.border-bottom-radius(0);
+			.box-shadow(none);
+		}
 	}
 
 	// Remove top padding from the first title
 	.tab-pane {
-		.h5,
-		.h6 {
+		> .category-title {
 			&:first-child {
 				padding-top: 0;
 
@@ -1373,6 +1525,8 @@
 
 	// Tabs base
 	.nav-tabs {
+
+		// Desktop view
 		@media (min-width: @grid-float-breakpoint) {
 			> li {
 				> a {
@@ -1417,6 +1571,11 @@
 					background-color: #fafafa;
 				}
 			}
+		}
+
+		// Mobile view
+		@media (max-width: @grid-float-breakpoint-max) {
+			border-bottom-color: @panel-default-border;
 		}
 	}
 

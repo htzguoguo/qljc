@@ -21,11 +21,31 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         "use strict";
         var app = this.startApp();
         app.showContactById( id );
+        window.app.trigger( 'app:navigation:change', [
+            {   title : '项目管理',
+                url : 'contacts',
+                isactive : false,
+                isfirst : true
+            },
+            {   title : '查看',
+                url : '',
+                isactive : true,
+                isfirst : false
+            }
+            ]
+        );
     },
     list : function () {
         "use strict";
         var app = this.startApp();
         app.ShowContactList(  );
+        window.app.trigger( 'app:navigation:change', [
+            {   title : '项目管理',
+                url : 'contacts',
+                isactive : true,
+                isfirst : true
+            } ]
+        );
     },
     createContact : function () {
         var app = this.startApp();

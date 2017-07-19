@@ -16,6 +16,12 @@
 .pagination {
     margin-top: 0;
     margin-bottom: -6px;
+    
+    // Shadow. Use .has-shadow class to add shadow manually
+    &,
+    &.has-shadow {
+        .box-shadow(@shadow-depth1);
+    }
 
     // Pagination nav item
     > li {
@@ -24,8 +30,29 @@
         > a,
         > span {
             min-width: @input-height-base;
+            padding: (@padding-base-vertical + 1);
             text-align: center;
+            border-width: 0;
         }
+
+        // Hover and active states
+        &:not(.disabled) {
+            > a,
+            > span {
+                &:hover,
+                &:focus {
+                    .box-shadow(0 0 0 100px fade(#000, 5%) inset);
+                }
+                &:active {
+                    .box-shadow(0 0 0 100px fade(#000, 10%) inset);
+                }
+            }
+        }
+    }
+    
+    // Remove shadow if inside panel
+    .panel & {
+        .box-shadow(none);
     }
 
     // Rounded corners
@@ -53,6 +80,8 @@
 
 // Flat pagination
 .pagination-flat {
+    .box-shadow(none);
+    
     > li > a,
     > li > span {
         margin-left: 1px;
@@ -87,6 +116,7 @@
         > a:hover,
         > a:focus {
             border-color: transparent;
+            background-color: transparent;
         }
     }
 
@@ -95,6 +125,8 @@
         > li > a,
         > li > span {
             border-radius: 100px;
+            padding-left: ((@line-height-computed - @padding-base-vertical - 1));
+            padding-right: ((@line-height-computed - @padding-base-vertical - 1));
         }
     }
 
@@ -104,17 +136,44 @@
         > li > span {
             min-width: @input-height-large;
         }
+
+        // Rounded corners
+        &.pagination-rounded {
+            > li > a,
+            > li > span {
+                padding-left: ((@line-height-computed - @padding-large-vertical - 1));
+                padding-right: ((@line-height-computed - @padding-large-vertical - 1));
+            }
+        }
     }
     &.pagination-sm {
         > li > a,
         > li > span {
             min-width: @input-height-small;
         }
+
+        // Rounded corners
+        &.pagination-rounded {
+            > li > a,
+            > li > span {
+                padding-left: ((@line-height-computed - @padding-small-vertical - 1));
+                padding-right: ((@line-height-computed - @padding-small-vertical - 1));
+            }
+        }
     }
     &.pagination-xs {
         > li > a,
         > li > span {
             min-width: @input-height-mini;
+        }
+
+        // Rounded corners
+        &.pagination-rounded {
+            > li > a,
+            > li > span {
+                padding-left: ((@line-height-computed - @padding-xs-vertical - 1));
+                padding-right: ((@line-height-computed - @padding-xs-vertical - 1));
+            }
         }
     }
 }
@@ -136,6 +195,7 @@
     > li {
         > a,
         > span {
+            padding: (@padding-large-vertical + 1);
             min-width: @input-height-large;
         }
 
@@ -160,6 +220,7 @@
     > li {
         > a,
         > span {
+            padding: (@padding-small-vertical + 1);
             min-width: @input-height-small;
         }
     }
@@ -172,6 +233,7 @@
     > li {
         > a,
         > span {
+            padding: (@padding-xs-vertical + 1);
             min-width: @input-height-mini;
         }
     }

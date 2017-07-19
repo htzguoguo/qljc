@@ -4,8 +4,8 @@
 *
 *  Flexible and powerful jQuery colorpicker library
 *
-*  Version: 1.0
-*  Latest update: May 25, 2015
+*  Version: 1.1
+*  Latest update: Mar 10, 2016
 *
 * ---------------------------------------------------------------------------- */
 
@@ -77,17 +77,18 @@
     display: inline-block;
     z-index: @zindex-dropdown;
     background-color: @dropdown-bg;
-    border: 1px solid @dropdown-border;
     border-radius: @border-radius-base;
     overflow: hidden;
     .box-sizing(content-box);
-    .box-shadow(0 1px 3px fade(#000, 10%));
+    .box-shadow(@shadow-depth2);
 
     &.sp-flat {
         position: relative;
         overflow-x: auto;
         max-width: 100%;
-        white-space: nowrap
+        white-space: nowrap;
+        border: 1px solid @panel-default-border;
+        .box-shadow(none);
     }
 }
 .sp-picker-container,
@@ -96,8 +97,8 @@
     white-space: nowrap;
     vertical-align: top;
     position: relative;
-    padding: 10px;
-    padding-bottom: 300px;
+    padding: 15px;
+    padding-bottom: 305px;
     margin-bottom: -290px;
 
     @media (min-width: @screen-sm) {
@@ -105,7 +106,7 @@
     }
 }
 .sp-picker-container {
-    width: 220px;
+    width: 230px;
 }
 
 // Disable user selection
@@ -151,7 +152,7 @@
 // Alpha
 .sp-alpha-enabled {
     .sp-top {
-        margin-bottom: 26px;
+        margin-bottom: 36px;
     }
 
     .sp-alpha {
@@ -172,7 +173,7 @@
 .sp-alpha {
     display: none;
     position: absolute;
-    bottom: -16px;
+    bottom: -22px;
     right: 0;
     left: 0;
     height: 6px;
@@ -213,25 +214,31 @@
 
 // Input
 .sp-input-container {
-    margin-top: 10px;
+    margin-top: 7.5px;
 
     .sp-initial-disabled & {
         width: 100%;
     }
 }
 .sp-input {
-    border: 1px solid @input-border;
-    padding: @padding-base-vertical @padding-base-horizontal;
+    border: 1px solid transparent;
+    border-bottom-color: @input-border;
+    padding: @padding-base-vertical 0;
     width: 100%;
     background-color: @input-bg;
-    border-radius: @input-border-radius;
     outline: 0;
     color: @input-color;
+
+    // Focused
+    &:focus {
+        border-bottom-color: @input-border-highlight-color;
+        .box-shadow(@input-box-shadow);
+    }
 }
 
 // Initial
 .sp-initial {
-    margin-top: 10px;
+    margin-top: 15px;
 
     span {
         width: 50%;
@@ -282,19 +289,15 @@
     padding: 5px;
     display: inline-block;
     border: 1px solid @input-border;
-    background-color: #fafafa;
+    background-color: #fff;
     vertical-align: middle;
-    border-radius: @input-border-radius;
+    border-radius: @border-radius-base;
 
     // States
     &:hover,
     &.sp-active {
         border-color: darken(@input-border, 10%);
         color: @text-color;
-
-        .sp-dd {
-            color: @text-color;
-        }
     }
 
     // Custom color replacer
@@ -344,6 +347,11 @@
     float: left;
     z-index: 0;
 
+    &,
+    .sp-preview-inner {
+        border-radius: @border-radius-base;
+    }
+
     .sp-preview-inner,
     .sp-clear-display {
         .box-shadow(0 0 0 1px fade(#000, 5%));
@@ -361,8 +369,8 @@
     float: left;
     font-size: 0;
     position: relative;
-    margin: 3px 1px;
-    color: @gray-light;
+    margin: 4px 2px;
+    color: @text-color;
 
     // Arrow icon
     &:after {
@@ -454,12 +462,11 @@
     max-width: 220px;
 }
 .sp-palette-container {
+    padding-right: 0;
+
     .sp-palette-only & {
         border: 0;
-    }
-
-    @media (min-width: @screen-sm) {
-        border-right: 1px solid @dropdown-border;
+        padding-right: 15px;
     }
 }
 
@@ -552,14 +559,17 @@
     padding: @padding-small-vertical @padding-small-horizontal;
     float: left;
     width: 48%;
+    text-transform: uppercase;
+    font-weight: 500;
     text-align: center;
+    font-size: @font-size-small;
     outline: 0;
 }
 
 // Button containers
 .sp-palette-button-container,
 .sp-button-container {
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
 
     // In colored container
@@ -575,24 +585,8 @@
 
 // Button states
 .sp-cancel,
-.sp-palette-toggle {
-    border: 1px solid transparent;
-
-    // Hover state
-    &:hover,
-    &:focus {
-        .box-shadow(0 0 0 100px fade(#000, 1%) inset);
-    }
-
-    // Active state
-    &:active {
-        .box-shadow(0 0 0 100px fade(#000, 3%) inset);
-    }
-}
-
-// Choose button
+.sp-palette-toggle,
 .sp-choose {
-    border: 1px solid transparent;
 
     // Hover state
     &:hover,
@@ -604,17 +598,14 @@
     &:active {
         .box-shadow(0 0 0 100px fade(#000, 10%) inset);
     }
-
 }
 
 // Cancel and palette toggle buttons
 .sp-cancel,
 .sp-palette-toggle {
     color: @btn-default-color;
-    margin-right: 5px;
     background-color: @btn-default-bg;
     margin-right: 4%;
-    border-color: @btn-default-border;
 
     &:hover,
     &:focus {

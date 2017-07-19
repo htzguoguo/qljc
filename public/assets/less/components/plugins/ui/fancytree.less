@@ -241,8 +241,6 @@ img.fancytree-icon {
 // ----------------------------------------
 
 .fancytree-checkbox {
-
-    // Base
     width: @checkbox-size;
     height: @checkbox-size;
     border: @checkbox-border-width solid @color-grey-500;
@@ -252,10 +250,15 @@ img.fancytree-icon {
     cursor: pointer;
     border-radius: @border-radius-small;
 
+    // Hide border in selected checkbox
+    .fancytree-selected & {
+        border-color: transparent;
+    }
+
     // Add icons
     &:after,
     .fancytree-partsel.fancytree-selected &:after {
-        content: "\e600";
+        content: "\ed6e";
         margin-top: -(@checkbox-border-width / 2);
         margin-left: -(@checkbox-border-width / 2);
         display: none;
@@ -267,7 +270,7 @@ img.fancytree-icon {
         width: (@checkbox-size - 10);
         height: (@checkbox-size - 10);
         display: none;
-        background-color: @color-grey-400;
+        background-color: @color-grey-500;
         margin: ((@checkbox-size - (@checkbox-size - 10)) / 2) - @checkbox-border-width;
     }
     .fancytree-partsel.fancytree-selected &:after {
@@ -285,14 +288,20 @@ img.fancytree-icon {
     .fancytree-radio & {
         border-radius: 100%;
 
+        // Circle
         &:after {
             content: '';
             width: (@checkbox-size - 10);
             height: (@checkbox-size - 10);
-            background-color: @color-grey-400;
+            background-color: @color-grey-500;
             margin: ((@checkbox-size - (@checkbox-size - 10)) / 2) - @checkbox-border-width;
             border-radius: 100px;
         }
+    }
+
+    // Selected radio
+    .fancytree-radio .fancytree-selected & {
+        border-color: @color-grey-500;
     }
 }
 
@@ -478,12 +487,15 @@ img.fancytree-icon {
 
             .fancytree-checkbox {
                 color: #fff;
-                border-color: #fff;
             }
 
             .checker span {
-                border-color: #fff;
                 color: #fff;
+                border-color: #fff;
+
+                &.checked {
+                    border-color: transparent;
+                }
             }
         }
     }
@@ -499,3 +511,4 @@ img.fancytree-icon {
     top: 4px;
     color: @text-muted;
 }
+

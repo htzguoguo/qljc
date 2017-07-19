@@ -35,42 +35,35 @@
     position: relative;
     border: 1px solid transparent;
     white-space: nowrap;
-    border-radius: @input-border-radius;
     .user-select(none);
 
-    // Darken on hover
-    &:hover,
-    &:focus,
-    .select2-container--open & {
-        .box-shadow(0 0 0 100px fade(#000, 1%) inset);
-    }
-
-    // Allow custom background color
+    // Skip selects with custom background color
     &:not([class*=bg-]) {
-        background-color: @input-bg;
-        color: @text-color;
+        border-top-color: transparent;
+        border-left-width: 0;
+        border-right-width: 0;
 
         // Allow custom border color
         &:not([class*=border-]) {
-            border-color: @input-border;
-        }
-    }
+            border-bottom-color: @input-border;
 
-    // Apply darker hover color
-    &[class*=bg-] {
-        &:hover,
-        &:focus,
-        .select2-container--open & {
-            .box-shadow(0 0 0 100px fade(#000, 2.5%) inset);
+            // Focused border color
+            .select2-container--focus &,
+            .select2-container--open & {
+                border-bottom-color: @input-border-highlight-color;
+                .box-shadow(0 1px 0 @input-border-highlight-color);
+            }
         }
 
-        // Placeholder
-        .select2-selection__placeholder {
-            color: #fff;
+        // Disabled selection
+        .select2-container--disabled & {
+            color: @gray-light;
+            border-bottom-style: dashed;
 
-            // In disabled mode
-            .select2-container--disabled & {
-                color: fade(#fff, 75%);
+            // Disabled state for container
+            &:not([class*=border-]) {
+                border-bottom-color: @input-border;
+                .box-shadow(none);
             }
         }
     }
@@ -78,15 +71,14 @@
     // Result text
     .select2-selection__rendered {
         display: block;
-        padding-left: @padding-base-horizontal;
-        padding-right: ((@padding-base-horizontal * 2) + @padding-base-vertical);
+        padding-right: @padding-base-horizontal;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
 
         // Icons
         > i {
-            margin-right: @content-padding-small;
+            margin-right: @padding-base-horizontal;
         }
     }
 
@@ -132,7 +124,7 @@
             display: inline-block;
             position: absolute;
             top: 50%;
-            right: @padding-base-horizontal;
+            right: 0;
             margin-top: -(@icon-font-size / 2);
             font-size: @icon-font-size;
             line-height: 1;
@@ -155,18 +147,6 @@
     // Disabled menu
     .select2-container--disabled & {
         cursor: @cursor-disabled;
-        .box-shadow(none);
-
-        // Disabled state for container
-        &:not([class*=bg-]) {
-            background-color: @input-bg-disabled;
-            color: @gray-light;
-        }
-
-        // Disabled state for custom colored container
-        &[class*=bg-] {
-            .box-shadow(0 0 0 100px fade(#fff, 25%) inset);
-        }
 
         // Hide clear button
         .select2-selection__clear {
@@ -175,6 +155,29 @@
     }
 }
 
+// In dark containers
+.navbar-inverse .navbar-form,
+.page-header-inverse {
+
+    // General bottom border
+    .select2-selection--single:not([class*=bg-]):not([class*=border-]) {
+        border-bottom-color: fade(#fff, 30%);
+    }
+
+    // Placeholder color
+    .select2-selection--single .select2-selection__placeholder {
+        color: #fff;
+    }
+
+    // When dropdown is opened
+    .select2-container--focus,
+    .select2-container--open {
+        .select2-selection--single:not([class*=bg-]):not([class*=border-]) {
+            border-bottom-color: #fff;
+            .box-shadow(0 1px 0 #fff);
+        }
+    }
+}
 
 
 // Multiple select
@@ -183,53 +186,92 @@
 .select2-selection--multiple {
     display: block;
     border: 1px solid transparent;
-    border-radius: @input-border-radius;
     cursor: text;
     outline: 0;
     .user-select(none);
 
-    // Allow custom background color
+    // Skip selects with custom background color
     &:not([class*=bg-]) {
-        background-color: @input-bg;
 
         // Allow custom border color
         &:not([class*=border-]) {
-            border-color: @input-border;
+            border-color: transparent;
+        }
+
+        // Keep bottom border for custom border color classes
+        &[class*=border-] {
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-right-color: transparent;
+
+            // And add bottom spacing
+            .select2-selection__rendered {
+                padding-bottom: @padding-base-vertical;
+            }
+        }
+
+        // Result text
+        .select2-selection__rendered {
+            padding: 0;
+        }
+
+        // Choices
+        .select2-selection__choice {
+            background-color: @tags-bg;
+            color: @tags-color;
+            margin-top: (@tags-spacing / 2);
+            margin-bottom: (@tags-spacing / 2);
+            border-radius: 100px;
+
+            // Backgrounds
+            &,
+            .select2-container--disabled & {
+                &:hover,
+                &:focus {
+                    background-color: @tags-bg;
+                    color: @tags-color;
+                }
+            }
+
+            // Change background on hover
+            &:hover,
+            &:focus {
+                background-color: @tags-hover-bg;
+                color: @tags-hover-color;
+            }
+        }
+
+        // Search
+        .select2-search--inline {
+
+            // Change vertical spacing to equal one
+            .select2-search__field {
+                margin-top: (@tags-spacing / 2);
+                margin-bottom: (@tags-spacing / 2);
+            }
+
+            // If no choices, remove left spacing
+            &:first-child .select2-search__field {
+                margin-left: 0;
+            }
         }
     }
 
     // Result text
     .select2-selection__rendered {
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         list-style: none;
         margin: 0;
         padding: 0 @tags-spacing @tags-spacing @tags-spacing;
         width: 100%;
     }
 
-    // Placeholder
-    .select2-selection__placeholder {
-        color: @text-muted;
-    }
-
     // Disabled multiselect
     .select2-container--disabled & {
 
-        // Disabled state for container
-        &:not([class*=bg-]) {
-            background-color: @input-bg-disabled;
-            color: @gray-light;
-        }
-
         // Disabled state for custom colored container
-        &[class*=bg-] {
-            .box-shadow(0 0 0 100px fade(#fff, 25%) inset);
-
-            .select2-selection__choice {
-                .opacity(0.9);
-            }
+        &[class*=bg-] .select2-selection__choice {
+            .opacity(0.9);
         }
 
         // Apply disabled cursor for all elements
@@ -242,7 +284,7 @@
 
     // Choices
     .select2-selection__choice {
-        background-color: @color-slate-700;
+        background-color: @tags-bg;
         color: #fff;
         border-radius: @border-radius-base;
         cursor: default;
@@ -250,6 +292,9 @@
         margin-right: @tags-spacing;
         margin-top: @tags-spacing;
         padding: @padding-base-vertical @padding-base-horizontal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
 
         // Icons
         > i {
@@ -260,11 +305,22 @@
         .select2-selection__choice__remove {
             cursor: pointer;
             float: right;
-            font-size: @font-size-large;
-            margin-top: ((@line-height-computed - @font-size-large) / 2);
+            font-size: 0;
+            margin-top: ((@line-height-computed - @font-size-mini) / 2);
             line-height: 1;
             margin-left: @element-horizontal-spacing;
             .opacity(0.75);
+
+            // Cross icon
+            &:after {
+                content: '\ed6a';
+                font-family: 'icomoon';
+                display: block;
+                font-size: @font-size-mini;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
 
             // Highlight on hover
             &:hover {
@@ -295,7 +351,7 @@
             background-color: transparent;
             border: 0;
             outline: 0;
-            margin-left: @padding-base-vertical;
+            margin-left: @tags-spacing;
             -webkit-appearance: textfield;
 
             // Cancel button
@@ -315,14 +371,13 @@
 .select2-dropdown {
     background-color: @dropdown-bg;
     color: @dropdown-link-color;
-    border: 1px solid @dropdown-border;
     border-radius: @border-radius-base;
     display: block;
     position: absolute;
     left: -100000px;
     width: 100%;
     z-index: 9999;
-    .box-shadow(0 1px 3px fade(#000, 10%));
+    .box-shadow(@shadow-depth2);
 }
 
 
@@ -350,6 +405,7 @@
         }
     }
 
+    // Add top spacing
     .select2-results:first-child > & {
         padding-top: @list-spacing;
     }
@@ -369,7 +425,7 @@
 
     // Icons
     i {
-        margin-right: @content-padding-small;
+        margin-right: @padding-base-horizontal;
 
         // Do not display empty icon
         &.icon-undefined {
@@ -476,13 +532,19 @@
 
     // If opened above
     .select2-dropdown--above {
-        border-bottom: 0;
+        border-bottom-width: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
         // Add border for colored menu
         &[class*=bg-] {
             border-bottom: 1px solid fade(#fff, 20%);
+        }
+
+        // Doesn't affect dropdowns with custom bg
+        &:not([class*=bg-]) {
+            top: -3px;
+            .border-bottom-radius(@border-radius-base);
         }
     }
     &.select2-container--above {
@@ -494,13 +556,19 @@
 
     // If opened below
     .select2-dropdown--below {
-        border-top: none;
+        border-top-width: 0;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
 
         // Add border for colored menu
         &[class*=bg-] {
             border-top: 1px solid fade(#fff, 20%);
+        }
+
+        // Doesn't affect dropdowns with custom bg
+        &:not([class*=bg-]) {
+            top: 3px;
+            .border-top-radius(@border-radius-base);
         }
     }
     &.select2-container--below {
@@ -520,6 +588,7 @@
     display: block;
     position: relative;
     padding: @padding-base-horizontal;
+    padding-left: ((@padding-base-horizontal * 2) + @icon-font-size);
 
     // Add search icon
     &:after {
@@ -527,15 +596,14 @@
         font-family: 'icomoon';
         position: absolute;
         top: 50%;
-        left: (@padding-base-horizontal * 2);
+        left: @padding-base-horizontal;
         color: inherit;
         display: block;
-        font-size: @font-size-small;
-        margin-top: -(@font-size-small / 2);
+        font-size: @font-size-large;
+        margin-top: -(@font-size-large / 2);
         line-height: 1;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        .opacity(0.6);
     }
 
     // Remove top spacing from the results message
@@ -545,11 +613,11 @@
 
     // Search field
     .select2-search__field {
-        height: @input-height-base;
-        padding: @padding-base-vertical @padding-base-horizontal;
-        padding-left: ((@padding-base-horizontal * 2) + @font-size-small);
+        background-color: transparent;
+        padding: @padding-base-vertical 0;
         border-radius: @input-border-radius;
         border: 1px solid @input-border;
+        border-color: transparent transparent @input-border;
         outline: 0;
         width: 100%;
 
@@ -580,12 +648,7 @@
         font-size: @font-size-large;
 
         .select2-selection__rendered {
-            padding-left: @padding-large-horizontal;
             padding-right: ((@padding-large-horizontal * 2) + 4);
-        }
-
-        .select2-selection__arrow:after {
-            right: @padding-large-horizontal;
         }
     }
 
@@ -614,12 +677,7 @@
         line-height: @line-height-small;
 
         .select2-selection__rendered {
-            padding-left: @padding-small-horizontal;
             padding-right: ((@padding-small-horizontal * 2) + 4);
-        }
-
-        .select2-selection__arrow:after {
-            right: @padding-small-horizontal;
         }
     }
 
@@ -648,12 +706,7 @@
         line-height: @line-height-small;
 
         .select2-selection__rendered {
-            padding-left: @padding-xs-horizontal;
             padding-right: ((@padding-xs-horizontal * 2) + 4);
-        }
-
-        .select2-selection__arrow:after {
-            right: @padding-xs-horizontal;
         }
     }
 
@@ -678,10 +731,59 @@
 // Custom colors
 // ------------------------------
 
+// Common styles
+.select2-selection--single,
+.select2-selection--multiple {
+    &[class*=bg-] {
+        border-radius: @border-radius-base;
+
+        // Disabled
+        .select2-container--disabled & {
+            .opacity(0.6);
+        }
+    }
+}
+
+
+// Single selection choice
+.select2-selection--single[class*=bg-] {
+
+    // Placeholder
+    .select2-selection__placeholder {
+        color: #fff;
+    }
+
+    // Result text
+    .select2-selection__rendered {
+        padding-left: @padding-base-horizontal;
+        padding-right: ((@padding-base-horizontal * 2) + @padding-base-vertical);
+
+        // In disabled mode
+        .select2-container--disabled & {
+            color: fade(#fff, 75%);
+        }
+    }
+
+    // Dropdown arrow
+    .select2-selection__arrow:after {
+        right: @padding-base-horizontal;
+    }
+}
+
+
 // Multiple selection choices
 .select2-selection--multiple[class*=bg-] {
+
+    // Mute choice
     .select2-selection__choice {
         background-color: fade(#000, 25%);
+    }
+
+    // Inline search field
+    .select2-search--inline {
+        .select2-search__field {
+            .placeholder(@input-placeholder-light);
+        }
     }
 }
 
@@ -691,8 +793,8 @@
     
     // Search field
     .select2-search--dropdown .select2-search__field {
-        background-color: fade(#000, 20%);
-        border-color: transparent;
+        background-color: transparent;
+        border-bottom-color: fade(#fff, 20%);
         color: #fff;
     }
 

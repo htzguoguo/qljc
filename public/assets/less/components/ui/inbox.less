@@ -137,6 +137,11 @@
         padding: @content-padding-small @content-padding-large;
         border-radius: 0;
         height: auto;
+
+        // Remove outline
+        &:focus {
+            .box-shadow(none);
+        }
     }
 }
 

@@ -9,6 +9,8 @@ require( '../apps/users/routers/userrouters' );
 
 require( '../apps/contacts/routers/contactsrouter' );
 
+require( '../apps/projects/routers/routers' );
+
 
 
 module.exports = BackBone.Router.extend( {

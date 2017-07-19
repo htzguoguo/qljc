@@ -4,7 +4,7 @@
 *
 *  Styles for tagsinput.js - tags input for Bootstrap
 *
-*  Version: 1.2
+*  Version: 1.1
 *  Latest update: Mar 10, 2016
 *
 * ---------------------------------------------------------------------------- */
@@ -14,28 +14,24 @@
 // ------------------------------
 
 .bootstrap-tagsinput {
-    background-color: @input-bg;
-    border: 1px solid @input-border;
     display: inline-block;
-    padding: 0 0 @tags-spacing 0;
     vertical-align: middle;
-    border-radius: @input-border-radius;
     width: 100%;
 
     // Input field
     input {
+        direction: ltr;
         border: 0;
         outline: 0;
         background-color: transparent;
-        padding: (@padding-base-vertical - @tags-spacing) @padding-small-horizontal;
-        margin-top: @tags-spacing;
-        margin-left: @tags-spacing;
+        padding: @padding-small-vertical 0;
+        margin-top: (@tags-spacing / 2);
+        margin-bottom: (@tags-spacing / 2);
         width: auto !important;
         min-width: 100px;
-        font-size: @font-size-small;
-        line-height: @line-height-small;
         .box-shadow(none);
 
+        // Remove focus interaction
         &:focus {
             border: none;
             box-shadow: none;
@@ -53,11 +49,13 @@
 
     // Tag
     .tag {
-        margin: @tags-spacing 0 0 @tags-spacing;
+        margin-top: (@tags-spacing / 2);
+        margin-bottom: (@tags-spacing / 2);
+        margin-right: @tags-spacing;
         border: 0;
-        border-radius: @border-radius-small;
-        padding: @padding-xs-vertical @padding-small-horizontal;
-        padding-right: ((@padding-small-horizontal * 2) + (@icon-font-size / 2));
+        border-radius: 100px;
+        padding: @padding-small-vertical @padding-small-horizontal;
+        padding-right: ((@padding-small-horizontal * 1.5) + @font-size-small);
         float: left;
         font-size: @font-size-small;
         line-height: @line-height-small;
@@ -67,14 +65,13 @@
 
         // Skip tokens with custom background color
         &:not([class*=bg-]) {
-            background-color: @color-slate-600;
+            background-color: @color-blue-500;
             color: #fff;
         }
 
         // Remove button
         [data-role="remove"] {
             cursor: pointer;
-            color: inherit;
             position: absolute;
             top: 50%;
             right: @padding-small-horizontal;
@@ -82,6 +79,7 @@
             margin-top: -(@font-size-mini / 2);
             .opacity(0.7);
 
+            // Hover interaction
             &:hover {
                 .opacity(1);
             }

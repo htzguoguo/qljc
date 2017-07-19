@@ -18,7 +18,6 @@
     border-radius: 100px;
     position: relative;
     direction: ltr;
-    .box-shadow(inset 0 1px 1px fade(#000, 10%));
 
     &,
     & * {
@@ -51,12 +50,11 @@
 // Background
 .noUi-background {
     background-color: @gray-lighter;
-    .box-shadow(inset 0 1px 1px fade(#000, 10%));
 }
 
 // Connector
 .noUi-connect {
-    background-color: @color-slate-500;
+    background-color: @color-indigo-400;
 }
 
 // Disabled state
@@ -70,6 +68,12 @@
     // Handle
     .noUi-handle {
         cursor: @cursor-disabled;
+
+        &:focus,
+        &:active {
+            .scale(1.25);
+            .box-shadow(none);
+        }
     }
 }
 
@@ -146,58 +150,41 @@
 .noUi-handle {
     width: (@slider-base-size * 3);
     height: (@slider-base-size * 3);
-    background-color: #fcfcfc;
+    background-color: @color-indigo-400;
     cursor: pointer;
-    top: -(@slider-base-size);
     position: relative;
     z-index: 1;
     border-radius: 50%;
-    border: 1px solid #bbb;
+    .scale(1);
 
     .noUi-stacking & {
         z-index: 10; // this class is applied to the lower origin when its values is > 50%
     }
 
-    // Inner circle
-    &:after {
-        content: '';
-        display: inline-block;
-        width: @slider-base-size;
-        height: @slider-base-size;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -(@slider-base-size / 2);
-        margin-left: -(@slider-base-size / 2);
-        background-color: @color-slate-600;
-        border-radius: 50%;
-    }
-
     // Hover state
-    &:hover,
-    &:focus {
-        background-color: #f8f8f8;
-
-        // Mute circle
-        &:after {
-            .opacity(0.9);
-        }
+    &:hover {
+        .scale(1.25);
     }
 
     // Active state
+    &:focus,
     &:active {
-        background-color: #fefefe;
-
-        // Mute circle
-        &:after {
-            .opacity(0.9);
-        }
+        .scale(1.5);
+        .box-shadow(0 0 0 10px fade(@color-indigo-400, 10%));
     }
 }
 
 // White handle
-.noui-slider-white .noUi-handle:after {
-    content: none;
+.noui-slider-white {
+    .noUi-handle {
+        background-color: #fff!important;
+        .box-shadow(@shadow-depth1);
+
+        &:focus,
+        &:active {
+            .box-shadow(~"0 0 0 10px rgba(0,0,0,0.05), "@shadow-depth1)!important;
+        }
+    }
 }
 
 
@@ -212,14 +199,13 @@
         width: (@slider-large-size * 3);
         height: (@slider-large-size * 3);
         top: -(@slider-large-size);
+    }
 
-        // Inner circle
-        &:after {
-            width: @slider-large-size;
-            height: @slider-large-size;
-            margin-top: -(@slider-large-size / 2);
-            margin-left: -(@slider-large-size / 2);
-        }
+    &.noui-slider-circle .noUi-handle:after {
+        width: @slider-large-size;
+        height: @slider-large-size;
+        margin-top: -(@slider-large-size / 2);
+        margin-left: -(@slider-large-size / 2);
     }
 
     // Horizontal
@@ -242,26 +228,6 @@
     }
 }
 
-// Small and mini have the same handle size
-.noui-slider-sm,
-.noui-slider-xs {
-
-    // Handle
-    .noUi-handle {
-        width: (@slider-small-size * 3);
-        height: (@slider-small-size * 3);
-        top: -(@slider-small-size);
-
-        // Inner circle
-        &:after {
-            width: @slider-small-size;
-            height: @slider-small-size;
-            margin-top: -(@slider-small-size / 2);
-            margin-left: -(@slider-small-size / 2);
-        }
-    }
-}
-
 // Small
 .noui-slider-sm {
 
@@ -270,8 +236,8 @@
         height: @slider-small-size;
 
         .noUi-handle {
-            top: -(@slider-small-size * 1.5) + (@slider-small-size / 2);
-            left: -(@slider-small-size * 1.5);
+            top: -(@slider-base-size * 1.5) + (@slider-small-size / 2);
+            left: -(@slider-base-size * 1.5);
         }
     }
 
@@ -280,8 +246,8 @@
         width: @slider-small-size;
 
         .noUi-handle {
-            top: -(@slider-small-size * 1.5);
-            left: -(@slider-small-size * 1.5) + (@slider-small-size / 2);
+            top: -(@slider-base-size * 1.5);
+            left: -(@slider-base-size * 1.5) + (@slider-small-size / 2);
         }
     }
 }
@@ -294,8 +260,8 @@
         height: @slider-mini-size;
 
         .noUi-handle {
-            top: -(@slider-small-size * 1.5) + (@slider-mini-size / 2);
-            left: -(@slider-small-size * 1.5);
+            top: -(@slider-base-size * 1.5) + (@slider-mini-size / 2);
+            left: -(@slider-base-size * 1.5);
         }
     }
 
@@ -304,8 +270,8 @@
         width: @slider-mini-size;
 
         .noUi-handle {
-            top: -(@slider-small-size * 1.5);
-            left: -(@slider-small-size * 1.5) + (@slider-mini-size / 2);
+            top: -(@slider-base-size * 1.5);
+            left: -(@slider-base-size * 1.5) + (@slider-mini-size / 2);
         }
     }
 }
@@ -314,7 +280,7 @@
 // Solid slider handle
 // ------------------------------
 
-.noui-slider-solid {
+.noui-slider-circle {
 
     // Handle
     .noUi-handle {
@@ -324,43 +290,18 @@
 
         // Inner circle
         &:after {
+            content: '';
+            display: inline-block;
+            width: @slider-base-size;
+            height: @slider-base-size;
             background-color: #fff;
-            .transition(opacity ease-in-out 0.2s);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -(@slider-base-size / 2);
+            margin-left: -(@slider-base-size / 2);
+            border-radius: 100px;
         }
-
-        // Change circle opacity on hover
-        &:hover,
-        &:focus {
-            &:after {
-                .opacity(0.75);
-            }
-        }
-    }
-
-    // Handle colors
-    &.noui-slider-primary .noUi-handle {
-        background-color: @brand-primary;
-        border-color: @brand-primary;
-    }
-
-    &.noui-slider-danger .noUi-handle {
-        background-color: @brand-danger;
-        border-color: @brand-danger;
-    }
-
-    &.noui-slider-success .noUi-handle {
-        background-color: @brand-success;
-        border-color: @brand-success;
-    }
-
-    &.noui-slider-warning .noUi-handle {
-        background-color: @brand-warning;
-        border-color: @brand-warning;
-    }
-
-    &.noui-slider-info .noUi-handle {
-        background-color: @brand-info;
-        border-color: @brand-info;
     }
 }
 
@@ -374,6 +315,15 @@
     &.noUi-connect {
         background-color: @brand-primary;
     }
+
+    .noUi-handle {
+        background-color: @brand-primary;
+
+        &:focus,
+        &:active {
+            .box-shadow(0 0 0 10px fade(@brand-primary, 10%));
+        }
+    }
 }
 
 // Danger
@@ -381,6 +331,15 @@
     .noUi-connect,
     &.noUi-connect {
         background-color: @brand-danger;
+    }
+
+    .noUi-handle {
+        background-color: @brand-danger;
+
+        &:focus,
+        &:active {
+            .box-shadow(0 0 0 10px fade(@brand-danger, 10%));
+        }
     }
 }
 
@@ -390,6 +349,15 @@
     &.noUi-connect {
         background-color: @brand-success;
     }
+
+    .noUi-handle {
+        background-color: @brand-success;
+
+        &:focus,
+        &:active {
+            .box-shadow(0 0 0 10px fade(@brand-success, 10%));
+        }
+    }
 }
 
 // Warning
@@ -398,6 +366,15 @@
     &.noUi-connect {
         background-color: @brand-warning;
     }
+
+    .noUi-handle {
+        background-color: @brand-warning;
+
+        &:focus,
+        &:active {
+            .box-shadow(0 0 0 10px fade(@brand-warning, 10%));
+        }
+    }
 }
 
 // Info
@@ -405,6 +382,15 @@
     .noUi-connect,
     &.noUi-connect {
         background-color: @brand-info;
+    }
+
+    .noUi-handle {
+        background-color: @brand-info;
+
+        &:focus,
+        &:active {
+            .box-shadow(0 0 0 10px fade(@brand-info, 10%));
+        }
     }
 }
 
@@ -438,8 +424,9 @@
         margin-left: -5px;
     }
 
-    .noUi-handle:hover & {
+    .noUi-handle:active & {
         display: block;
+        .scale(0.75);
     }
 }
 

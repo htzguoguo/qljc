@@ -17,22 +17,45 @@
     width: 100%;
     min-width: 100%;
     text-align: left;
-    padding-left: @padding-base-horizontal;
-    padding-right: ((@padding-base-horizontal * 2) + 5);
+    padding-right: (@padding-base-horizontal + @icon-font-size);
     text-overflow: ellipsis;
     overflow: hidden;
 
     // Default button overrides
     &.btn-default {
+        border-width: 1px 0;
+        padding: @padding-base-vertical 0;
+        padding-right: (@icon-font-size * 1.5);
+        border-radius: 0;
+        text-transform: none;
+        font-weight: 400;
+
+        // States
         &,
-        &.disabled {
+        &:hover,
+        &:focus,
+        &:active,
+        .btn-group.open > &.dropdown-toggle {
+            border-color: transparent transparent @input-border;
             background-color: @input-bg;
-            border-color: @input-border;
+            .box-shadow(none);
         }
 
-        &:active,
-        .btn-group.open & {
-            border-color: @input-border;
+        // When opened, change bottom border color
+        &:focus,
+        .btn-group.open > &.dropdown-toggle {
+            border-bottom-color: @input-border-highlight-color;
+            .box-shadow(0 1px 0 @input-border-highlight-color);
+        }
+
+        // Disabled
+        &.disabled {
+            border-bottom-style: dashed;
+        }
+
+        // Stick caret to far right
+        .caret {
+            right: 0;
         }
     }
 
@@ -53,32 +76,46 @@
 
     // Large
     &.btn-lg {
-        padding-left: @padding-large-horizontal;
         padding-right: (@padding-large-horizontal * 2);
 
-        .caret {
-            right: @padding-large-horizontal;
+        &.btn-default {
+            padding-right: (@padding-large-horizontal + @padding-large-vertical);
         }
     }
 
     // Small
     &.btn-sm {
-        padding-left: @padding-small-horizontal;
         padding-right: (@padding-small-horizontal * 2);
 
-        .caret {
-            right: @padding-small-horizontal;
+        &.btn-default {
+            padding-right: (@padding-small-horizontal + @padding-small-vertical);
         }
     }
 
     // Mini
     &.btn-xs {
-        padding-left: @padding-xs-horizontal;
         padding-right: (@padding-xs-horizontal * 2);
 
-        .caret {
-            right: @padding-xs-horizontal;
+        &.btn-default {
+            padding-right: (@padding-xs-horizontal + @padding-xs-vertical);
         }
+    }
+}
+
+// Light theme
+.page-header-inverse .form-group,
+.navbar-inverse .navbar-form {
+    .multiselect.btn-default {
+        border-bottom-color: fade(#fff, 30%);
+        color: #fff;
+    }
+
+    // Opened dropdown
+    .btn-group.open > .multiselect.btn-default,
+    .multiselect.btn-default:focus {
+        color: #fff;
+        border-bottom-color: #fff;
+        .box-shadow(0 1px 0 #fff);
     }
 }
 
@@ -100,6 +137,7 @@
 
             // Label
             > label {
+                display: block!important;
                 margin: 0;
                 height: 100%;
                 cursor: pointer;
@@ -188,11 +226,20 @@
 // ------------------------------
 
 // Full width
-.multi-select-full > .btn-group {
-    width: 100%;
+.multi-select-full {
 
-    .multiselect-container {
-        width: inherit;
+    // Button group
+    > .btn-group {
+        width: 100%;
+
+        .multiselect-container {
+            width: inherit;
+        }
+    }
+
+    // Add spacing to button groups
+    + .input-group-btn {
+        padding-left: @padding-base-horizontal;
     }
 }
 
@@ -210,46 +257,20 @@
 // Misc
 // ------------------------------
 
-// Border color
-div[class*=border-] > .btn-group {
-    border-color: inherit;
-    > .multiselect {
-        border-color: inherit;
-    }
-}
-
 // Filter
 li.multiselect-filter {
     position: relative;
     padding: (@padding-base-horizontal - @list-spacing) @padding-base-horizontal;
+    padding-left: ((@padding-base-horizontal * 2) + @font-size-small);
     margin-bottom: (@padding-base-horizontal - @list-spacing);
 
     // Center icon vertically
     i {
-        font-size: @font-size-small;
+        font-size: @font-size-large;
         position: absolute;
-        left: (@padding-base-horizontal * 2);
+        left: @padding-base-horizontal;
         top: 50%;
-        margin-top: -(@font-size-small / 2);
-        .opacity(0.5);
-    }
-
-    // Input horizontal padding
-    .form-control {
-        padding-left: (@padding-base-horizontal * 3);
-    }
-}
-
-// Remove left rounded corners
-.input-group-btn,
-.input-group-addon {
-    & + .multi-select-full,
-    & + .multi-select-auto,
-    & + .multi-select-fixed,
-    & + .btn-group {
-        .multiselect:first-child {
-            .border-left-radius(0);
-        }
+        margin-top: -(@font-size-large / 2);
     }
 }
 
@@ -264,7 +285,4 @@ li.multiselect-filter {
     .multiselect {
         min-width: 0;
     }
-}
-.btn-group > .btn-group:nth-child(2) > .multiselect.btn {
-    .border-left-radius(@border-radius-small);
 }

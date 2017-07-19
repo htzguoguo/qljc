@@ -1,0 +1,21 @@
+
+{{#items}}
+    {{#isactive}}
+        <li class="active">
+            {{#isfirst}}
+                <i class="icon-home2 position-left"></i>
+            {{/isfirst}}
+            {{title}}
+        </li>
+    {{/isactive}}
+    {{^isactive}}
+        <li>
+            <a href="#{{url}}">
+                {{#isfirst}}
+                <i class="icon-home2 position-left"></i>
+                {{/isfirst}}
+                {{title}}
+            </a>
+        </li>
+    {{/isactive}}
+{{/items}}

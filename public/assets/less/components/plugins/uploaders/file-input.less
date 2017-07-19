@@ -120,8 +120,14 @@
 
 // Disabled caption
 .file-caption-disabled {
-    background-color: @input-bg-disabled;
     cursor: @cursor-disabled;
+    border-bottom-style: dashed;
+
+    // Remove highlight
+    &:focus {
+	    border-bottom-color: @input-border;
+	    .box-shadow(none);
+    }
 
     // Change text color
     .file-caption-name {
@@ -318,6 +324,10 @@
 	.fileinput-remove-button,
 	.fileinput-upload-button {
 		display: none;
+	}
+
+	.input-group .input-group-btn > .btn-file {
+		.border-left-radius(@border-radius-base);
 	}
 }
 

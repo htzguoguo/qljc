@@ -25,6 +25,7 @@
     body > & {
     	position: fixed;
     	z-index: 100040;
+    	.box-shadow(@shadow-depth1);
     }
 
 	// Rounded alerts
@@ -238,7 +239,7 @@
 // ------------------------------
 
 .brighttheme {
-    border: 1px solid;
+    border: 0px solid;
 
     .ui-pnotify[class*=bg-] > & {
     	background-color: inherit;
@@ -366,15 +367,15 @@
 		input {
 		    display: block;
 		    width: 100%;
-		    border: 1px solid @input-border;
+		    border-color: transparent transparent @input-border;
 		    background-color: @input-bg;
 		    margin-bottom: @content-padding-base!important;
 		    color: @input-color;
-		    padding: @padding-base-vertical @padding-base-horizontal;
+		    padding: @padding-base-vertical 0;
 
 		    // In colored background
 		    .ui-pnotify[class*=bg-] & {
-		    	border-color: #fff;
+		    	border-bottom-color: #fff;
 		    	color: #fff;
 		    	.placeholder(@input-placeholder-light);
 		    }

@@ -301,6 +301,8 @@
                     display: block;
                     padding: @padding-base-vertical @padding-base-horizontal;
                     border-radius: @border-radius-base;
+                    text-transform: uppercase;
+                    font-weight: 500;
                     border: 1px solid transparent;
 
                     // Hover state
@@ -322,11 +324,11 @@
 
                         &:hover,
                         &:focus {
-                            .box-shadow(0 0 0 100px fade(#000, 1%) inset);
+                            .box-shadow(0 0 0 100px fade(#000, 2%) inset);
                         }
 
                         &:active {
-                            .box-shadow(0 0 0 100px fade(#000, 3%) inset)
+                            .box-shadow(0 0 0 100px fade(#000, 4%) inset)
                         }
                     }
                 }

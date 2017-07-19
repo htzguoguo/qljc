@@ -39,9 +39,10 @@
 
 		// Checkmark icon
 		&:after {
-			content: "\e600";
+			content: "\ed6e";
 			font-family: 'icomoon';
 			font-size: @icon-font-size;
+			color: inherit;
 			line-height: 1;
 			position: absolute;
 			top: (@checkbox-size - @icon-font-size - (@checkbox-border-width * 2)) / 2;
@@ -49,12 +50,19 @@
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 			.opacity(0);
+			.scale(0);
+			.transition-duration(0.1s);
 		}
 
 		// Checked style
 		&.checked {
+			border-color: transparent;
+			.transition-duration(0.1s);
+
+			// Icon
 			&:after {
 				.opacity(1);
+				.scale(1);
 			}
 		}
 	}
@@ -122,6 +130,7 @@
 				.opacity(0);
 			}
 
+			// Display icon if checked
 			span.checked:after {
 				.opacity(1);
 			}
@@ -137,13 +146,16 @@
 
 		// Inherit colors
 		span {
-			border-color: inherit;
 			color: inherit;
+
+			&:not(.checked) {
+				border-color: inherit;
+			}
 		}
 	}
 }
 
-// Update checker colors in dropdown variations
+// Update checker colors in components variations
 .dropdown-menu > .active:not(.disabled),
 .dropdown-menu[class*=bg-],
 .page-header-inverse .form-group > .checkbox,
@@ -156,6 +168,10 @@
 		span {
 			border-color: #fff;
 			color: #fff;
+
+			&.checked {
+				border-color: transparent;
+			}
 		}
 	}
 }
@@ -202,12 +218,14 @@
 			height: 0;
 			border-radius: 100%;
 			.opacity(0);
+			.scale(0);
 		}
 
 		// Checked style
 		&.checked {
 			&:after {
 				.opacity(1);
+				.scale(1);
 			}
 		}
 	}
@@ -247,6 +265,17 @@
 	// States
 	//
 
+	// Active state
+	&.active,
+	.radio > label:active &,
+	.radio-inline:active & {
+		span {
+			&:after {
+				.opacity(0.75);
+			}
+		}
+	}
+
 	// Disabled
 	&.disabled {
 		.opacity(0.5);
@@ -264,6 +293,7 @@
 				.opacity(0);
 			}
 
+			// Display circle if checked
 			span.checked:after {
 				.opacity(1);
 			}
@@ -286,7 +316,7 @@
 	}
 }
 
-// Update checker colors in dropdown variations
+// Update checker colors in components variations
 .dropdown-menu > .active,
 .dropdown-menu[class*=bg-],
 .page-header-inverse .form-group > .radio,
@@ -309,34 +339,35 @@
 
 // Base
 .uploader {
-	width: 100%;
 	position: relative;
-	display: table;
+	display: inline-block;
+    max-width: 100%;
+
+    &:after {
+    	content: '';
+    	display: table;
+    	clear: both;
+    }
 
 	// File name text
 	.filename {
 		color: @gray-light;
-		height: @input-height-base;
 		padding: @padding-base-vertical @padding-base-horizontal;
 		cursor: pointer;
-		width: 100%;
-		display: table-cell;
-		cursor: default;
-		border: 1px solid @input-border;
-		border-right: 0;
-		background-color: @input-bg;
-		text-align: left;
-		word-break: break-word;
-		.border-left-radius(@input-border-radius);
+		display: block;
+		border: 1px solid transparent;
+		float: right;
+	    max-width: 100%;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
 	}
 
 	// Action button
 	.action {
-		display: table-cell;
 		cursor: pointer;
-		z-index: 1;
-		border-radius: 0;
-		.border-right-radius(@input-border-radius);
+		margin: 0;
+		float: left;
 
 		// If normal button
 		&.btn {
@@ -345,25 +376,15 @@
 	}
 
 	// Hover state
-	&:hover,
-	&:focus {
-		.action {
-			.box-shadow(0 0 0 100px fade(#000, 5%) inset);
-		}
-		.action.btn-default {
-			.box-shadow(0 0 0 100px fade(#000, 1%) inset);
-		}
+	&:hover .action,
+	&:focus .action {
+        .box-shadow(0 0 0 100px fade(#000, 5%) inset); // Use box shadow instead of color for all buttons - contextual and custom
 	}
 
     // Active state
-	&:active {
-		.action {
-			.box-shadow(0 0 0 100px fade(#000, 10%) inset);
-		}
-		.action.btn-default {
-			.box-shadow(0 0 0 100px fade(#000, 3%) inset);
-		}
-	}
+    &:active .action {
+        .box-shadow(0 0 0 100px fade(#000, 10%) inset); // The same as above - no color changes, only box shadow
+    }
 
 	// Hide file input
 	input[type=file] {
@@ -382,10 +403,38 @@
 
 	// Disabled state
 	&.disabled {
-		.filename {
-			background-color: @input-bg-disabled;
+		input[type=file] {
 			cursor: @cursor-disabled;
 		}
+		.action {
+			.opacity(0.6);
+		}
+	}
+
+	// Inside sidebar
+	.sidebar .form-group > & {
+		display: block;
+
+		.filename {
+			float: none;
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.action {
+			display: block;
+		}
+	}
+}
+
+
+//
+// Inside inverse elements
+//
+.page-header-inverse .form-group > .uploader,
+.navbar-inverse .navbar-form .form-group > .uploader {
+	.filename {
+		color: fade(#fff, 90%);
 	}
 }
 

@@ -81,7 +81,15 @@ Application.start = function () {
 
 } );*/
 
-  _.extend( BackboneValidation.callbacks, {
+_.extend(Application, BackBone.Events);
+
+/*Application.on('app:navigation:change', function ( items ) {
+    this.shell.trigger( 'shell:navigation:change', items );
+});*/
+
+
+
+_.extend( BackboneValidation.callbacks, {
       valid : function ( view, attr ) {
           var $el = view.$( '#' + attr );
           if ( $el.length === 0 ) {

@@ -34,6 +34,14 @@ th {
         }
     }
 
+    // Remove borders from every next row
+    > thead > tr + tr {
+        > th,
+        > td {
+            border-top-width: 0;
+        }
+    }
+
     // Lighten border in colored tables or panels
     .panel[class*=bg-] &,
     &[class*=bg-] {
@@ -61,7 +69,6 @@ th {
             border-color: #fff;
         }
     }
-
 
     // Custom header bottom border color
     > thead {
@@ -106,19 +113,6 @@ th {
     }
 }
 
-// Remove doubled top border if no thead
-.panel-body {
-    + .table,
-    + .table-responsive > .table {
-        > tbody:first-child > tr:first-child {
-            > td,
-            > th {
-                border-top: 0;
-            }
-        }
-    }
-}
-
 // Inside modal dialog body
 .modal-body {
     + .table-responsive > .table,
@@ -128,7 +122,7 @@ th {
 
     // Table responsive div container
     + .table-responsive {
-        border: 0;
+        border-width: 0;
     }
 }
 
@@ -237,6 +231,24 @@ th {
         border: 1px solid @table-border-color;
     }
 
+    // Header borders
+    > thead > tr {
+        > th,
+        > td {
+
+            // Add left border
+            &:first-child {
+                border-left-color: @table-border-color;
+            }
+
+            // Add right border
+            &:last-child {
+                border-right-color: @table-border-color;
+            }
+        }
+    }
+
+
     // Hide border on mobile
     @media screen and (max-width: @screen-xs-max) {
         .table-responsive > & {
@@ -267,19 +279,6 @@ th {
             > td,
             > th {
                 border: 0;
-                border-left: 1px solid @table-border-color;
-
-                &:first-child {
-                    border-left: 0;
-                }
-            }
-        }
-    }
-
-    > thead {
-        > tr {
-            > th,
-            > td {
                 border-left: 1px solid @table-border-color;
 
                 &:first-child {
@@ -371,6 +370,20 @@ th {
 // -------------------------
 
 .table-bordered {
+
+    // Remove borders in header and footer
+    .panel > .table-responsive > &,
+    .panel > & {
+        > thead > tr {
+            > th,
+            > td {
+                border-left-color: transparent;
+                border-right-color: transparent;
+            }
+        }
+    }
+
+    // Add stronger border color to the first row
     tr:first-child {
         > td,
         > th {

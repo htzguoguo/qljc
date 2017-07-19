@@ -98,7 +98,7 @@
     left: 0;
     width: 0;
     height: @slider-base-size;
-    background-color: @color-blue-500;
+    background-color: @color-indigo-400;
     border-radius: 100px;
 }
 
@@ -137,38 +137,25 @@
     display: block;
     width: (@slider-base-size * 3);
     height: (@slider-base-size * 3);
-    background-color: #fcfcfc;
-    border: 1px solid #bbb;
+    background-color: @color-indigo-400;
     cursor: pointer;
     top: (@tooltip-arrow-width + (@padding-xs-vertical * 3) + @font-size-mini + (@slider-base-size) - (((@slider-base-size * 3) - @slider-base-size) / 2));
     border-radius: 100px;
     cursor: pointer;
     z-index: 1;
-
-    // Small circle
-    &:after {
-        content: '';
-        display: inline-block;
-        width: @slider-base-size;
-        height: @slider-base-size;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -(@slider-base-size / 2);
-        margin-left: -(@slider-base-size / 2);
-        background-color: @color-grey-600;
-        border-radius: 100px;
-    }
+    .scale(1);
+    .transition(-webkit-transform ease-in-out 0.15s);
 
     // Hover state
-    &:hover,
-    &:focus {
-        background-color: #f7f7f7;
+    &:hover {
+        .scale(1.25);
     }
 
     // Active state
+    &:focus,
     &:active {
-        background-color: #fafafa;
+        .scale(1.5);
+        .box-shadow(0 0 0 10px fade(@color-indigo-400, 10%));
     }
 
     // The last one is on top of the first one
@@ -234,7 +221,8 @@
         display: block;
         bottom: -(@tooltip-arrow-width * 2);
         left: 50%;
-        width: 0; height: 0;
+        width: 0;
+        height: 0;
         margin-left: -(@tooltip-arrow-width);
         overflow: hidden;
         border: @tooltip-arrow-width solid transparent;

@@ -23,11 +23,10 @@
         float: none;
         display: block;
         margin: 0;
+        padding: @line-height-computed @content-padding-large (@line-height-computed / 2) @content-padding-large;
         border-bottom: 1px solid @table-border-color;
-        padding-top: @line-height-computed;
-        padding-bottom: (@line-height-computed / 2);
-        background-color: @table-bg-accent;
 
+        // Buttons
         > .btn {
             margin-bottom: (@line-height-computed / 2);
             float: none;
@@ -67,7 +66,7 @@
 
         // Add 1px spacing between buttons
         & + .btn {
-            margin-left: -1px;
+            margin-left: 1px;
         }
     }
 
@@ -93,11 +92,10 @@
     margin-left: -200px;
     padding: @modal-inner-padding;
     background-color: #fff;
-    border: 1px solid @dropdown-border;
     border-radius: @border-radius-base;
     text-align: center;
     z-index: @zindex-modal;
-    .box-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+    .box-shadow(@shadow-depth4);
 
     // Heading
     h2 {
@@ -143,7 +141,7 @@
 
     // Inner buttons
     > .dt-button {
-        padding: (@padding-base-vertical + 1) @content-padding-base;
+        padding: @padding-base-vertical @content-padding-base;
         color: @dropdown-link-color;
         display: block;
         outline: 0;

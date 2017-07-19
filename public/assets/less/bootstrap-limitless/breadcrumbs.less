@@ -172,7 +172,7 @@
     position: relative;
     padding-left: @grid-gutter-width;
     padding-right: @grid-gutter-width;
-    border-top: 1px solid @panel-default-border;
+    .box-shadow(@shadow-depth1);
 
     // Clearing floats
     &:after {
@@ -182,14 +182,8 @@
     }
 
     // Inside page header (all levels)
-    &:first-child {
-        border-top-width: 0;
-        border-bottom: 1px solid @panel-default-border;
-        
-        // Z-index fix
-        .page-header & {
-            z-index: (@zindex-navbar - 6);
-        }
+    .page-header &:first-child {
+        z-index: (@zindex-navbar - 6);
     }
 
     // In page header
@@ -199,36 +193,14 @@
     
     // After page header content
     .page-header-content + & {
-        margin-bottom: @line-height-computed;
-        border-bottom: 1px solid @panel-default-border;
-        
-        // Remove bottom margin if inside colored header
-        .page-header-default &,
-        .page-header-inverse & {
-            margin-bottom: 0;
-        }
-        
-        // And remove bottom border in light header
-        .page-header-default & {
-            border-bottom-width: 0;
-        }
+        margin-bottom: @line-height-computed;        
     }
-    
+
     // Darken inside white header
     .page-header-default &:not([class*=bg-]) {
         background-color: @panel-footer-bg;
     }
     
-    // Inside inversed header
-    .page-header-inverse & {
-        border-top-width: 0;
-        
-        // Remove bottom border if before title
-        &:first-child {
-            border-bottom-width: 0;
-        }
-    }
-
     // Breadcrumb
     .breadcrumb {
         margin-right: ((@content-padding-base * 2) + @icon-font-size);
@@ -246,6 +218,26 @@
     }
 }
 
+
+// Inside colored page header
+.page-header-default,
+.page-header-inverse {
+
+    // Add top border and remove shadow in colored header
+    .page-header-content + .breadcrumb-line {
+        border-top: 1px solid @panel-default-border;
+        margin-bottom: 0;
+        .box-shadow(none);
+    }
+
+    // Always display shadow in component
+    .page-header-content + .breadcrumb-line-component {
+        border-width: 0;
+        .box-shadow(@shadow-depth1);
+    }
+}
+
+
 // As a component
 .breadcrumb-line-component {
     border-radius: @border-radius-base;
@@ -255,17 +247,6 @@
     // Set colors
     &:not([class*=bg-]) {
         background-color: @panel-bg;
-        border: 1px solid @panel-default-border;
-        
-        // Inside default header
-        .page-header-default & {
-            border-width: 1px;
-        }
-        
-        // Inside inversed header
-        .page-header-inverse & {
-            border-width: 0;
-        }
     }
 
     // Adjust horizontal spacing of breadcrumb
@@ -279,6 +260,7 @@
         margin-right: @grid-gutter-width;
     }
 }
+
 
 // Line with custom bg color
 .breadcrumb-line[class*=bg-] {
@@ -296,6 +278,7 @@
         }
     }
 }
+
 
 // In dark containers
 .breadcrumb-line[class*=bg-] {
@@ -368,12 +351,12 @@
     .dropdown-menu {
         margin-top: 0;
         left: auto;
-        right: -1px;
+        right: 0;
         .border-top-radius(0);
 
         // Mobile view
         @media (max-width: @screen-xs-max) {
-            left: -1px;
+            left: 0;
 
             // Links
             > li > a {

@@ -20,22 +20,48 @@
     // Button
     > .btn {
         width: 100%;
-        padding-right: ((@padding-base-horizontal * 2) + @content-padding-small);
+        padding-right: (@padding-large-vertical + @icon-font-size + @padding-large-horizontal);
+    }
 
-        // Default light button
-        &.btn-default {
-            &,
-            &.disabled {
-                background-color: @input-bg;
-                border-color: @input-border;
-            }
+    // Default light button
+    .btn-default {
+        padding: @padding-base-vertical 0;
+        padding-right: (@padding-base-vertical + @padding-base-horizontal);
+        background-color: @input-bg;
+        border: 1px solid transparent;
+        border-width: 1px 0;
+        font-weight: 400;
+        text-transform: none;
+        border-bottom-color: @input-border;
+        border-radius: 0;
+        .box-shadow(none);
 
-            // When dropdown is opened
-            &:active,
-            .btn-group.open & {
-                border-color: @input-border;
-            }
+        // Hover states
+        &:focus,
+        &.focus,
+        &:active,
+        &.active {
+            background-color: transparent;
+            border-bottom-color: @input-border-highlight-color;
+            .box-shadow(0 1px 0 @input-border-highlight-color);
         }
+
+        // Disabled
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] & {
+            border-bottom-style: dashed;
+            background-color: @input-bg;
+            border-bottom-color: @input-border;
+            .box-shadow(none);
+        }
+    }
+
+    // When dropdown is opened
+    &.btn-group.open > .btn-default.dropdown-toggle {
+        border-bottom-color: @input-border-highlight-color;
+        background-color: @input-bg;
+        .box-shadow(0 1px 0 @input-border-highlight-color);
     }
 
     // Form control
@@ -53,8 +79,11 @@
     .popover-title {
         font-size: @font-size-mini;
         line-height: @line-height-mini;
-        margin: @list-spacing 0;
+        margin-top: @list-spacing;
+        margin-bottom: 1px;
+        font-weight: 400;
         padding: @padding-base-vertical @padding-base-horizontal;
+        color: @text-muted;
     }
 
     // Custom border color
@@ -64,6 +93,7 @@
             border-color: inherit;
         }
     }
+
 
     //
     // Width variations
@@ -75,6 +105,7 @@
     &.fit-width {
         width: auto !important;
     }
+
 
     //
     // Button group
@@ -122,7 +153,7 @@
                 text-overflow: ellipsis; 
 
                 > i {
-                    margin-right: @element-horizontal-spacing;
+                    margin-right: @padding-base-horizontal;
                     float: left;
                     margin-top: ((@line-height-computed - @icon-font-size) / 2);
                     top: 0;
@@ -143,15 +174,32 @@
             width: 100%;
         }
 
+        // Caret in default button
+        .btn-default .caret {
+            right: 0;
+        }
+
         // Button sizes caret
-        .btn-lg > .caret {
-            right: @padding-large-horizontal;
+        .btn-lg:not(.btn-default) {
+            padding-right: (@padding-large-vertical + @icon-font-size + @padding-large-horizontal);
+
+            > .caret {
+                right: @padding-large-horizontal;
+            }
         }
-        .btn-sm > .caret {
-            right: @padding-small-horizontal;
+        .btn-sm:not(.btn-default) {
+            padding-right: (@padding-small-vertical + @icon-font-size + @padding-small-horizontal);
+
+            > .caret {
+                right: @padding-small-horizontal;
+            }
         }
-        .btn-xs > .caret {
-            right: @padding-xs-horizontal;
+        .btn-xs:not(.btn-default) {
+            padding-right: (@padding-xs-vertical + @icon-font-size + @padding-xs-horizontal);
+
+            > .caret {
+                right: @padding-xs-horizontal;
+            }
         }
 
         // Dropdown menu
@@ -174,8 +222,7 @@
                         margin-top: -(@icon-font-size / 2);
                         right: @padding-base-horizontal;
                         margin-right: 0;
-                        color: @dropdown-link-active-color;
-                        .opacity(0);
+                        color: transparent;
                     }
 
                     // Main text
@@ -195,7 +242,7 @@
                         &:hover {
                             font-weight: 700;
                             color: #fff;
-                            background: @brand-danger;
+                            background-color: @brand-danger;
                             .transition(none);
                         }
                     }
@@ -274,7 +321,7 @@
                 margin-right: ((@padding-base-horizontal * 2) + @icon-font-size);
             }
             &.selected a .check-mark {
-                .opacity(1);
+                color: @dropdown-link-active-color;
             }
         }
     }
@@ -286,17 +333,6 @@
     // Remove border radius
     .bootstrap-select > .btn {
         border-radius: 0;
-    }
-
-    // Add side border radius to the first child
-    > .bs-select-hidden:first-child + .bootstrap-select > .btn,
-    > .bootstrap-select:first-child > .btn {
-        .border-left-radius(@border-radius-base);
-    }
-
-    // Add side border radius to the simulated last child
-    > .bootstrap-select:last-child > .btn {
-        .border-right-radius(@border-radius-base);
     }
 }
 
@@ -325,11 +361,7 @@
 // Search box
 .bs-searchbox {
     position: relative;
-
-    // Add more left space for icon
-    > .form-control {
-        padding-left: @input-height-base;
-    }
+    padding-left: ((@padding-base-horizontal * 2) + @icon-font-size);
 
     // Search icon
     &:after {
@@ -337,15 +369,14 @@
         font-family: 'icomoon';
         position: absolute;
         top: 50%;
-        left: (@padding-base-horizontal * 2);
+        left: @padding-base-horizontal;
         color: inherit;
         display: block;
-        font-size: @font-size-small;
-        margin-top: -(@font-size-small / 2);
+        font-size: @font-size-large;
+        margin-top: -((@font-size-large + (@padding-base-horizontal - @list-spacing)) / 2);
         line-height: 1;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        .opacity(0.6);
     }
 }
 

@@ -30,7 +30,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               							#f5f5f5;
+@body-bg:               							#eeeded;
 
 //** Global textual link color.
 @link-color:            							@color-primary-600;
@@ -85,24 +85,28 @@
 //
 //## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
 
-@padding-base-vertical:     						7px;
-@padding-base-horizontal:   						12px;
+@padding-base-vertical:     						8px;
+@padding-base-horizontal:   						16px;
 
 @padding-large-vertical:    						9px;
-@padding-large-horizontal:  						15px;
+@padding-large-horizontal:  						18px;
 
-@padding-small-vertical:    						6px;
-@padding-small-horizontal:  						11px;
+@padding-small-vertical:    						7px;
+@padding-small-horizontal:  						14px;
 
-@padding-xs-vertical:       						5px;
-@padding-xs-horizontal:     						10px;
+@padding-xs-vertical:       						6px;
+@padding-xs-horizontal:     						12px;
 
 @line-height-large:         						1.4285715; // 20/14
 @line-height-small:         						1.6666667; // 20/12
 
 @border-radius-base:        						3px;
-@border-radius-large:       						5px;
+@border-radius-large:       						4px;
 @border-radius-small:       						2px;
+
+
+//** Global background color for active items (e.g., navs or dropdowns).
+@component-active-bg:                               @color-teal-400;
 
 
 
@@ -128,8 +132,8 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-@btn-default-bg:                 					#fcfcfc;
-@btn-default-border:             					#ddd;
+@btn-default-bg:                 					#f5f5f5;
+@btn-default-border:             					transparent;
 
 @btn-primary-border:             					@btn-primary-bg;
 @btn-success-border:             					@btn-success-bg;
@@ -143,14 +147,20 @@
 //
 //##
 
+//** `<input>` background color
+@input-bg:                                          transparent;
+
 //** `<input disabled>` background color
-@input-bg-disabled:              					#fafafa;
+@input-bg-disabled:              					@input-bg;
 
 //** Text color for `<input>`s
 @input-color:                    					@text-color;
 
 //** `<input>` border color
 @input-border:                   					#ddd;
+
+// This has no effect on `<select>`s in some browsers, due to the limited stylability of `<select>`s in CSS.
+@input-border-radius:                               @border-radius-base;
 
 //** Large `.form-control` border radius
 @input-border-radius-large:                         @border-radius-base;
@@ -165,7 +175,11 @@
 @form-group-margin-bottom:       					@line-height-computed;
 
 //** Background color for textual input addons
-@input-group-addon-bg:           					#fcfcfc;
+@input-group-addon-bg:           					transparent;
+
+//** Border color for textual input addons
+@input-group-addon-border-color:                    transparent;
+
 
 
 
@@ -174,7 +188,7 @@
 //## Dropdown menu container and contents.
 
 //** Dropdown menu `border-color`.
-@dropdown-border:                					#ddd;
+@dropdown-border:                					transparent;
 
 //** Dropdown menu `border-color` **for IE8**.
 @dropdown-fallback-border:       					@dropdown-border;
@@ -230,19 +244,18 @@
 //##
 
 // Basics of a navbar
-@navbar-height:                    					46px;
+@navbar-height:                    					50px;
 @navbar-border-radius:             					0;
 @navbar-padding-horizontal:        					@grid-gutter-width;
 
 // Navbar colors
-@navbar-default-color:             					#555;
+@navbar-default-color:             					#777;
 @navbar-default-bg:                					#fff;
 @navbar-default-border:            					#ddd;
 
 // Navbar links
-@navbar-default-link-color:                			@navbar-default-color;
 @navbar-default-link-hover-color:          			@text-color;
-@navbar-default-link-hover-bg:             			#f8f8f8;
+@navbar-default-link-hover-bg:             			transparent;
 @navbar-default-link-active-color:        			@navbar-default-link-hover-color;
 @navbar-default-link-active-bg:            			@navbar-default-link-hover-bg;
 @navbar-default-link-disabled-color:       			@text-muted;
@@ -250,16 +263,16 @@
 
 // Inverted navbar
 // Reset inverted navbar basics
-@navbar-inverse-color:                      		#fff;
-@navbar-inverse-bg:                         		@color-slate-800;
+@navbar-inverse-color:                      		fade(#fff, 90%);
+@navbar-inverse-bg:                         		#273246;
 @navbar-inverse-border:                     		@navbar-inverse-bg;
 
 // Inverted navbar links
 @navbar-inverse-link-color:                 		@navbar-inverse-color;
-@navbar-inverse-link-hover-color:           		@navbar-inverse-link-color;
-@navbar-inverse-link-hover-bg:              		fade(#000, 10%);
+@navbar-inverse-link-hover-color:           		#fff;
+@navbar-inverse-link-hover-bg:              		transparent;
 
-@navbar-inverse-link-active-bg:             		fade(#000, 15%);
+@navbar-inverse-link-active-bg:             		transparent;
 @navbar-inverse-link-disabled-color:        		fade(#fff, 60%);
 
 
@@ -269,7 +282,7 @@
 //##
 
 //=== Shared nav styles
-@nav-link-padding:                          		(@padding-base-vertical + 2) @content-padding-base;
+@nav-link-padding:                          		(@padding-base-vertical * 1.5) @padding-base-horizontal;
 
 
 @nav-link-hover-bg:                         		#f5f5f5;
@@ -288,8 +301,8 @@
 @nav-tabs-justified-link-border-color:				@nav-tabs-border-color;
 @nav-tabs-justified-active-link-border-color:		@panel-bg;
 
-@nav-tabs-solid-bg:                                 #fafafa;
-@nav-tabs-solid-hover-bg:                           #f5f5f5;
+@nav-tabs-solid-bg:                                 #f8f8f8;
+@nav-tabs-solid-hover-bg:                           transparent;
 
 @nav-tabs-mobile-link-hover-bg:                     #fafafa;
 @nav-tabs-mobile-link-active-bg:                    #f5f5f5;
@@ -301,12 +314,13 @@
 //##
 
 @pagination-color:                     				@text-color;
+@pagination-bg:                                     #f5f5f5;
 
 @pagination-hover-color:               				@pagination-color;
 @pagination-hover-bg:                  				#f5f5f5;
 
 @pagination-disabled-color:            				#bbb;
-@pagination-disabled-bg:               				transparent;
+@pagination-disabled-bg:               				#fcfcfc;
 
 
 
@@ -441,7 +455,7 @@
 @panel-footer-padding:        						@padding-base-vertical @content-padding-large;
 
 //** Border color for elements within panels
-@panel-footer-bg:             						#fcfcfc;
+@panel-footer-bg:             						@panel-default-heading-bg;
 @panel-default-heading-bg:    						#fcfcfc;
 
 @panel-success-text:          						#fff;

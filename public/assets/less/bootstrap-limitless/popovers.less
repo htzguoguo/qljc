@@ -17,7 +17,13 @@
 .popover {
     border-radius: @border-radius-base;
     padding: 0;
-    .box-shadow(0 1px 3px fade(#000, 10%));
+    border-width: 0;
+    .box-shadow(@shadow-depth2);
+
+    // Hide arrow
+    .arrow {
+        display: none;
+    }
 }
 
 // Title
@@ -40,44 +46,4 @@
 // Content
 .popover-content {
     padding: @content-padding-base;
-}
-
-
-// Custom color options
-// -------------------------
-
-.popover[class*=bg-],
-.popover[class*=border-] {
-
-    // Top arrow
-    &.top > .arrow {
-        &,
-        &:after {
-            border-top-color: inherit;
-        }
-    }
-
-    // Right arrow
-    &.right > .arrow {
-        &,
-        &:after {
-            border-right-color: inherit;
-        }
-    }
-
-    // Bottom arrow
-    &.bottom > .arrow {
-        &,
-        &:after {
-            border-bottom-color: inherit;
-        }
-    }
-
-    // Left arrow
-    &.left > .arrow {
-        &,
-        &:after {
-            border-left-color: inherit;
-        }
-    }
 }
