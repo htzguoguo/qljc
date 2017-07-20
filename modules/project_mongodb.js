@@ -33,6 +33,21 @@ module.exports.query_by_arg = function ( arg, value, res ) {
     });
 };
 
+module.exports.query = function ( number, res ) {
+    "use strict";
+    Project.findOne( { projectnumber : number }, function ( error, data ) {
+        if ( error ) {
+            helper.InternalServerError( res, error, { projectnumber :  number } );
+        }else {
+            if ( ! data ) {
+                helper.ResourceNotFound( res , { projectnumber : number });
+            }else {
+                helper.ResourceFound( res, data );
+            }
+        }
+    } );
+};
+
 module.exports.list = function ( res ) {
     "use strict";
     Project.find( {}, function ( error, data ) {
@@ -93,6 +108,29 @@ module.exports.update = function ( project, res ) {
     } );
 };
 
+module.exports.remove = function ( number, res ) {
+    "use strict";
+    Project.findOne( { projectnumber : number }, function ( error, data ) {
+        if ( error ) {
+            helper.InternalServerError( res, error, { projectnumber : number } );
+
+        }else {
+            if ( ! data ) {
+                helper.ResourceNotFound( res , { projectnumber : number });
+            }else {
+                data.remove( function ( error ) {
+                    if ( error ) {
+                        helper.InternalServerError( res, error, { projectnumber : number } );
+                    }else {
+                        data.remove();
+                        helper.ResourceDeleted( res );
+                    }
+                } );
+            }
+        }
+    } );
+};
+
 function makeId() {
     return crispy.base32String(ID_LENGTH);
 }
@@ -117,13 +155,14 @@ function toNewProject( body ) {
     return new Project(
         {
             projectname : body.projectname,
-            projectnumber: makeId(),
+           /* projectnumber: makeId(),*/
+            projectnumber: body.projectnumber,
             roadgrade: body.roadgrade,
             functiontype: body.functiontype,
             shejihezai: body.shejihezai,
             manageunit: body.manageunit,
             creater: body.creater,
-            createtime: new Date(),
+            createtime: body.createtime,
             status: '正常',
             memo: body.memo
         });

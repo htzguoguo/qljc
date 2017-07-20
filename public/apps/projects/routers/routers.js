@@ -53,7 +53,15 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
     },
     editContact : function ( id ) {
         var app = this.startApp();
-        app.ShowContactEditorById( id );
+        app.ShowProjectEditorById( id );
+        updateNavigationBar(  [
+            {   title : '项目管理',
+                url : 'projects'
+            },
+            {   title : '编辑',
+                url : ''
+            }
+        ] );
     },
     startApp : function () {
         "use strict";

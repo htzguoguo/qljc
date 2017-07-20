@@ -39,6 +39,22 @@ App = function ( options ) {
         var projectEditor = this.startController(ProjectList);
         projectEditor.showEditor( new ProjectModel()  );
     };
+
+    this.ShowProjectEditorById = function ( projectnumber ) {
+        var project = new ProjectModel( {
+                projectnumber : projectnumber
+            } ),
+            app = this;
+        project.fetch( {
+            success : function ( project ) {
+                var projectViewer = app.startController(ProjectList);
+                projectViewer.showEditor(project);
+            },
+            error : function () {
+                // window.app.router.navigate('login', {trigger: true});
+            }
+        } );
+    };
 };
 
 _.extend( App.prototype, AppBase );

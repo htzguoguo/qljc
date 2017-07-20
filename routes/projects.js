@@ -27,6 +27,12 @@ router.get( '/', function ( req, res, next ) {
     }
 } );
 
+router.get( '/:number', function ( req, res, next ) {
+    "use strict";
+    projects.query( req.params.number, res );
+
+} );
+
 router.post( '/', function ( req, res, next ) {
     "use strict";
     projects.update( req.body,  res);
@@ -35,6 +41,11 @@ router.post( '/', function ( req, res, next ) {
 router.put( '/:number', function ( req, res, next ) {
     "use strict";
     projects.update( req.body,  res);
+} );
+
+router.delete( '/:number', function ( req, res, next ) {
+    "use strict";
+    projects.remove( req.params.number, res);
 } );
 
 

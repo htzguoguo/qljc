@@ -29,7 +29,15 @@ ContactForm = module.exports = ModelView.extend( {
     },
 
     onShow : function () {
-        this.$el.find( '#birthdate' ).datepicker();
+       if ( ! this.model.isNew() ) {
+            this.$( '.project-title' ).html( '编辑检测项目' );
+           this.$("#projectname").prop("readonly", true);
+           this.$("#projectnumber").prop("readonly", true);
+       }
+        this.$el.find( '#createtime' ).pickadate({
+            format: 'yyyy/mm/dd',
+            formatSubmit: 'yyyy/mm/dd'
+        });
         BackboneValidation.bind( this );
     },
     saveContact : function ( event ) {

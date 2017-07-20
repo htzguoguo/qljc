@@ -52,8 +52,8 @@ app.use( '/avatar', express.static( avatarPath ) );
 app.use( '/', routes );
 app.use( '/auth',cache( 'minutes', 2 ), authrouter );
 
-app.use( '/api/v1',admin_oauth.authorizationRequired, cache( 'minutes', 5 ), apirouter_v1 );
-app.use( '/api/v2', admin.authorize, apirouter_v2  );
+app.use( '/api/v1',admin_oauth.authorizationRequired,  apirouter_v1 );
+app.use( '/api/v2', admin.authorize, cache( 'minutes', 5 ), apirouter_v2  );
 
 //catch 404 and forward to error handler
 app.use( function ( request, response, next ) {

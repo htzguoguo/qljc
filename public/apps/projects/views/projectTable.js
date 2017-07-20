@@ -11,12 +11,24 @@ View = module.exports = Backbone.View.extend( {
     className : 'panel panel-white',
     template : template,
     events : {
-        'click .createproject' : 'addProject'
+        'click .createproject' : 'addProject',
+        'click .project-delete' : 'deleteProject',
+        'click .project-edit' : 'editProject'
     },
     render : function () {
         var html = Mustache.to_html( this.template, { items : this.collection.toJSON() } );
         this.$el.html( html );
         return this;
+    },
+    deleteProject : function ( ev ) {
+        "use strict";
+        var num = this.$(ev.currentTarget).data('index');
+        this.trigger( 'item:project:delete',  this.collection.get( num ) );
+    },
+    editProject : function ( ev ) {
+        "use strict";
+        var num = this.$(ev.currentTarget).data('index');
+        window.app.router.navigate( 'projects/edit/' +  num , true );
     },
     addProject : function () {
         "use strict";

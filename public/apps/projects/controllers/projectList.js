@@ -14,22 +14,23 @@ var ProjectList,
 ProjectList = module.exports = function ( options ) {
     "use strict";
     this.mainRegion = options.mainRegion;
+    this.isNew = false;
     _.extend( this, Backbone.Events );
     this.showList = function ( projects ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
-            contactList = new ProjectTable( {collection: projects} );
+            projectList = new ProjectTable( {collection: projects} );
         this.mainRegion.show( layout );
         layout.getRegion( 'actions' ).show( actionbar );
-        layout.getRegion( 'list' ).show( contactList );
-        this.listenTo(  contactList, 'item:contact:delete', this.deleteContact );
+        layout.getRegion( 'list' ).show( projectList );
+        this.listenTo(  projectList, 'item:project:delete', this.deleteProject );
     };
 
     this.showEditor = function ( project ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
             form = new ProjectForm( { model : project } );
-
+        this.isNew = project.isNew();
         this.mainRegion.show( layout );
         layout.getRegion( 'actions' ).show( actionbar );
         layout.getRegion( 'list' ).show( form );
@@ -50,31 +51,45 @@ ProjectList = module.exports = function ( options ) {
         if ( ! project.isValid( true ) ) {
             return;
         }
-        function notifyAndRedirect() {
-            me.notifySuccess( '检测项目创建完成' );
+        function notifyAndRedirect( msg ) {
+            me.notifySuccess( msg );
             window.app.router.navigate( '/projects', true );
         }
         project.save( null , {
             success : function () {
-                    notifyAndRedirect();
+                    if ( me.isNew ) {
+                        notifyAndRedirect('检测项目创建完成');
+                    }else {
+                        notifyAndRedirect('检测项目编辑完成');
+                    }
+
                     return;
             },
             error : function () {
-                me.notifyError( '检测项目创建不成功' );
+                if ( me.isNew ) {
+                    me.notifyError( '检测项目创建不成功' );
+                }else {
+                    me.notifyError( '检测项目编辑不成功' );
+                }
+
             }});
     };
 
-    this.deleteContact = function ( view, contact ) {
+    this.deleteProject = function ( project ) {
         var app = this;
-        this.askConfirmation( 'The contact will be deleted', false,  function ( isConfirm ) {
+        this.askConfirmation( '确认要删除检测项目', false,  function ( isConfirm ) {
             if ( isConfirm ) {
-                contact.id = contact.get( 'primarycontactnumber' );
-                contact.destroy( {
+                project.destroy( {
                     success : function () {
-                        app.successMessage( 'The contact was deleted' );
+                        app.successMessage( '删除检测项目完成' );
+                      /*  window.app.router.navigate( '/projects', {trigger: true} );*/
+
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/projects', {trigger: true} );
+                       /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {
-                        app.errorMessage( 'Ooops... Something was wrong' );
+                        app.errorMessage( '删除操作没有成功' );
                     }
                 } );
             }

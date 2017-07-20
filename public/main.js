@@ -65,6 +65,10 @@ require( './assets/js/plugins/forms/selects/bootstrap_select.min' );
 require( './assets/js/plugins/notifications/sweet_alert.min' );
 require( 'pnotify' );
 require( './assets/js/plugins/pickers/datepicker' );
+
+require( './assets/js/plugins/pickers/pickadate/picker' );
+require( './assets/js/plugins/pickers/pickadate/picker.date' );
+require( './assets/js/plugins/pickers/pickadate/translations/zh_CN' );
 require( './assets/js/core/app' );
 require( './assets/js/pages/colors_brown' );
 
