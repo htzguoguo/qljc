@@ -39,7 +39,13 @@ ProjectList = module.exports = function ( options ) {
     };
 
     this.cancel = function () {
-        this.askConfirmation( '确定要取消创建检测项目', true, function ( isConfirm ) {
+        var msg = '';
+        if ( this.isNew ) {
+            msg = '确定要取消创建检测项目';
+        }else {
+            msg = '确定要取消编辑检测项目';
+        }
+        this.askConfirmation( msg, true, function ( isConfirm ) {
             if ( isConfirm ) {
                 window.app.router.navigate( '/projects', true );
             }

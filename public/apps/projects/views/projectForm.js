@@ -13,8 +13,8 @@ ContactForm = module.exports = ModelView.extend( {
     template : template,
     className : 'panel panel-white',
     events : {
-        'click #save' : 'saveContact',
-        'click #cancel' : 'cancel',
+        'click .save' : 'saveContact',
+        'click .cancel' : 'cancel',
         'keyup input' : 'inputChanged',
         'change input' : 'inputChanged'
     },
