@@ -34261,8 +34261,8 @@ $(function() {
     // ------------------------------
 
     // Switchery toggle
-    var switchery = document.querySelector('.switch');
-    var init = new Switchery(switchery, {color: '#795548'});
+  /*  var switchery = document.querySelector('.switch');
+    var init = new Switchery(switchery, {color: '#795548'});*/
 
 
     // Checkboxes and radios
@@ -39730,10 +39730,11 @@ require( './assets/js/plugins/notifications/sweet_alert.min' );
 require( 'pnotify' );
 require( './assets/js/plugins/pickers/datepicker' );
 
+
 require( './assets/js/plugins/pickers/pickadate/picker' );
 require( './assets/js/plugins/pickers/pickadate/picker.date' );
 require( './assets/js/plugins/pickers/pickadate/translations/zh_CN' );
-require( './assets/js/core/app' );
+
 require( './assets/js/pages/colors_brown' );
 
 
@@ -39749,6 +39750,8 @@ $( document ).ready( function () {
 
     App.start();
     //global.window.app.start();
+    require( './assets/js/core/app' );
+
 } );
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
