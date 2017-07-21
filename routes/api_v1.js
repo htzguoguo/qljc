@@ -8,13 +8,16 @@ var express = require( 'express' ),
     groups = require( './groups' ),
     users = require( './users' ),
     products = require( './products' ),
-    projects = require( './projects' );
+    projects = require( './projects' ),
+    bridges = require( './bridges' );
+
 
 router.use( '/users', users );
 router.use( '/contacts', contacts );
 router.use( '/groups', groups );
 router.use( '/products', products );
 router.use( '/projects', projects );
+router.use( '/bridges', bridges );
 
 
 module.exports = router;

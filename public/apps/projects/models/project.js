@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2017/7/18.
  */
-/**
- * Created by Administrator on 2017/5/21.
- */
 
 var Backbone = require( 'backbone' ),
     _ = require( 'underscore' ),

@@ -22,9 +22,11 @@ router.get( '/', function ( req, res, next ) {
     if ( Object.keys( get_params ).length === 0 ) {
         contacts.list( res );
     }else {
-        if ( get_params[ 'page' !== null ] || get_params[ 'limit' ] !== null ) {
+        if ( get_params[ 'page' ] !== null   || get_params[ 'limit' ] !== null ) {
+
             contacts.paginate( req, res );
         }else {
+            console.log();
             key = [], value= [];
             Object.keys( get_params ).forEach( function ( para ) {
                 key.push( para );

@@ -14,7 +14,7 @@ router.get( '/', function ( req, res, next ) {
     if ( Object.keys( get_params ).length === 0 ) {
         projects.list( res );
     }else {
-        if ( get_params[ 'page' !== null ] || get_params[ 'limit' ] !== null ) {
+        if ( get_params[ 'page' ] !== null  || get_params[ 'limit' ] !== null ) {
             projects.paginate( req, res );
         }else {
             key = [], value= [];

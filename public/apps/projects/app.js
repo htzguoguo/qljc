@@ -2,7 +2,8 @@
  * Created by Administrator on 2017/7/18.
  */
 var
-    ProjectList = require( './controllers/projectList' ),
+    ProjectController = require( './controllers/projectController' ),
+    BridgeController = require( './controllers/bridgeController' ),
     ProjectCollection = require( './collections/projects' ),
     ProjectModel = require( './models/project' ),
     AppBase = require( '../../utils/baseapp' ),
@@ -25,7 +26,7 @@ App = function ( options ) {
         projects.fetch(
             {
                 success : function ( collection ) {
-                    var contactList = me.startController(ProjectList);
+                    var contactList = me.startController(ProjectController);
                     contactList.showList(collection);
                 },
                 error : function () {
@@ -35,8 +36,25 @@ App = function ( options ) {
         );
     };
 
+    this.ShowBridgeList = function () {
+        "use strict";
+        var projects = new ProjectCollection(),
+            me = this;
+        projects.fetch(
+            {
+                success : function ( collection ) {
+                    var bridgeList = me.startController(BridgeController);
+                    bridgeList.showList(collection);
+                },
+                error : function () {
+
+                }
+            }
+        );
+    };
+
     this.ShowNewProjectForm = function () {
-        var projectEditor = this.startController(ProjectList);
+        var projectEditor = this.startController(ProjectController);
         projectEditor.showEditor( new ProjectModel()  );
     };
 
@@ -47,7 +65,7 @@ App = function ( options ) {
             app = this;
         project.fetch( {
             success : function ( project ) {
-                var projectViewer = app.startController(ProjectList);
+                var projectViewer = app.startController(ProjectController);
                 projectViewer.showEditor(project);
             },
             error : function () {

@@ -4,6 +4,6 @@
 
 mongoose = require( 'mongoose' );
 
-mongoose.connect( 'mongodb://localhost/qljc', { useMongoClient: true } );
+mongoose.connect( 'mongodb://localhost/contacts', { useMongoClient: true } );
 
 module.exports = mongoose;

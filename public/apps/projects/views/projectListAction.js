@@ -11,10 +11,15 @@ View = module.exports = ModelView.extend( {
     className : 'options-bar col-xs-12',
     template : template,
     events : {
-        'click .createcontact' : 'addContract'
+        'click .project-list' : 'toProject',
+        'click .bridge-list' : 'toBridge'
     },
-    addContract : function () {
+    toProject : function () {
         "use strict";
-        window.app.router.navigate( '/contacts/new', true );
+        window.app.router.navigate( '/projects', true );
+    },
+    toBridge : function () {
+        "use strict";
+        window.app.router.navigate( '/bridges', true );
     }
 } );

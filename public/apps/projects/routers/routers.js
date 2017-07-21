@@ -11,12 +11,13 @@ var Backbone = require( 'backbone' ),
 
 ContactsRouters = module.exports = Backbone.Router.extend( {
     routes : {
-        'projects/view/:id' : 'profile',
-        'projects/edit/:id' : 'editContact',
-        'projects/new' : 'createContact',
-        'projects' : 'list'
+        'projects/view/:id' : 'projectProfile',
+        'projects/edit/:id' : 'editProject',
+        'projects/new' : 'createProject',
+        'projects' : 'projectList',
+        'bridges' : 'pridgeList'
     },
-    profile : function ( id ) {
+    projectProfile : function ( id ) {
         "use strict";
         var app = this.startApp();
         app.showContactById( id );
@@ -29,7 +30,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-    list : function () {
+    projectList : function () {
         "use strict";
         var app = this.startApp();
         app.ShowProjectList(  );
@@ -39,7 +40,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-    createContact : function () {
+    createProject : function () {
         var app = this.startApp();
         app.ShowNewProjectForm();
         updateNavigationBar(  [
@@ -51,7 +52,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-    editContact : function ( id ) {
+    editProject : function ( id ) {
         var app = this.startApp();
         app.ShowProjectEditorById( id );
         updateNavigationBar(  [
@@ -60,6 +61,17 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             },
             {   title : '编辑',
                 url : ''
+            }
+        ] );
+    },
+
+    pridgeList : function () {
+        "use strict";
+        var app = this.startApp();
+        app.ShowBridgeList(  );
+        updateNavigationBar(  [
+            {   title : '桥梁管理',
+                url : 'bridges'
             }
         ] );
     },
