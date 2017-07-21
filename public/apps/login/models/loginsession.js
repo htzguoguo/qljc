@@ -32,7 +32,7 @@ var  setAjax = function ( authString ) {
                 Authorization : authString
             };
         }
-        console.log( 'setAjax headers',  headers);
+
         Backbone.$.ajaxSetup( {
             statusCode : {
                 401 : function () {

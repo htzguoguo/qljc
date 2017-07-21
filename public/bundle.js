@@ -31354,7 +31354,11 @@ Application = {
         if ( this.currentSubapp && this.currentSubapp.destroy ) {
             this.currentSubapp.destroy();
         }
+
         this.currentSubapp = new SubApplication( { bodyRegion : this.bodyRegion ,mainRegion : this.mainRegion } );
+
+        require( './assets/js/core/app' );
+
         return this.currentSubapp;
     }
 };
@@ -31462,7 +31466,7 @@ module.exports = Application;
  
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./apps/login/models/loginsession":39,"./apps/shell/views/shell":49,"./apps/users/app":50,"./routers/approuters":79,"./utils/region":86,"backbone":5,"backbone-validation":1,"underscore":11}],13:[function(require,module,exports){
+},{"./apps/login/models/loginsession":39,"./apps/shell/views/shell":49,"./apps/users/app":50,"./assets/js/core/app":58,"./routers/approuters":79,"./utils/region":86,"backbone":5,"backbone-validation":1,"underscore":11}],13:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/5/16.
  */
@@ -31505,7 +31509,7 @@ App = function ( options ) {
         "use strict";
         var contracts = new ContactCollection(),
             app = this;
-        console.log( 'ShowContactList' );
+
         contracts.fetch(
             {
                 success : function ( collection ) {
@@ -31653,7 +31657,7 @@ ContactEditorController = module.exports = function ( options ) {
 
         this.listenTo( preview, 'avatar:selected', function ( blob ) {
             this.avatarSelected = blob;
-            console.log( 'contact.isNew', contact.isNew()  );
+
             if ( ! contact.isNew() ) {
                 this.uploadAvatar( contact, blob );
             }
@@ -31692,7 +31696,7 @@ ContactEditorController = module.exports = function ( options ) {
     };
 
     this.addEmail = function () {
-        console.log( 'addEmil' );
+
         this.emails.add( {} );
     };
 
@@ -31904,7 +31908,7 @@ Contact = module.exports = Backbone.Model.extend(
             }
         },
         uploadAvatar : function ( imageBlob, options ) {
-            console.log( this );
+
             var formData = new FormData(),
                 ajaxOptions = {
                     url : 'api/v1/contacts/' + this.get( this.idAttribute ) + "/avatar",
@@ -32534,7 +32538,7 @@ var  setAjax = function ( authString ) {
                 Authorization : authString
             };
         }
-        console.log( 'setAjax headers',  headers);
+
         Backbone.$.ajaxSetup( {
             statusCode : {
                 401 : function () {
@@ -32978,7 +32982,7 @@ ProjectListLayout = module.exports = Layout.extend( {
  */
 var Backbone = require('backbone'),
     Mustache = require('mustache'),
-    template = "    <div class=\"panel-body\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createproject\"><i class=\"icon-plus3 position-left\"></i>创建检测项目</button>\r\n    </div>\r\n\r\n    <table class=\"table datatable-responsive\">\r\n        <thead>\r\n        <tr>\r\n            <th>项目名称</th>\r\n            <th>项目编号</th>\r\n            <th>创建人</th>\r\n            <th>创建日期</th>\r\n            <th>路线等级</th>\r\n            <th>功能类型</th>\r\n            <th>设计荷载</th>\r\n            <th>管养单位</th>\r\n            <th class=\"text-center\">操作</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n            {{#items}}\r\n                <tr>\r\n                    <td>{{projectname}}</td>\r\n                    <td>{{projectnumber}}</td>\r\n                    <td>{{creater}}</td>\r\n                    <td>{{createtime}}</td>\r\n                    <td>{{roadgrade}}</td>\r\n                    <td>{{functiontype}}</td>\r\n                    <td>{{shejihezai}}</td>\r\n                    <td>{{manageunit}}</td>\r\n                    <td class=\"text-center\">\r\n                        <ul class=\"icons-list\">\r\n                            <li class=\"dropdown\">\r\n                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                    <i class=\"icon-menu9\"></i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu dropdown-menu-right\">\r\n                                    <li><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectnumber}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                                    <li><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectnumber}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n                                </ul>\r\n                            </li>\r\n                        </ul>\r\n                    </td>\r\n                </tr>\r\n            {{/items}}\r\n        </tbody>\r\n    </table>\r\n",
+    template = "    <div class=\"panel-body\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createproject\"><i class=\"icon-plus3 position-left\"></i>创建检测项目</button>\r\n    </div>\r\n\r\n    <table class=\"table datatable-responsive\">\r\n        <thead>\r\n        <tr>\r\n            <th>项目名称</th>\r\n            <th>项目编号</th>\r\n            <th>路线等级</th>\r\n            <th>功能类型</th>\r\n            <th>设计荷载</th>\r\n            <th>管养单位</th>\r\n            <th>创建日期</th>\r\n            <th>创建人</th>\r\n            <th class=\"text-center\">操作</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n            {{#items}}\r\n                <tr>\r\n                    <td>{{projectname}}</td>\r\n                    <td>{{projectnumber}}</td>\r\n                    <td>{{creater}}</td>\r\n                    <td>{{createtime}}</td>\r\n                    <td>{{roadgrade}}</td>\r\n                    <td>{{functiontype}}</td>\r\n                    <td>{{shejihezai}}</td>\r\n                    <td>{{manageunit}}</td>\r\n                    <td class=\"text-center\">\r\n                        <ul class=\"icons-list\">\r\n                            <li class=\"dropdown\">\r\n                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                    <i class=\"icon-menu9\"></i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu dropdown-menu-right\">\r\n                                    <li><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectnumber}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                                    <li><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectnumber}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n                                </ul>\r\n                            </li>\r\n                        </ul>\r\n                    </td>\r\n                </tr>\r\n            {{/items}}\r\n        </tbody>\r\n    </table>\r\n",
     View;
 
 View = module.exports = Backbone.View.extend( {
@@ -33096,7 +33100,7 @@ App = function ( options ) {
     this.logout = function () {
         var login = new LoginOAuth( { id : '1' } );
         login.logout( function () {
-            console.log( 'logout' );
+
             LoginSession.dropAuth();
             window.app.router.navigate('login', {trigger: true});
         } );
@@ -33185,13 +33189,13 @@ LoginOauth = module.exports = Backbone.Model.extend( {
         "use strict";
         this.destroy( {
             success : function ( model, response ) {
-                console.log( 'success',model, response );
+
                 if ( response.status === 'offline' ) {
                     callback( response );
                 }
             },
             error : function ( model, response ) {
-                console.log( 'error' );
+
                 callback( response.responseJSON  );
             }
         } );
@@ -33516,7 +33520,7 @@ module.exports = Base.extend( {
             id : 1
         } );
         user.logout( function ( auth ) {
-            console.log( auth );
+
         } );
     }
 } );
@@ -39756,12 +39760,12 @@ $( document ).ready( function () {
 
     App.start();
     //global.window.app.start();
-    require( './assets/js/core/app' );
+
 
 } );
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./app":12,"./assets/js/core/app":58,"./assets/js/core/libraries/bootstrap.min":59,"./assets/js/core/libraries/jquery_ui/core.min":60,"./assets/js/pages/colors_brown":61,"./assets/js/plugins/backstretch/jquery.backstretch.min":62,"./assets/js/plugins/forms/selects/bootstrap_multiselect":63,"./assets/js/plugins/forms/selects/bootstrap_select.min":64,"./assets/js/plugins/forms/selects/select2.min":65,"./assets/js/plugins/forms/selects/selectboxit.min":66,"./assets/js/plugins/forms/styling/uniform.min.js":67,"./assets/js/plugins/jquery-validation/js/jquery.validate":68,"./assets/js/plugins/loaders/blockui.min.js":69,"./assets/js/plugins/loaders/pace.min":70,"./assets/js/plugins/notifications/sweet_alert.min":71,"./assets/js/plugins/pickers/datepicker":72,"./assets/js/plugins/pickers/pickadate/picker":74,"./assets/js/plugins/pickers/pickadate/picker.date":73,"./assets/js/plugins/pickers/pickadate/translations/zh_CN":75,"./assets/js/plugins/ui/drilldown.js":76,"./assets/js/plugins/ui/nicescroll.min.js":77,"backbone":5,"datatables.net":6,"jquery":7,"pnotify":10,"underscore":11}],79:[function(require,module,exports){
+},{"./app":12,"./assets/js/core/libraries/bootstrap.min":59,"./assets/js/core/libraries/jquery_ui/core.min":60,"./assets/js/pages/colors_brown":61,"./assets/js/plugins/backstretch/jquery.backstretch.min":62,"./assets/js/plugins/forms/selects/bootstrap_multiselect":63,"./assets/js/plugins/forms/selects/bootstrap_select.min":64,"./assets/js/plugins/forms/selects/select2.min":65,"./assets/js/plugins/forms/selects/selectboxit.min":66,"./assets/js/plugins/forms/styling/uniform.min.js":67,"./assets/js/plugins/jquery-validation/js/jquery.validate":68,"./assets/js/plugins/loaders/blockui.min.js":69,"./assets/js/plugins/loaders/pace.min":70,"./assets/js/plugins/notifications/sweet_alert.min":71,"./assets/js/plugins/pickers/datepicker":72,"./assets/js/plugins/pickers/pickadate/picker":74,"./assets/js/plugins/pickers/pickadate/picker.date":73,"./assets/js/plugins/pickers/pickadate/translations/zh_CN":75,"./assets/js/plugins/ui/drilldown.js":76,"./assets/js/plugins/ui/nicescroll.min.js":77,"backbone":5,"datatables.net":6,"jquery":7,"pnotify":10,"underscore":11}],79:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/4/14.
  */
@@ -40141,7 +40145,6 @@ Region = module.exports = function ( options ) {
     this.openView = function ( view ) {
         ensureEL();
         view.render();
-        console.log( view.el );
         $el.html( view.el );
         if ( view.onShow ) {
             view.onShow();

@@ -86,6 +86,6 @@ $( document ).ready( function () {
 
     App.start();
     //global.window.app.start();
-    require( './assets/js/core/app' );
+
 
 } );

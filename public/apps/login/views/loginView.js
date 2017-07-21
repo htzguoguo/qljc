@@ -21,7 +21,7 @@ LoginView = module.exports = ModelView.extend( {
             authString = this.buildAuthString( username, password ),
             app = this;
         event.preventDefault();
-        console.log( 'will login the user ', username, ' with password ' , password );
+
         Backbone.$.ajax( {
             url : '/api/v1/contacts',
             headers : {

@@ -51,7 +51,11 @@ Application = {
         if ( this.currentSubapp && this.currentSubapp.destroy ) {
             this.currentSubapp.destroy();
         }
+
         this.currentSubapp = new SubApplication( { bodyRegion : this.bodyRegion ,mainRegion : this.mainRegion } );
+
+        require( './assets/js/core/app' );
+
         return this.currentSubapp;
     }
 };

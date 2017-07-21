@@ -34,7 +34,7 @@ App = function ( options ) {
     this.logout = function () {
         var login = new LoginOAuth( { id : '1' } );
         login.logout( function () {
-            console.log( 'logout' );
+
             LoginSession.dropAuth();
             window.app.router.navigate('login', {trigger: true});
         } );

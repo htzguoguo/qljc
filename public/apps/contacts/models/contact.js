@@ -38,7 +38,7 @@ Contact = module.exports = Backbone.Model.extend(
             }
         },
         uploadAvatar : function ( imageBlob, options ) {
-            console.log( this );
+
             var formData = new FormData(),
                 ajaxOptions = {
                     url : 'api/v1/contacts/' + this.get( this.idAttribute ) + "/avatar",

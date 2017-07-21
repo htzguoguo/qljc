@@ -40,7 +40,7 @@ App = function ( options ) {
         "use strict";
         var contracts = new ContactCollection(),
             app = this;
-        console.log( 'ShowContactList' );
+
         contracts.fetch(
             {
                 success : function ( collection ) {

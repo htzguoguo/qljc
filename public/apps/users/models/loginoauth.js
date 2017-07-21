@@ -27,13 +27,13 @@ LoginOauth = module.exports = Backbone.Model.extend( {
         "use strict";
         this.destroy( {
             success : function ( model, response ) {
-                console.log( 'success',model, response );
+
                 if ( response.status === 'offline' ) {
                     callback( response );
                 }
             },
             error : function ( model, response ) {
-                console.log( 'error' );
+
                 callback( response.responseJSON  );
             }
         } );

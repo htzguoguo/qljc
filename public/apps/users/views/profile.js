@@ -40,7 +40,7 @@ module.exports = Base.extend( {
             id : 1
         } );
         user.logout( function ( auth ) {
-            console.log( auth );
+
         } );
     }
 } );

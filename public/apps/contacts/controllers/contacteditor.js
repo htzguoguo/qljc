@@ -49,7 +49,7 @@ ContactEditorController = module.exports = function ( options ) {
 
         this.listenTo( preview, 'avatar:selected', function ( blob ) {
             this.avatarSelected = blob;
-            console.log( 'contact.isNew', contact.isNew()  );
+
             if ( ! contact.isNew() ) {
                 this.uploadAvatar( contact, blob );
             }
@@ -88,7 +88,7 @@ ContactEditorController = module.exports = function ( options ) {
     };
 
     this.addEmail = function () {
-        console.log( 'addEmil' );
+
         this.emails.add( {} );
     };
 
