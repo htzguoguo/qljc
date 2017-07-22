@@ -13,7 +13,7 @@ module.exports.query_by_arg = function ( arg, value, res ) {
 };
 
 module.exports.query = function ( number, res ) {
-     helper.query( Bridge, 'bridgenumber', number, res );
+     helper.query( Bridge, 'bridgename', number, res );
 };
 
 module.exports.list = function ( res ) {

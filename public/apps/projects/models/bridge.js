@@ -9,7 +9,7 @@ var Backbone = require( 'backbone' ),
 Bridge = module.exports = Backbone.Model.extend(
     {
         urlRoot : 'api/v1/bridges',
-        idAttribute: 'bridgenumber',
+        idAttribute: 'bridgename',
         defaults : {
             bridgename: '',
             filldate : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()

@@ -11,7 +11,8 @@ var BridgeList,
     ProjectListActionBar = require( '../views/projectListAction' ),
     BridgeListLayout = require( '../views/bridgeListLayout' ),
     ProjectSidebar = require( '../views/projectSidebar' ),
-    BridgeTable = require( '../views/bridgeTable' )
+    BridgeTable = require( '../views/bridgeTable' ),
+    BridgePreview = require( '../views/bridgePreview' )
     ;
 
 
@@ -20,25 +21,20 @@ BridgeList = module.exports = function ( options ) {
     this.mainRegion = options.mainRegion;
     this.isNew = false;
     _.extend( this, Backbone.Events );
-    this.showList = function ( projects ) {
+    this.showList = function ( projects, name ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
             bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : projects } ),
-            bridgeTable = new BridgeTable();
-        this.mainRegion.show( layout );
-        layout.getRegion( 'actions' ).show( actionbar );
-        layout.getRegion( 'list' ).show( bridgeListLayout );
-        bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
-        bridgeListLayout.getRegion( 'bridgelist' ).show( bridgeTable );
+            projectSidebar = new ProjectSidebar( { collection : projects } );
 
+        projectSidebar.selectedproject = name;
         this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
             var bridges = new Bridges();
             bridges.fetch(
                 {
-                    data: $.param({ routenumber: num}),
+                    data: $.param({ routename: num}),
                     success : function ( collection ) {
-                         var bb = new BridgeTable( { collection : collection } );
+                        var bb = new BridgeTable( { collection : collection, projectname : num } );
                         bridgeListLayout.getRegion( 'bridgelist' ).show( bb );
                     },
                     error : function () {
@@ -47,6 +43,26 @@ BridgeList = module.exports = function ( options ) {
                 }
             );
         } );
+
+        this.mainRegion.show( layout );
+        layout.getRegion( 'actions' ).show( actionbar );
+        layout.getRegion( 'list' ).show( bridgeListLayout );
+        bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
+        if ( !projects || projects.length === 0 ) {
+            bridgeListLayout.getRegion( 'bridgelist' ).show( new BridgeTable() );
+        }
+
+    };
+
+    this.showBridgeDetail = function ( bridge ) {
+        var layout = new ProjectListLayout(),
+            actionbar = new ProjectListActionBar(),
+            bridgePreview = new BridgePreview( { model : bridge } ) ;
+
+
+        this.mainRegion.show( layout );
+        layout.getRegion( 'actions' ).show( actionbar );
+        layout.getRegion( 'list' ).show( bridgePreview );
     };
 
     this.showEditor = function ( project ) {

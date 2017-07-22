@@ -8,6 +8,7 @@
  */
 var Backbone = require( 'backbone' ),
     Mustache = require( 'mustache' ),
+    _ = require( 'underscore' ),
     fs = require( 'fs' ),
     template = fs.readFileSync( __dirname + '/templates/bridgeTable.html', 'utf8' ),
     View;
@@ -15,20 +16,29 @@ var Backbone = require( 'backbone' ),
 View = module.exports = Backbone.View.extend( {
     className : 'panel panel-white',
     template : template,
+    initialize: function( attrs ) {
+        this.options = attrs;
+    },
     events : {
-        'click .createproject' : 'addProject',
-        'click .project-delete' : 'deleteProject',
-        'click .project-edit' : 'editProject'
+        'click .bridge-new' : 'addProject',
+        'click .bridge-delete' : 'deleteProject',
+        'click .bridge-edit' : 'editProject',
+        'click .bridge-preview' : 'previewBridge'
     },
     render : function () {
         var html;
         if ( this.collection ) {
-            html = Mustache.to_html( this.template, { items : this.collection.toJSON() } );
+            html = Mustache.to_html( this.template, {  items : this.collection.toJSON() } );
         }else {
-            html = Mustache.to_html( this.template, { items : [] } );
+            html = Mustache.to_html( this.template, {   items : [] } );
         }
         this.$el.html( html );
         return this;
+    },
+    previewBridge : function ( ev ) {
+        var bridgename = this.$(ev.currentTarget).data('index'),
+            routename = this.$(ev.currentTarget).data('project');
+        window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/view', true );
     },
     deleteProject : function ( ev ) {
         "use strict";
@@ -49,10 +59,15 @@ View = module.exports = Backbone.View.extend( {
         // ------------------------------
         // Setting datatable defaults
         // Basic responsive configuration
-
+        $( '.text-primary' ).html( this.options.projectname );
 
         // Basic responsive configuration
-        $('.datatable-responsive').DataTable();
+        $('.datatable-responsive').DataTable( {
+            columnDefs: [{
+                orderable: false,
+                targets: [ 6 ]
+            }],
+        } );
 
         // ------------------------------
 

@@ -19,6 +19,11 @@ View = module.exports = Backbone.View.extend( {
         this.$el.html( html );
         return this;
     },
+    onShow : function () {
+       if ( this.selectedproject ) {
+           this.$( '.projects-container li a[data-index=' + this.selectedproject +  ']' ).trigger( 'click' );
+       }
+    },
     selectProject : function ( ev ) {
         "use strict";
         var num = this.$(ev.currentTarget).data('index');

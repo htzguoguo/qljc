@@ -1,6 +1,11 @@
-<div class="panel-body">
-    <button type="button" class="btn btn-primary legitRipple createproject"><i class="icon-plus3 position-left"></i>创建桥梁</button>
+<div class="panel-heading">
+    <h6 class="panel-title"> 当前项目： <span class="text-primary"></span></h6>
+    <div class="heading-elements">
+        <button type="button" class="btn btn-primary legitRipple bridge-new"><i class="icon-plus3 position-left"></i>创建桥梁</button>
+    </div>
 </div>
+
+
 
 <table class="table datatable-responsive">
     <thead>
@@ -10,8 +15,8 @@
         <th>中心桩号</th>
         <th>功能类型</th>
         <th>设计荷载</th>
-        <th>通行载重</th>
-        <th>弯斜坡度</th>
+
+
         <th>管养单位</th>
         <th class="text-center">操作</th>
     </tr>
@@ -24,12 +29,14 @@
         <td>{{centerstation}}</td>
         <td>{{functiontype}}</td>
         <td>{{designload}}</td>
-        <td>{{trafficload}}</td>
-        <td>{{skewslope}}</td>
         <td>{{custodyunit}}</td>
         <td class="text-center">
             <ul class="icons-list">
-                <li class="dropdown">
+                <li><a href="javascript:void(0)" class="bridge-preview" data-project="{{routename}}" data-index="{{bridgename}}"><i class="icon-search4"></i> 详细</a></li>
+                <li><a href="javascript:void(0)" class="bridge-edit" data-index="{{bridgename}}"><i class=" icon-pencil5"></i> 编辑</a></li>
+                <li><a href="javascript:void(0)" class="bridge-delete" data-index="{{bridgename}}"><i class=" icon-cross3"></i> 删除</a></li>
+
+              <!--  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-menu9"></i>
                     </a>
@@ -37,7 +44,7 @@
                         <li><a href="javascript:void(0)" class="project-edit" data-index="{{projectnumber}}"><i class=" icon-pencil5"></i> 编辑</a></li>
                         <li><a href="javascript:void(0)" class="project-delete" data-index="{{projectnumber}}"><i class=" icon-cross3"></i> 删除</a></li>
                     </ul>
-                </li>
+                </li>-->
             </ul>
         </td>
     </tr>

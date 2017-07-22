@@ -29,12 +29,15 @@ module.exports.query_by_arg = function ( schema, arg, value, res ) {
 
 module.exports.query = function ( schema, key, number, res ) {
     "use strict";
-    schema.findOne( { key : number }, function ( error, data ) {
+    console.log( key, number );
+    var filter = {};
+    filter[ key ] = number;
+    schema.findOne( filter, function ( error, data ) {
         if ( error ) {
-            helper.InternalServerError( res, error, { key :  number } );
+            helper.InternalServerError( res, error, filter );
         }else {
             if ( ! data ) {
-                helper.ResourceNotFound( res , { key : number });
+                helper.ResourceNotFound( res , filter);
             }else {
                 helper.ResourceFound( res, data );
             }

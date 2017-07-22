@@ -15,7 +15,9 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'projects/edit/:id' : 'editProject',
         'projects/new' : 'createProject',
         'projects' : 'projectList',
-        'bridges' : 'pridgeList'
+        'bridges' : 'bridgeList',
+        'bridges/:projectname' : 'bridgeListOfProject',
+        'bridges/:projectname/:bridgename/view' : 'bridgeDetail'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -65,7 +67,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    pridgeList : function () {
+    bridgeList : function () {
         "use strict";
         var app = this.startApp();
         app.ShowBridgeList(  );
@@ -75,6 +77,43 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
+
+    bridgeListOfProject : function ( projectname ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowBridgeList( projectname );
+        updateNavigationBar(  [
+            {   title : '桥梁管理',
+                url : 'bridges'
+            },
+            {   title : projectname,
+                url : 'bridges/' + projectname
+            }
+        ] );
+    },
+
+    bridgeDetail : function ( projectname, bridgename ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowBridgeDetail( projectname, bridgename );
+        updateNavigationBar(  [
+            {   title : '桥梁管理',
+                url : 'bridges'
+            },
+            {   title : projectname,
+                url : 'bridges/' + projectname
+            },
+            {   title : bridgename,
+                url : 'bridges/' + projectname + '/' + bridgename + '/view'
+            },
+            {   title : '桥梁卡片',
+                url : ''
+            }
+        ] );
+    },
+
+
+
     startApp : function () {
         "use strict";
         return window.app.startSubApplication( ContactApp );
@@ -86,15 +125,16 @@ function updateNavigationBar( items ) {
     $.each( items, function ( index, value ) {
          bar = {
              title : value.title,
-             url : value.url,
-             isactive : false,
-             isfirst : false
+             url : value.url
          };
          if ( index === 0 ) {
              bar.isfirst = true;
+             bar.isactive = true;
          }
          if ( index === items.length - 1 ) {
-             bar.isactive = false;
+
+         }else {
+             bar.isactive = true;
          }
          bars[ index ] = bar;
     } );

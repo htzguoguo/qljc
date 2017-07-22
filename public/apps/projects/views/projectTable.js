@@ -42,7 +42,12 @@ View = module.exports = Backbone.View.extend( {
 
 
         // Basic responsive configuration
-        $('.datatable-responsive').DataTable();
+        $('.datatable-responsive').DataTable( {
+            columnDefs: [{
+                orderable: false,
+                targets: [ 8 ]
+            }],
+        } );
 
         // ------------------------------
 

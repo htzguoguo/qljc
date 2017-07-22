@@ -6,6 +6,7 @@ var
     BridgeController = require( './controllers/bridgeController' ),
     ProjectCollection = require( './collections/projects' ),
     ProjectModel = require( './models/project' ),
+    BridgeModel = require( './models/bridge' ),
     AppBase = require( '../../utils/baseapp' ),
     _ = require( 'underscore' ),
     App;
@@ -36,15 +37,36 @@ App = function ( options ) {
         );
     };
 
-    this.ShowBridgeList = function () {
+    this.ShowBridgeList = function ( name ) {
         "use strict";
         var projects = new ProjectCollection(),
             me = this;
         projects.fetch(
             {
                 success : function ( collection ) {
+                    if ( ! name ) {
+                        if ( collection &&  collection.at(0)) {
+                            name = collection.at(0).get( 'projectname' );
+                        }
+                    }
                     var bridgeList = me.startController(BridgeController);
-                    bridgeList.showList(collection);
+                    bridgeList.showList(collection, name);
+                },
+                error : function () {
+
+                }
+            }
+        );
+    };
+
+    this.ShowBridgeDetail = function ( projectname, bridgename ) {
+        var bridge = new BridgeModel( { bridgename : bridgename } ),
+            me = this;
+        bridge.fetch(
+            {
+                success : function ( data ) {
+                    var bridgeList = me.startController(BridgeController);
+                    bridgeList.showBridgeDetail(data);
                 },
                 error : function () {
 

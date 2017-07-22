@@ -16,13 +16,10 @@ var dataTable = require( 'datatables.net' )();
 $.DataTable = dataTable;
 $.extend( $.fn.dataTable.defaults, {
     autoWidth: false,
-    sort : false,
+    sort : true,
+    order: [],
     responsive: true,
-    columnDefs: [{
-        orderable: false,
-        width: '100px',
-        targets: [ 5 ]
-    }],
+
     dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
     language: {
         search: '<span></span> _INPUT_',

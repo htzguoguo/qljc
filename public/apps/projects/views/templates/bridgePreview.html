@@ -1,0 +1,562 @@
+<div class="panel-heading">
+    <h6 class="panel-title">桥梁卡片<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+</div>
+
+<div class="panel-body">
+    <div class="tabbable">
+        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+            <li class="active"><a href="#bottom-justified-tab1" data-toggle="tab" class="legitRipple" aria-expanded="true">行政识别数据</a></li>
+            <li class=""><a href="#bottom-justified-tab2" data-toggle="tab" class="legitRipple" aria-expanded="false">结构技术数据</a></li>
+            <li class=""><a href="#bottom-justified-tab3" data-toggle="tab" class="legitRipple" aria-expanded="false">档案资料</a></li>
+            <li class=""><a href="#bottom-justified-tab4" data-toggle="tab" class="legitRipple" aria-expanded="false">最近技术状况评定</a></li>
+            <li class=""><a href="#bottom-justified-tab5" data-toggle="tab" class="legitRipple" aria-expanded="false">修建工程记录</a></li>
+            <li class=""><a href="#bottom-justified-tab6" data-toggle="tab" class="legitRipple" aria-expanded="false">桥梁照片</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="bottom-justified-tab1">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="18">A.行政识别数据</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5.5%">1</td>
+                        <td style="width: 11%" colspan="2">路线编号</td>
+                        <td style="width:16.5%" colspan="3">
+                           {{routenumber}}
+                        </td>
+                        <td style="width: 5.5%">2</td>
+                        <td style="width: 11%" colspan="2">路线名称</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{routename}}
+                        </td>
+                        <td style="width: 5.5%">3</td>
+                        <td style="width: 11%" colspan="2">路线等级</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{routelevel}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td colspan="2">桥梁编号</td>
+                        <td colspan="3">
+                            {{bridgenumber}}
+                        </td>
+                        <td>5</td>
+                        <td colspan="2">桥梁名称</td>
+                        <td colspan="3">
+                            {{bridgename}}
+                        </td>
+                        <td>6</td>
+                        <td colspan="2">桥位中心桩号</td>
+                        <td colspan="3">
+                            {{centerstation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td colspan="2">功能类型</td>
+                        <td colspan="3">
+                            {{functiontype}}
+                        </td>
+                        <td>8</td>
+                        <td colspan="2">下穿通道名</td>
+                        <td colspan="3">
+                            {{underchannelname}}
+                        </td>
+                        <td>9</td>
+                        <td colspan="2">下穿通道中心桩号</td>
+                        <td colspan="3">
+                            {{underchannelcenterstation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td colspan="2">设计荷载</td>
+                        <td colspan="3">
+                            {{designload}}
+                        </td>
+                        <td>11</td>
+                        <td colspan="2">通行载重</td>
+                        <td colspan="3">
+                            {{trafficload}}
+                        </td>
+                        <td>12</td>
+                        <td colspan="2">弯斜坡度</td>
+                        <td colspan="3">
+                            {{skewslope}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td colspan="2">桥面铺装</td>
+                        <td colspan="3">
+                            {{deckpavement}}
+                        </td>
+                        <td>14</td>
+                        <td colspan="2">管养单位</td>
+                        <td colspan="3">
+                            {{custodyunit}}
+                        </td>
+                        <td>15</td>
+                        <td colspan="2">建成年限/<br>设计使用年限</td>
+                        <td colspan="3">
+                            {{buildyear}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="bottom-justified-tab2">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="18">B.结构技术数据</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5.5%;">16</td>
+                        <td style="width: 11%;" colspan="2">桥长(m)</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{bridgelength}}
+                        </td>
+                        <td style="width: 5.5%;">17</td>
+                        <td style="width: 11%;" colspan="2">桥面总宽(m)</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{bridgewidth}}
+                        </td>
+                        <td style="width: 5.5%;">18</td>
+                        <td style="width: 11%;" colspan="2">车行道宽(m)</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{drivewaywidth}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td colspan="2">桥面标高(m)</td>
+                        <td colspan="3">
+                            {{bridgeelevation}}
+                        </td>
+                        <td>20</td>
+                        <td colspan="2">桥下净高(m)</td>
+                        <td colspan="3">
+                            {{undernetheight}}
+                        </td>
+                        <td>21</td>
+                        <td colspan="2">桥上净高(m)</td>
+                        <td colspan="3">
+                            {{abovenetheight}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td colspan="2">引道总宽(m)</td>
+                        <td colspan="3">
+                            {{approachwidth}}
+                        </td>
+                        <td>23</td>
+                        <td colspan="2">引道路面宽(m)</td>
+                        <td colspan="3">
+                            {{approachroadwide}}
+                        </td>
+                        <td>24</td>
+                        <td colspan="2">引道线形</td>
+                        <td colspan="3">
+                            {{leadline}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">上部结构</td>
+                        <td colspan="9">下部结构</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 16.5%;" colspan="3">25</td>
+                        <td style="width: 5.5%;" colspan="1">26</td>
+                        <td style="width: 16.5%;" colspan="3">27</td>
+                        <td style="width: 11%;" colspan="2">28</td>
+                        <td style="width: 11%;" colspan="2">29</td>
+                        <td style="width: 16.5%;" colspan="3">30</td>
+                        <td style="width: 11%;" colspan="2">31</td>
+                        <td style="width: 11%;" colspan="2">32</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">孔号</td>
+                        <td colspan="1">跨径(m)</td>
+                        <td colspan="3">形式</td>
+                        <td colspan="2">材料</td>
+                        <td colspan="2">墩台</td>
+                        <td colspan="3">形式</td>
+                        <td colspan="2">材料</td>
+                        <td colspan="2">基础形式</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="1">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="3">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="2">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="2">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="3">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="2">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                        <td colspan="2">
+                            <form>
+                                <input type="text" style="border:0px; width: 100%;">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5.5%;">33</td>
+                        <td style="width: 11%;" colspan="2">伸缩缝类型</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{expansionjointtype}}
+                        </td>
+                        <td style="width: 5.5%;">34</td>
+                        <td style="width: 11%;" colspan="2">支座形式</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{bearingform}}
+                        </td>
+                        <td style="width: 5.5%;">35</td>
+                        <td style="width: 11%;" colspan="2">地震动峰值<br>加速度系数</td>
+                        <td style="width: 16.5%;" colspan="3">
+                            {{groundmotion}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td colspan="2">桥台护坡</td>
+                        <td colspan="3">
+                            {{abutmentslope}}
+                        </td>
+                        <td>37</td>
+                        <td colspan="2">护墩体</td>
+                        <td colspan="3">
+                            {{protectpier}}
+                        </td>
+                        <td>38</td>
+                        <td colspan="2">调治构造物</td>
+                        <td colspan="3">
+                            {{conditioningstructure}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td colspan="2">常水位</td>
+                        <td colspan="3">
+                            {{oftenwaterlevel}}
+                        </td>
+                        <td>40</td>
+                        <td colspan="2">设计水位</td>
+                        <td colspan="3">
+                            {{designwaterlevel}}
+                        </td>
+                        <td>41</td>
+                        <td colspan="2">历史洪水位</td>
+                        <td colspan="3">
+                            {{historicalfloodlevel}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="bottom-justified-tab3">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="18">C.档案资料(全、不全或无)</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5.5%">42</td>
+                        <td style="width: 11%" colspan="2">设计图纸</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{designdrawings}}
+                        </td>
+                        <td style="width: 5.5%">43</td>
+                        <td style="width: 11%" colspan="2">设计文件</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{designingdocuments}}
+                        </td>
+                        <td style="width: 5.5%">44</td>
+                        <td style="width: 11%" colspan="2">施工文件</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{constructiondocuments}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td colspan="2">竣工图纸</td>
+                        <td colspan="3">
+                            {{finisheddrawings}}
+                        </td>
+                        <td>46</td>
+                        <td colspan="2">验收文件</td>
+                        <td colspan="3">
+                            {{acceptancedocuments}}
+                        </td>
+                        <td>47</td>
+                        <td colspan="2">行政文件</td>
+                        <td colspan="3">
+                            {{administrativedocuments}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td colspan="2">定期检查报告</td>
+                        <td colspan="3">
+                            {{periodicalcheckreport}}
+                        </td>
+                        <td>49</td>
+                        <td colspan="2">特殊检查报告</td>
+                        <td colspan="3">
+                            {{specialinspectionreport}}
+                        </td>
+                        <td>50</td>
+                        <td colspan="2">历次维修资料</td>
+                        <td colspan="3">
+                            {{previousmaintenanceinformation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>51</td>
+                        <td colspan="2">档案号</td>
+                        <td colspan="3">
+                            {{filenumber}}
+                        </td>
+                        <td>52</td>
+                        <td colspan="2">存档案</td>
+                        <td colspan="3">
+                            {{archive}}
+                        </td>
+                        <td>53</td>
+                        <td colspan="2">建档时间</td>
+                        <td colspan="3">
+                            {{filetime}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="bottom-justified-tab4">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="11">D.最近技术状况评定</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 9%">54</td>
+                        <td style="width: 9%">55</td>
+                        <td style="width: 9%">56</td>
+                        <td style="width: 9%">57</td>
+                        <td style="width: 9%">58</td>
+                        <td style="width: 9%">59</td>
+                        <td style="width: 9%">60</td>
+                        <td style="width: 9%">61</td>
+                        <td style="width: 9%">62</td>
+                        <td style="width: 9%">63</td>
+                        <td style="width: 9%">64</td>
+                    </tr>
+                    <tr>
+                        <td>检查年月</td>
+                        <td>定期或特殊检查</td>
+                        <td>全桥评定等级</td>
+                        <td>桥台与基础</td>
+                        <td>桥墩与基础</td>
+                        <td>地基冲刷</td>
+                        <td>上部结构</td>
+                        <td>支座</td>
+                        <td>经常保养小修</td>
+                        <td>处治对策</td>
+                        <td>下次检查年份</td>
+                    </tr>
+                    {{#technicalstatusassessment}}
+
+                    <tr>
+                        <td>
+                            {{checkdate}}
+                        </td>
+                        <td>
+                            {{regularspecialinspection}}
+                        </td>
+                        <td>
+                            {{bridgerating}}
+                        </td>
+                        <td>
+                            {{abutmentfoundation}}
+                        </td>
+                        <td>
+                            {{pierfoundation}}
+                        </td>
+                        <td>
+                            {{foundationerosion}}
+                        </td>
+                        <td>
+                            {{superstructure}}
+                        </td>
+                        <td>
+                            {{bearing}}
+                        </td>
+                        <td>
+                            {{maintenanceminorrepair}}
+                        </td>
+                        <td>
+                            {{treatmentmeasures}}
+                        </td>
+                        <td>
+                            {{nextcheckyears}}
+                        </td>
+                    </tr>
+
+                    {{/technicalstatusassessment}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="bottom-justified-tab5">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="12">E.修建工程记录</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 16%" colspan="2">65</td>
+                        <td style="width: 8%">66</td>
+                        <td style="width: 8%">67</td>
+                        <td style="width: 8%">68</td>
+                        <td style="width: 8%">69</td>
+                        <td style="width: 8%">70</td>
+                        <td style="width: 8%">71</td>
+                        <td style="width: 8%">72</td>
+                        <td style="width: 8%">73</td>
+                        <td style="width: 8%">74</td>
+                        <td style="width: 8%">75</td>
+                    </tr>
+                    <tr>
+                        <td>开工日期</td>
+                        <td>竣工日期</td>
+                        <td>修建类别</td>
+                        <td>修建原因</td>
+                        <td>工程范围</td>
+                        <td>工程费用(万元)</td>
+                        <td>经费来源</td>
+                        <td>质量评定</td>
+                        <td>建设单位</td>
+                        <td>设计单位</td>
+                        <td>施工单位</td>
+                        <td>监理单位</td>
+                    </tr>
+                    {{#engineeringrecords}}
+                    <tr>
+                        <td>
+                            {{startdate}}
+                        </td>
+                        <td>
+                            {{completiondate}}
+                        </td>
+                        <td>
+                            {{buildcategory}}
+                        </td>
+                        <td>
+                            {{constructionreasons}}
+                        </td>
+                        <td>
+                            {{engineeringscope}}
+                        </td>
+                        <td>
+                            {{engineeringcosts}}
+                        </td>
+                        <td>
+                            {{sourcefunding}}
+                        </td>
+                        <td>
+                            {{qualityassessment}}
+                        </td>
+                        <td>
+                            {{constructionunit}}
+                        </td>
+                        <td>
+                            {{designunit}}
+                        </td>
+                        <td>
+                            {{builder}}
+                        </td>
+                        <td>
+                            {{supervisionunit}}
+                        </td>
+                    </tr>
+                    {{/engineeringrecords}}
+                    <tr>
+                        <td>76</td>
+                        <td colspan="11">
+                            {{memo}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="bottom-justified-tab6">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td style="width: 100%;" colspan="18">F.桥梁照片</td>
+                    </tr>
+                    <tr>
+                        <td>77</td>
+                        <td colspan="8">立面照</td>
+                        <td style="width: 5.5%">78</td>
+                        <td colspan="8">正面照</td>
+                    </tr>
+                    <tr>
+                        <td style="height: 250px;" colspan="9"></td>
+                        <td style="height: 250px;" colspan="9"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 5.5%">79</td>
+                        <td style="width: 11%" colspan="2">主管负责人</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{personincharge}}
+                        </td>
+                        <td style="width: 5.5%">80</td>
+                        <td style="width: 11%" colspan="2">填卡人</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{fillcardpeople}}
+                        </td>
+                        <td style="width: 5.5%">81</td>
+                        <td style="width: 11%" colspan="2">填卡日期</td>
+                        <td style="width:16.5%" colspan="3">
+                            {{filldate}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

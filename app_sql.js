@@ -323,7 +323,7 @@ function toNewBridge_BasicInfo( row ) {
         });
 }
 
-Bridge.findOne( { bridgename : "前毕庄立交桥" }, function ( error, data ) {
+Bridge.findOne( { bridgename : "西台路通道桥" }, function ( error, data ) {
     console.log( data );
 } );
 

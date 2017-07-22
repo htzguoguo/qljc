@@ -30,4 +30,10 @@ router.get( '/', function ( req, res, next ) {
     }
 } );
 
+router.get( '/:number', function ( req, res, next ) {
+    "use strict";
+    bridges.query( req.params.number, res );
+
+} );
+
 module.exports = router;
