@@ -21,8 +21,8 @@ Bridge = module.exports = Backbone.Model.extend(
                     result.filldate = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate();
                 }
             }
-            var above = this.get( 'superstructure' );
-            var blower = this.get( 'lowerstructure' );
+            var above = this.get( 'superstructure' ) || [];
+            var blower = this.get( 'lowerstructure' ) || [];
             var i, len, data;
             if ( above.length > blower.length ) {
                 len = above.length;
