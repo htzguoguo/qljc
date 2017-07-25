@@ -9,9 +9,8 @@ var Backbone = require( 'backbone' ),
 Project = module.exports = Backbone.Model.extend(
     {
         urlRoot : 'api/v1/projects',
-        idAttribute: 'projectnumber',
+        idAttribute: 'projectname',
         defaults : {
-            projectname: '',
             createtime : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()
         },
         toJSON : function () {

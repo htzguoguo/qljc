@@ -33,14 +33,14 @@ module.exports.query_by_arg = function ( arg, value, res ) {
     });
 };
 
-module.exports.query = function ( number, res ) {
+module.exports.query = function ( name, res ) {
     "use strict";
-    Project.findOne( { projectnumber : number }, function ( error, data ) {
+    Project.findOne( { projectname : name }, function ( error, data ) {
         if ( error ) {
-            helper.InternalServerError( res, error, { projectnumber :  number } );
+            helper.InternalServerError( res, error, { projectname :  name } );
         }else {
             if ( ! data ) {
-                helper.ResourceNotFound( res , { projectnumber : number });
+                helper.ResourceNotFound( res , { projectname : name });
             }else {
                 helper.ResourceFound( res, data );
             }
@@ -108,19 +108,19 @@ module.exports.update = function ( project, res ) {
     } );
 };
 
-module.exports.remove = function ( number, res ) {
+module.exports.remove = function ( name, res ) {
     "use strict";
-    Project.findOne( { projectnumber : number }, function ( error, data ) {
+    Project.findOne( { projectname : name }, function ( error, data ) {
         if ( error ) {
-            helper.InternalServerError( res, error, { projectnumber : number } );
+            helper.InternalServerError( res, error, { projectname : name } );
 
         }else {
             if ( ! data ) {
-                helper.ResourceNotFound( res , { projectnumber : number });
+                helper.ResourceNotFound( res , { projectname : name });
             }else {
                 data.remove( function ( error ) {
                     if ( error ) {
-                        helper.InternalServerError( res, error, { projectnumber : number } );
+                        helper.InternalServerError( res, error, { projectname : name } );
                     }else {
                         data.remove();
                         helper.ResourceDeleted( res );

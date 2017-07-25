@@ -24,6 +24,7 @@ Region = module.exports = function ( options ) {
     this.openView = function ( view ) {
         ensureEL();
         view.render();
+
         $el.html( view.el );
         if ( view.onShow ) {
             view.onShow();

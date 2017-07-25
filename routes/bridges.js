@@ -36,4 +36,14 @@ router.get( '/:number', function ( req, res, next ) {
 
 } );
 
+router.post( '/', function ( req, res, next ) {
+    "use strict";
+    bridges.update( req.body,  res);
+} );
+
+router.put( '/:name', function ( req, res, next ) {
+    "use strict";
+    bridges.update( req.body,  res);
+} );
+
 module.exports = router;

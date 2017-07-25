@@ -1,5 +1,6 @@
 require('./modules/mongodb');
 var Connection = require('tedious').Connection;
+var Helper = require( './modules/mongodb_helper' );
 var Bridge = require( './modules/schema/bridge' );
 var rows = [];
 
@@ -323,7 +324,9 @@ function toNewBridge_BasicInfo( row ) {
         });
 }
 
-Bridge.findOne( { bridgename : "西台路通道桥" }, function ( error, data ) {
+/*Bridge.findOne( { bridgename : "西台路通道桥" }, function ( error, data ) {
     console.log( data );
-} );
+} );*/
 
+var fields = Helper.getFields( Bridge );
+console.log( fields );

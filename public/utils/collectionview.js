@@ -72,8 +72,11 @@ CollectionView = module.exports = BaseView.extend( {
             view = app.renderModel( model );
             return view.$el;
         } );
-
-        console.log( 'collection render', html );
+      /*  if ( this.containerNoExist ) {
+            this.$el = this.$(html);
+        }else {
+            this.$el.html( html );
+        }*/
         this.$el.html( html );
         return this;
     },

@@ -29,7 +29,6 @@ module.exports.query_by_arg = function ( schema, arg, value, res ) {
 
 module.exports.query = function ( schema, key, number, res ) {
     "use strict";
-    console.log( key, number );
     var filter = {};
     filter[ key ] = number;
     schema.findOne( filter, function ( error, data ) {
@@ -76,14 +75,16 @@ module.exports.paginate = function ( schema, req, res ) {
     );
 };
 
-module.exports.update = function ( schema, obj, key, value, toNewSchema, toExistSchema, res ) {
+module.exports.update = function ( schema, fields, obj, key, value, toNewSchema, toExistSchema, res ) {
     "use strict";
     var newschema;
-    schema.findOne( { key : value }, function ( error, data ) {
+    var filter = {};
+    filter[ key ] = value;
+    schema.findOne( filter, function ( error, data ) {
         if ( error ) {
-            helper.InternalServerError( res, error, { key : value } );
+            helper.InternalServerError( res, error, filter );
         }else {
-            newschema = toNewSchema( obj );
+            newschema = toNewSchema(fields, obj , schema);
             if ( !data ) {
                 newschema.save( function ( error ) {
                     if ( ! error ) {
@@ -92,7 +93,7 @@ module.exports.update = function ( schema, obj, key, value, toNewSchema, toExist
                 } );
                 helper.ResourceCreated( res, newschema );
             }else {
-                toExistSchema( data, newschema );
+                toExistSchema(fields, data, newschema );
                 data.save( function ( error ) {
                     if ( ! error ) {
                         data.save();
@@ -125,6 +126,35 @@ module.exports.remove = function ( schema, key, number, res ) {
             }
         }
     } );
+};
+
+module.exports.toNewSchema = function ( fields, body, schema ) {
+    var data = {}, i, len, key;
+    len = fields.length;
+    for ( i = 0; i < len; i++ ) {
+        key = fields[ i ];
+        data[ key ] = body[ key ]
+    }
+    return new schema( data );
+};
+
+module.exports.toExistSchema = function ( fields, data, schema ) {
+    var  i, len, key;
+    len = fields.length;
+    for ( i = 0; i < len; i++ ) {
+        key = fields[ i ];
+        data[ key ] = schema[ key ];
+    }
+};
+
+module.exports.getFields = function ( schema ) {
+    var fields = [];
+    schema.schema.eachPath(function(path) {
+        if ( path !== '_id' && path !== '__v' ) {
+            fields.push( path );
+        }
+    });
+    return fields;
 };
 
 

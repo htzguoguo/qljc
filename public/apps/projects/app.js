@@ -45,7 +45,7 @@ App = function ( options ) {
             {
                 success : function ( collection ) {
                     if ( ! name ) {
-                        if ( collection &&  collection.at(0)) {
+                        if ( collection && collection.length > 0 ) {
                             name = collection.at(0).get( 'projectname' );
                         }
                     }
@@ -75,14 +75,34 @@ App = function ( options ) {
         );
     };
 
+    this.ShowNewBridgeForm = function ( projectname ) {
+        var project = new ProjectModel( { projectname : projectname } ),
+            me = this;
+        project.fetch( {
+            success : function ( data ) {
+                var bridgeEditor = me.startController(BridgeController);
+                bridgeEditor.showEditor( new BridgeModel( {
+                    routenumber : data.get( 'projectnumber' ),
+                    routename : data.get( 'projectname' ),
+                    routelevel : data.get( 'roadgrade' )
+                } )  );
+            },
+            error : function () {
+
+            }
+        } );
+
+
+    };
+
     this.ShowNewProjectForm = function () {
         var projectEditor = this.startController(ProjectController);
         projectEditor.showEditor( new ProjectModel()  );
     };
 
-    this.ShowProjectEditorById = function ( projectnumber ) {
+    this.ShowProjectEditorById = function ( projectname ) {
         var project = new ProjectModel( {
-                projectnumber : projectnumber
+                projectname : projectname
             } ),
             app = this;
         project.fetch( {

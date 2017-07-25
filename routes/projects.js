@@ -27,9 +27,9 @@ router.get( '/', function ( req, res, next ) {
     }
 } );
 
-router.get( '/:number', function ( req, res, next ) {
+router.get( '/:name', function ( req, res, next ) {
     "use strict";
-    projects.query( req.params.number, res );
+    projects.query( req.params.name, res );
 
 } );
 
@@ -38,14 +38,14 @@ router.post( '/', function ( req, res, next ) {
     projects.update( req.body,  res);
 } );
 
-router.put( '/:number', function ( req, res, next ) {
+router.put( '/:name', function ( req, res, next ) {
     "use strict";
     projects.update( req.body,  res);
 } );
 
-router.delete( '/:number', function ( req, res, next ) {
+router.delete( '/:name', function ( req, res, next ) {
     "use strict";
-    projects.remove( req.params.number, res);
+    projects.remove( req.params.name, res);
 } );
 
 

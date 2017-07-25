@@ -20,7 +20,7 @@ View = module.exports = Backbone.View.extend( {
         this.options = attrs;
     },
     events : {
-        'click .bridge-new' : 'addProject',
+        'click .bridge-new' : 'addBridge',
         'click .bridge-delete' : 'deleteProject',
         'click .bridge-edit' : 'editProject',
         'click .bridge-preview' : 'previewBridge'
@@ -50,9 +50,9 @@ View = module.exports = Backbone.View.extend( {
         var num = this.$(ev.currentTarget).data('index');
         window.app.router.navigate( 'projects/edit/' +  num , true );
     },
-    addProject : function () {
+    addBridge : function () {
         "use strict";
-        window.app.router.navigate( '/projects/new', true );
+        window.app.router.navigate( '/bridges/' + this.options.projectname + '/new', true );
     },
     onShow : function () {
         // Table setup

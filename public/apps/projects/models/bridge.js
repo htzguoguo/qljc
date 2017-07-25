@@ -11,7 +11,6 @@ Bridge = module.exports = Backbone.Model.extend(
         urlRoot : 'api/v1/bridges',
         idAttribute: 'bridgename',
         defaults : {
-            bridgename: '',
             filldate : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()
         },
         toJSON : function () {
@@ -21,6 +20,47 @@ Bridge = module.exports = Backbone.Model.extend(
                 if ( dt && _.isDate( dt ) ) {
                     result.filldate = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate();
                 }
+            }
+            var above = this.get( 'superstructure' );
+            var blower = this.get( 'lowerstructure' );
+            var i, len, data;
+            if ( above.length > blower.length ) {
+                len = above.length;
+            }else {
+                len = blower.length;
+            }
+            result.structures = [];
+            for ( i = 0 ; i < len; i++ ) {
+                data = {
+                    holenumber : '',
+                    /* 跨径(m)*/
+                    span : '',
+                    /* 形式*/
+                    form1 : '',
+                    /* 材料*/
+                    material1 : '',
+
+                    piers : '',
+                    /* 形式(m)*/
+                    form2 : '',
+                    /* 材料*/
+                    material2 : '',
+                    /* 基础形式*/
+                    basicform : ''
+                };
+                if ( i < above.length ) {
+                    data.holenumber = above[ i ].holenumber;
+                    data.span = above[ i ].span;
+                    data.form1 = above[ i ].form;
+                    data.material1 = above[ i ].material;
+                }
+                if ( i < blower.length ) {
+                    data.piers = blower[ i ].piers;
+                    data.form2 = blower[ i ].form;
+                    data.material2 = blower[ i ].material;
+                    data.basicform = blower[ i ].basicform;
+                }
+                result.structures[ i ] = data;
             }
             return result;
         },

@@ -15,9 +15,13 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'projects/edit/:id' : 'editProject',
         'projects/new' : 'createProject',
         'projects' : 'projectList',
+
         'bridges' : 'bridgeList',
         'bridges/:projectname' : 'bridgeListOfProject',
+        'bridges/:projectname/new' : 'createBridge',
         'bridges/:projectname/:bridgename/view' : 'bridgeDetail'
+
+
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -77,7 +81,6 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-
     bridgeListOfProject : function ( projectname ) {
         "use strict";
         var app = this.startApp();
@@ -91,7 +94,6 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-
     bridgeDetail : function ( projectname, bridgename ) {
         "use strict";
         var app = this.startApp();
@@ -111,8 +113,21 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
-
-
+    createBridge : function ( projectname ) {
+        var app = this.startApp();
+        app.ShowNewBridgeForm( projectname );
+        updateNavigationBar(  [
+            {   title : '桥梁管理',
+                url : 'bridges'
+            },
+            {   title : projectname,
+                url : 'bridges/' + projectname
+            },
+            {   title : '新建',
+                url : ''
+            }
+        ] );
+    },
 
     startApp : function () {
         "use strict";

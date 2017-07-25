@@ -5,6 +5,7 @@
 var BridgeList,
     Backbone = require( 'backbone' ),
     Bridges = require( '../collections/bridges' ),
+    SuperStructureCollection = require( '../collections/superstructures' ),
     App = require( '../../../utils/basecontroller' ),
     _ = require( 'underscore' ),
     ProjectListLayout = require( '../views/projectListLayout' ),
@@ -12,7 +13,9 @@ var BridgeList,
     BridgeListLayout = require( '../views/bridgeListLayout' ),
     ProjectSidebar = require( '../views/projectSidebar' ),
     BridgeTable = require( '../views/bridgeTable' ),
-    BridgePreview = require( '../views/bridgePreview' )
+    BridgePreview = require( '../views/bridgePreview' ),
+    BridgeForm = require( '../views/bridgeForm' ),
+    BridgeForm_superstructure_view = require( '../views/bridgeForm_superstructure_list' )
     ;
 
 
@@ -21,11 +24,11 @@ BridgeList = module.exports = function ( options ) {
     this.mainRegion = options.mainRegion;
     this.isNew = false;
     _.extend( this, Backbone.Events );
-    this.showList = function ( projects, name ) {
+    this.showList = function ( bridges, name ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
             bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : projects } );
+            projectSidebar = new ProjectSidebar( { collection : bridges } );
 
         projectSidebar.selectedproject = name;
         this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
@@ -48,7 +51,7 @@ BridgeList = module.exports = function ( options ) {
         layout.getRegion( 'actions' ).show( actionbar );
         layout.getRegion( 'list' ).show( bridgeListLayout );
         bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
-        if ( !projects || projects.length === 0 ) {
+        if ( !bridges || bridges.length === 0 ) {
             bridgeListLayout.getRegion( 'bridgelist' ).show( new BridgeTable() );
         }
 
@@ -65,16 +68,33 @@ BridgeList = module.exports = function ( options ) {
         layout.getRegion( 'list' ).show( bridgePreview );
     };
 
-    this.showEditor = function ( project ) {
+    this.showEditor = function ( bridge ) {
+        var superstructureData = bridge.get( 'superstructure' ) || [],
+            lowerstructureData = bridge.get( 'lowerstructure' ) || [];
+        this.superstructures = new SuperStructureCollection( superstructureData );
+       /* this.emails = new EmailsCollection( emailsData );*/
+
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
-            form = new ProjectForm( { model : project } );
-        this.isNew = project.isNew();
+            form = new BridgeForm( { model : bridge } ),
+            superstructures = new BridgeForm_superstructure_view( { collection : this.superstructures } );
+
+        this.isNew = bridge.isNew();
         this.mainRegion.show( layout );
         layout.getRegion( 'actions' ).show( actionbar );
         layout.getRegion( 'list' ).show( form );
+        form.getRegion( 'superstructures' ).show( superstructures );
+
+
         this.listenTo( form, 'form:cancel', this.cancel );
-        this.listenTo( form, 'form:save', this.saveProject );
+        this.listenTo( form, 'form:save', this.saveBridge );
+
+        this.listenTo( form, 'superstructure:add', function () {
+            this.superstructures.add( {} );
+        } );
+        this.listenTo( superstructures, 'item:superstructure:deleted', function ( view, item ) {
+            this.superstructures.remove( item );
+        } );
     };
 
     this.cancel = function () {
@@ -91,19 +111,30 @@ BridgeList = module.exports = function ( options ) {
         } );
     };
 
-    this.saveProject = function ( project ) {
-        var me = this;
-        if ( ! project.isValid( true ) ) {
+    this.saveBridge = function ( bridge ) {
+        var me = this,
+            superstructureData = this.superstructures.toJSON();
+        var superstructureHasError = _.some(this.superstructures.models, function(m) {
+            return m.validationError;
+        });
+        if ( superstructureHasError ) {
+            return;
+        }
+        bridge.set( {
+            superstructure : superstructureData
+        } );
+
+        if ( ! bridge.isValid( true ) ) {
             return;
         }
         function notifyAndRedirect( msg ) {
             me.notifySuccess( msg );
             window.app.router.navigate( '/projects', true );
         }
-        project.save( null , {
+        bridge.save( null , {
             success : function () {
                 if ( me.isNew ) {
-                    notifyAndRedirect('检测项目创建完成');
+                    notifyAndRedirect('桥梁卡片创建完成');
                 }else {
                     notifyAndRedirect('检测项目编辑完成');
                 }
