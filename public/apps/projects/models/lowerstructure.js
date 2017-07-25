@@ -1,21 +1,22 @@
 /**
- * Created by Administrator on 2017/7/24.
+ * Created by Administrator on 2017/7/25.
  */
+
 
 var Backbone = require( 'backbone' ),
     StructureModel;
 
 StructureModel = module.exports = Backbone.Model.extend( {
     defaults : {
-        holenumber : '',
-        span : '',
+        piers : '',
         form : '',
-        material : ''
+        material : '',
+        basicform : ''
     },
     validation : {
-        holenumber : {
+        piers : {
             required : true,
-            msg: '孔号不能为空'
+            msg: '墩台不能为空'
         }
     }
 } );

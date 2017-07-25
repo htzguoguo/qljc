@@ -244,7 +244,7 @@
                     </h6>
                     <div class="heading-elements">
                         <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm">添加下部结构</button>
+                            <button class="btn btn-primary btn-sm add-lowerstructure">添加下部结构</button>
                         </div>
                     </div>
                 </div>
@@ -254,15 +254,16 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>墩台</th>
-                                    <th>形式</th>
-                                    <th>材料</th>
-                                    <th>基础形式</th>
+                                    <th width="20%">墩台</th>
+                                    <th width="20%">形式</th>
+                                    <th width="20%">材料</th>
+                                    <th width="20%">基础形式</th>
+                                    <th width="20%"></th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                            </table>
+                            <table class="table lowerstructure_list">
 
-                                </tbody>
                             </table>
                         </div>
                     </form>
@@ -434,7 +435,7 @@
                 <div class="panel-heading">
                     <div class="heading-elements">
                         <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm">添加新评定</button>
+                            <button class="btn btn-primary btn-sm add-tech">添加新评定</button>
                         </div>
                     </div>
                 </div>
@@ -443,22 +444,23 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>检查年月</th>
-                                <th>定期或特殊检查</th>
-                                <th>全桥评定等级</th>
-                                <th>桥台与基础</th>
-                                <th>桥墩与基础</th>
-                                <th>地基冲刷</th>
-                                <th>上部结构</th>
-                                <th>支座</th>
-                                <th>经常保养小修</th>
-                                <th>处治对策</th>
-                                <th>下次检查年份</th>
+                                <th width="8%">检查年月</th>
+                                <th width="8%">定期或特殊检查</th>
+                                <th width="8%">全桥评定等级</th>
+                                <th width="8%">桥台与基础</th>
+                                <th width="8%">桥墩与基础</th>
+                                <th width="8%"> 地基冲刷</th>
+                                <th width="8%">上部结构</th>
+                                <th width="8%">支座</th>
+                                <th width="8%">经常保养小修</th>
+                                <th width="8%">处治对策</th>
+                                <th width="8%">下次检查年份</th>
+                                <th width="8%"></th>
                             </tr>
                             </thead>
-                            <tbody>
+                        </table>
+                        <table class="table tech_list">
 
-                            </tbody>
                         </table>
                     </div>
                 </form>
@@ -467,7 +469,7 @@
                 <div class="panel-heading">
                     <div class="heading-elements">
                         <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm">添加新记录</button>
+                            <button class="btn btn-primary btn-sm add-eng">添加新记录</button>
                         </div>
                     </div>
                 </div>
@@ -476,23 +478,24 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>开工</th>
-                                <th>竣工</th>
-                                <th>修建类别</th>
-                                <th>修建原因</th>
-                                <th>工程范围</th>
-                                <th>工程费用(万元)</th>
-                                <th>经费来源</th>
-                                <th>质量评定</th>
-                                <th>建设单位</th>
-                                <th>设计单位</th>
-                                <th>施工单位</th>
-                                <th>监理单位</th>
+                                <th width="8%">开工</th>
+                                <th width="8%">竣工</th>
+                                <th width="8%">修建类别</th>
+                                <th width="8%">修建原因</th>
+                                <th width="8%">工程范围</th>
+                                <th width="8%">工程费用(万元)</th>
+                                <th width="8%">经费来源</th>
+                                <th width="8%">质量评定</th>
+                                <th width="8%">建设单位</th>
+                                <th width="8%">设计单位</th>
+                                <th width="8%">施工单位</th>
+                                <th width="8%">监理单位</th>
+                                <th width="8%"></th>
                             </tr>
                             </thead>
-                            <tbody>
+                        </table>
+                        <table class="table eng_list">
 
-                            </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
@@ -516,15 +519,13 @@
                         <span class="notice">请点击照片替换</span>
                         <div class="box thumbnail">
                             <div class="photo">
-                                {{#avatar}}
-                                {{#avatar.url}}
-                                <img src="{{avatar.url}}" alt="Contact photo" />
-                                {{/avatar.url}}
-                                {{/avatar}}
-                                {{^avatar}}
-                                <img src="./common/images/contact.png" alt="Contact photo" />
-                                {{/avatar}}
-                                <input type="file" id="avatar" name="avatar" style="display: none;"/>
+                                {{#frontphoto}}
+                                <img src="{{frontphoto}}" class="img-frontphoto" alt="正面照片" />
+                                {{/frontphoto}}
+                                {{^frontphoto}}
+                                <img src="./common/images/contact.png" class="img-frontphoto" alt="正面照片" />
+                                {{/frontphoto}}
+                                <input type="file" class="upload-frontphoto-file"  data-index="frontphoto" name="avatar" style="display: none;"/>
                             </div>
                         </div>
                     </div>
@@ -537,15 +538,13 @@
                         <span class="notice">请点击照片替换</span>
                         <div class="box thumbnail">
                             <div class="photo">
-                                {{#avatar}}
-                                {{#avatar.url}}
-                                <img src="{{avatar.url}}" alt="Contact photo" />
-                                {{/avatar.url}}
-                                {{/avatar}}
-                                {{^avatar}}
-                                <img src="./common/images/contact.png" alt="Contact photo" />
-                                {{/avatar}}
-                                <input type="file" id="avatar" name="avatar" style="display: none;"/>
+                                {{#sidephoto}}
+                                <img src="{{sidephotol}}" class="img-sidephoto" alt="立面照片" />
+                                {{/sidephoto}}
+                                {{^sidephoto}}
+                                <img src="./common/images/contact.png" class="img-sidephoto" alt="立面照片" />
+                                {{/sidephoto}}
+                                <input type="file" class="upload-sidephoto-file" data-index="sidephoto"  name="avatar" style="display: none;"/>
                             </div>
                         </div>
                     </div>

@@ -521,8 +521,30 @@
                         <td colspan="8">正面照</td>
                     </tr>
                     <tr>
-                        <td style="height: 250px;" colspan="9"></td>
-                        <td style="height: 250px;" colspan="9"></td>
+                        <td style="height: 250px;" colspan="9">
+                            <div class="box thumbnail">
+                                <div class="photo">
+                                    {{#sidephoto}}
+                                    <img src="{{sidephoto}}" class="img-sidephoto" alt="立面照片" />
+                                    {{/sidephoto}}
+                                    {{^sidephoto}}
+                                    <img src="./common/images/contact.png" class="img-sidephoto" alt="立面照片" />
+                                    {{/sidephoto}}
+                                </div>
+                            </div>
+                        </td>
+                        <td style="height: 250px;" colspan="9">
+                            <div class="box thumbnail">
+                                <div class="photo">
+                                    {{#frontphoto}}
+                                    <img src="{{frontphoto}}" class="img-frontphoto" alt="正面照片" />
+                                    {{/frontphoto}}
+                                    {{^frontphoto}}
+                                    <img src="./common/images/contact.png" class="img-frontphoto" alt="正面照片" />
+                                    {{/frontphoto}}
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width: 5.5%">79</td>

@@ -25,7 +25,8 @@ var session = require( 'express-session' ),
     app = express(),
     port = process.env.PORT || 8180,
     staticPath = path.join( __dirname, 'public' ),
-    avatarPath = path.join( __dirname, './avatar' );
+    avatarPath = path.join( __dirname, './avatar' ),
+    uploadPath = path.join( __dirname, './upload' );
 
 // view engine setup
 app.set( 'views', path.join( __dirname , 'views' ) )
@@ -48,6 +49,7 @@ admin.initAdminUser();
 
 app.use( express.static( staticPath ) );
 app.use( '/avatar', express.static( avatarPath ) );
+app.use( '/files', express.static( uploadPath ) );
 
 app.use( '/', routes );
 app.use( '/auth',cache( 'minutes', 2 ), authrouter );
