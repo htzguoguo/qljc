@@ -46,4 +46,9 @@ router.put( '/:name', function ( req, res, next ) {
     bridges.update( req.body,  res);
 } );
 
+router.delete( '/:name', function ( req, res, next ) {
+    "use strict";
+    bridges.remove( req.params.name, res);
+} );
+
 module.exports = router;

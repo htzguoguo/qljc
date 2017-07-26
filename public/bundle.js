@@ -32674,6 +32674,20 @@ App = function ( options ) {
             }
         } );
     };
+
+    this.ShowBridgeEditor = function ( projectname, bridgename ) {
+        var bridge = new BridgeModel( { routename : projectname, bridgename : bridgename } ),
+            me = this;
+        bridge.fetch( {
+            success : function ( data ) {
+                var bridgeEditor = me.startController(BridgeController);
+                bridgeEditor.showEditor( data );
+            },
+            error : function () {
+
+            }
+        } );
+    };
 };
 
 _.extend( App.prototype, AppBase );
@@ -32795,7 +32809,8 @@ BridgeList = module.exports = function ( options ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
             bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : bridges } );
+            projectSidebar = new ProjectSidebar( { collection : bridges } ),
+            me = this;
 
         projectSidebar.selectedproject = name;
         this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
@@ -32806,6 +32821,7 @@ BridgeList = module.exports = function ( options ) {
                     success : function ( collection ) {
                         var bb = new BridgeTable( { collection : collection, projectname : num } );
                         bridgeListLayout.getRegion( 'bridgelist' ).show( bb );
+                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
                     },
                     error : function () {
 
@@ -32819,8 +32835,12 @@ BridgeList = module.exports = function ( options ) {
         layout.getRegion( 'list' ).show( bridgeListLayout );
         bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
         if ( !bridges || bridges.length === 0 ) {
-            bridgeListLayout.getRegion( 'bridgelist' ).show( new BridgeTable() );
+            var bt = new BridgeTable();
+            bridgeListLayout.getRegion( 'bridgelist' ).show( bt );
+            this.listenTo(  bt, 'item:bridge:delete', this.deleteBridge );
         }
+
+
 
     };
 
@@ -32873,28 +32893,24 @@ BridgeList = module.exports = function ( options ) {
         this.listenTo( superstructures, 'item:superstructure:deleted', function ( view, item ) {
             this.superstructures.remove( item );
         } );
-
         this.listenTo( form, 'lowerstructure:add', function () {
             this.lowerstructures.add( {} );
         } );
         this.listenTo( lowerstructures, 'item:lowerstructure:deleted', function ( view, item ) {
             this.lowerstructures.remove( item );
         } );
-
         this.listenTo( form, 'tech:add', function () {
             this.techassessments.add( {} );
         } );
         this.listenTo( tech, 'item:tech:deleted', function ( view, item ) {
             this.techassessments.remove( item );
         } );
-
         this.listenTo( form, 'eng:add', function () {
             this.engineeringrecords.add( {} );
         } );
         this.listenTo( eng, 'item:eng:deleted', function ( view, item ) {
             this.engineeringrecords.remove( item );
         } );
-
         this.listenTo( form, 'upload:frontphoto:selected', function ( blob ) {
             this.uploadFile( bridge, blob, 'frontphoto' );
         } );
@@ -32999,6 +33015,28 @@ BridgeList = module.exports = function ( options ) {
 
                         window.app.router.navigate( '/', {trigger: true} );
                         window.app.router.navigate( '/projects', {trigger: true} );
+                        /* Backbone.history.loadUrl(Backbone.history.fragment);*/
+                    },
+                    error : function () {
+                        app.errorMessage( '删除操作没有成功' );
+                    }
+                } );
+            }
+        } );
+    };
+
+    this.deleteBridge = function ( bridge ) {
+        var app = this,
+            routename = bridge.get( 'routename' );
+        this.askConfirmation( '确认要删除桥梁', false,  function ( isConfirm ) {
+            if ( isConfirm ) {
+                bridge.destroy( {
+                    success : function () {
+                        app.successMessage( '删除桥梁完成' );
+                        /*  window.app.router.navigate( '/projects', {trigger: true} );*/
+
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/bridges/' + routename , {trigger: true} );
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {
@@ -33399,9 +33437,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'bridges' : 'bridgeList',
         'bridges/:projectname' : 'bridgeListOfProject',
         'bridges/:projectname/new' : 'createBridge',
-        'bridges/:projectname/:bridgename/view' : 'bridgeDetail'
-
-
+        'bridges/:projectname/:bridgename/view' : 'bridgeDetail',
+        'bridges/:projectname/:bridgename/edit' : 'editBridge'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -33461,6 +33498,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
+
     bridgeListOfProject : function ( projectname ) {
         "use strict";
         var app = this.startApp();
@@ -33474,6 +33512,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
+
     bridgeDetail : function ( projectname, bridgename ) {
         "use strict";
         var app = this.startApp();
@@ -33493,6 +33532,27 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             }
         ] );
     },
+
+    editBridge : function ( projectname, bridgename ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowBridgeEditor( projectname, bridgename );
+        updateNavigationBar(  [
+            {   title : '桥梁管理',
+                url : 'bridges'
+            },
+            {   title : projectname,
+                url : 'bridges/' + projectname
+            },
+            {   title : bridgename,
+                url : 'bridges/' + projectname + '/' + bridgename + '/view'
+            },
+            {   title : '编辑',
+                url : ''
+            }
+        ] );
+    },
+
     createBridge : function ( projectname ) {
         var app = this.startApp();
         app.ShowNewBridgeForm( projectname );
@@ -33886,7 +33946,7 @@ View = module.exports = ModelView.extend( {
 var Backbone = require('backbone'),
     Mustache = require('mustache'),
     _ = require('underscore'),
-    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple bridge-new\"><i class=\"icon-plus3 position-left\"></i>创建桥梁</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>桥梁名称</th>\r\n        <th>桥梁编号</th>\r\n        <th>中心桩号</th>\r\n        <th>功能类型</th>\r\n        <th>设计荷载</th>\r\n\r\n\r\n        <th>管养单位</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{bridgename}}</td>\r\n        <td>{{bridgenumber}}</td>\r\n        <td>{{centerstation}}</td>\r\n        <td>{{functiontype}}</td>\r\n        <td>{{designload}}</td>\r\n        <td>{{custodyunit}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n             <!--   <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n-->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
+    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple bridge-new\"><i class=\"icon-plus3 position-left\"></i>创建桥梁</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>桥梁名称</th>\r\n        <th>桥梁编号</th>\r\n        <th>中心桩号</th>\r\n        <th>功能类型</th>\r\n        <th>设计荷载</th>\r\n\r\n\r\n        <th>管养单位</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{bridgename}}</td>\r\n        <td>{{bridgenumber}}</td>\r\n        <td>{{centerstation}}</td>\r\n        <td>{{functiontype}}</td>\r\n        <td>{{designload}}</td>\r\n        <td>{{custodyunit}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n             <!--   <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n-->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
     View;
 
 View = module.exports = Backbone.View.extend( {
@@ -33897,8 +33957,8 @@ View = module.exports = Backbone.View.extend( {
     },
     events : {
         'click .bridge-new' : 'addBridge',
-        'click .bridge-delete' : 'deleteProject',
-        'click .bridge-edit' : 'editProject',
+        'click .bridge-delete' : 'deleteBridge',
+        'click .bridge-edit' : 'editBridge',
         'click .bridge-preview' : 'previewBridge'
     },
     render : function () {
@@ -33916,15 +33976,16 @@ View = module.exports = Backbone.View.extend( {
             routename = this.$(ev.currentTarget).data('project');
         window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/view', true );
     },
-    deleteProject : function ( ev ) {
+    deleteBridge : function ( ev ) {
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
-        this.trigger( 'item:project:delete',  this.collection.get( num ) );
+        this.trigger( 'item:bridge:delete',  this.collection.get( num ) );
     },
-    editProject : function ( ev ) {
+    editBridge : function ( ev ) {
         "use strict";
-        var num = this.$(ev.currentTarget).data('index');
-        window.app.router.navigate( 'projects/edit/' +  num , true );
+        var bridgename = this.$(ev.currentTarget).data('index'),
+            routename = this.$(ev.currentTarget).data('project');
+        window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/edit', true );
     },
     addBridge : function () {
         "use strict";

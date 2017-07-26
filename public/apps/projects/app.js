@@ -115,6 +115,20 @@ App = function ( options ) {
             }
         } );
     };
+
+    this.ShowBridgeEditor = function ( projectname, bridgename ) {
+        var bridge = new BridgeModel( { routename : projectname, bridgename : bridgename } ),
+            me = this;
+        bridge.fetch( {
+            success : function ( data ) {
+                var bridgeEditor = me.startController(BridgeController);
+                bridgeEditor.showEditor( data );
+            },
+            error : function () {
+
+            }
+        } );
+    };
 };
 
 _.extend( App.prototype, AppBase );

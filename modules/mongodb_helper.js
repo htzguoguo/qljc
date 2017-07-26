@@ -107,17 +107,19 @@ module.exports.update = function ( schema, fields, obj, key, value, toNewSchema,
 
 module.exports.remove = function ( schema, key, number, res ) {
     "use strict";
-    schema.findOne( { key : number }, function ( error, data ) {
+    var filter = {};
+    filter[ key ] = number;
+    schema.findOne( filter, function ( error, data ) {
         if ( error ) {
-            helper.InternalServerError( res, error, { key : number } );
+            helper.InternalServerError( res, error, filter );
 
         }else {
             if ( ! data ) {
-                helper.ResourceNotFound( res , { key : number });
+                helper.ResourceNotFound( res , filter);
             }else {
                 data.remove( function ( error ) {
                     if ( error ) {
-                        helper.InternalServerError( res, error, { key : number } );
+                        helper.InternalServerError( res, error, filter );
                     }else {
                         data.remove();
                         helper.ResourceDeleted( res );

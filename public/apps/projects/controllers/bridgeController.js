@@ -35,7 +35,8 @@ BridgeList = module.exports = function ( options ) {
         var layout = new ProjectListLayout(),
             actionbar = new ProjectListActionBar(),
             bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : bridges } );
+            projectSidebar = new ProjectSidebar( { collection : bridges } ),
+            me = this;
 
         projectSidebar.selectedproject = name;
         this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
@@ -46,6 +47,7 @@ BridgeList = module.exports = function ( options ) {
                     success : function ( collection ) {
                         var bb = new BridgeTable( { collection : collection, projectname : num } );
                         bridgeListLayout.getRegion( 'bridgelist' ).show( bb );
+                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
                     },
                     error : function () {
 
@@ -59,8 +61,12 @@ BridgeList = module.exports = function ( options ) {
         layout.getRegion( 'list' ).show( bridgeListLayout );
         bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
         if ( !bridges || bridges.length === 0 ) {
-            bridgeListLayout.getRegion( 'bridgelist' ).show( new BridgeTable() );
+            var bt = new BridgeTable();
+            bridgeListLayout.getRegion( 'bridgelist' ).show( bt );
+            this.listenTo(  bt, 'item:bridge:delete', this.deleteBridge );
         }
+
+
 
     };
 
@@ -113,28 +119,24 @@ BridgeList = module.exports = function ( options ) {
         this.listenTo( superstructures, 'item:superstructure:deleted', function ( view, item ) {
             this.superstructures.remove( item );
         } );
-
         this.listenTo( form, 'lowerstructure:add', function () {
             this.lowerstructures.add( {} );
         } );
         this.listenTo( lowerstructures, 'item:lowerstructure:deleted', function ( view, item ) {
             this.lowerstructures.remove( item );
         } );
-
         this.listenTo( form, 'tech:add', function () {
             this.techassessments.add( {} );
         } );
         this.listenTo( tech, 'item:tech:deleted', function ( view, item ) {
             this.techassessments.remove( item );
         } );
-
         this.listenTo( form, 'eng:add', function () {
             this.engineeringrecords.add( {} );
         } );
         this.listenTo( eng, 'item:eng:deleted', function ( view, item ) {
             this.engineeringrecords.remove( item );
         } );
-
         this.listenTo( form, 'upload:frontphoto:selected', function ( blob ) {
             this.uploadFile( bridge, blob, 'frontphoto' );
         } );
@@ -239,6 +241,28 @@ BridgeList = module.exports = function ( options ) {
 
                         window.app.router.navigate( '/', {trigger: true} );
                         window.app.router.navigate( '/projects', {trigger: true} );
+                        /* Backbone.history.loadUrl(Backbone.history.fragment);*/
+                    },
+                    error : function () {
+                        app.errorMessage( '删除操作没有成功' );
+                    }
+                } );
+            }
+        } );
+    };
+
+    this.deleteBridge = function ( bridge ) {
+        var app = this,
+            routename = bridge.get( 'routename' );
+        this.askConfirmation( '确认要删除桥梁', false,  function ( isConfirm ) {
+            if ( isConfirm ) {
+                bridge.destroy( {
+                    success : function () {
+                        app.successMessage( '删除桥梁完成' );
+                        /*  window.app.router.navigate( '/projects', {trigger: true} );*/
+
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/bridges/' + routename , {trigger: true} );
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {

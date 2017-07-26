@@ -32,4 +32,9 @@ module.exports.update = function ( bridge, res ) {
 
 };
 
+module.exports.remove = function ( name, res ) {
+    "use strict";
+     helper.remove( Bridge, 'bridgename', name, res  );
+};
+
 

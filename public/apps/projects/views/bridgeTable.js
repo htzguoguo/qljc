@@ -21,8 +21,8 @@ View = module.exports = Backbone.View.extend( {
     },
     events : {
         'click .bridge-new' : 'addBridge',
-        'click .bridge-delete' : 'deleteProject',
-        'click .bridge-edit' : 'editProject',
+        'click .bridge-delete' : 'deleteBridge',
+        'click .bridge-edit' : 'editBridge',
         'click .bridge-preview' : 'previewBridge'
     },
     render : function () {
@@ -40,15 +40,16 @@ View = module.exports = Backbone.View.extend( {
             routename = this.$(ev.currentTarget).data('project');
         window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/view', true );
     },
-    deleteProject : function ( ev ) {
+    deleteBridge : function ( ev ) {
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
-        this.trigger( 'item:project:delete',  this.collection.get( num ) );
+        this.trigger( 'item:bridge:delete',  this.collection.get( num ) );
     },
-    editProject : function ( ev ) {
+    editBridge : function ( ev ) {
         "use strict";
-        var num = this.$(ev.currentTarget).data('index');
-        window.app.router.navigate( 'projects/edit/' +  num , true );
+        var bridgename = this.$(ev.currentTarget).data('index'),
+            routename = this.$(ev.currentTarget).data('project');
+        window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/edit', true );
     },
     addBridge : function () {
         "use strict";
