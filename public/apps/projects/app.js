@@ -9,6 +9,7 @@ var
     TaskCollection = require( './collections/tasks' ),
     ProjectModel = require( './models/project' ),
     BridgeModel = require( './models/bridge' ),
+    TaskModel = require( './models/task' ),
     BridgeCollection = require( './collections/bridges' ),
     AppBase = require( '../../utils/baseapp' ),
     _ = require( 'underscore' ),
@@ -68,6 +69,7 @@ App = function ( options ) {
                 success : function ( collection ) {
                     var taskList = me.startController(TaskController);
                     taskList.showList( collection, name );
+
                 },
                 error : function () {
 
@@ -145,6 +147,42 @@ App = function ( options ) {
 
             }
         } );
+    };
+
+    this.ShowNewTaskForm = function ( projectname ) {
+        var bridges = new BridgeCollection(),
+            project = new ProjectModel( { projectname : projectname } ),
+            me = this;
+        $.when(project.fetch(), bridges.fetch( { data: $.param({ routename: projectname}) } ) )
+            .done(
+                function(project , brs ) {
+                    var task =  new TaskModel( {
+                        routenumber : project[0]['projectnumber'],
+                        routename : project[0][ 'projectname']
+                    } );
+                    var bbs = brs[0];
+                    bbs.forEach(function(obj) { obj.checked = true; });
+                    task.set( 'bridges', bbs );
+                    var taskEditor = me.startController(TaskController);
+                    taskEditor.showEditor( task );
+            });
+
+
+      /*  bridges.fetch( {
+            data: $.param({ routename: name}),
+            success : function ( data ) {
+                var taskEditor = me.startController(TaskController);
+                taskEditor.showEditor( new TaskModel( {
+                    routenumber : data.get( 'projectnumber' ),
+                    routename : data.get( 'projectname' )
+                } )  );
+            },
+            error : function () {
+
+            }
+        } );*/
+
+
     };
 };
 

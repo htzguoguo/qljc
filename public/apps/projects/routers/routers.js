@@ -22,7 +22,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'bridges/:projectname/:bridgename/view' : 'bridgeDetail',
         'bridges/:projectname/:bridgename/edit' : 'editBridge',
 
-        'tasks/:projectname' : 'taskList'
+        'tasks/:projectname' : 'taskList',
+        'tasks/:projectname/new' : 'createTask'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -156,13 +157,29 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
     taskList : function ( projectname ) {
         "use strict";
         var app = this.startApp();
-        app.ShowTaskList(  );
+        app.ShowTaskList( projectname );
         updateNavigationBar(  [
             {   title : '项目管理',
                 url : 'projects'
             },
             {   title : projectname,
-                url : 'bridges/' + projectname
+                url : 'tasks/' + projectname
+            }
+        ] );
+    },
+
+    createTask : function ( projectname ) {
+        var app = this.startApp();
+        app.ShowNewTaskForm( projectname );
+        updateNavigationBar(  [
+            {   title : '项目管理',
+                url : 'projects'
+            },
+            {   title : projectname,
+                url : 'tasks/' + projectname
+            },
+            {   title : '新建',
+                url : ''
             }
         ] );
     },

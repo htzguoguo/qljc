@@ -1,7 +1,7 @@
 <div class="panel-heading">
     <h6 class="panel-title"> 当前项目： <span class="text-primary"></span></h6>
     <div class="heading-elements">
-        <button type="button" class="btn btn-primary legitRipple bridge-new"><i class="icon-plus3 position-left"></i>创建检测任务</button>
+        <button type="button" class="btn btn-primary legitRipple createtask"><i class="icon-plus3 position-left"></i>创建检测任务</button>
     </div>
 </div>
 
@@ -24,12 +24,12 @@
     <tbody>
     {{#items}}
     <tr>
-        <td>{{bridgename}}</td>
-        <td>{{bridgenumber}}</td>
-        <td>{{centerstation}}</td>
-        <td>{{functiontype}}</td>
-        <td>{{designload}}</td>
-        <td>{{custodyunit}}</td>
+        <td>{{taskname}}</td>
+        <td>{{tasknumber}}</td>
+        <td>{{creator}}</td>
+        <td>{{createtime}}</td>
+        <td>{{status}}</td>
+        <td>{{memo}}</td>
         <td class="text-center">
             <ul class="icons-list">
 

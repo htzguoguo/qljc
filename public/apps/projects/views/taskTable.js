@@ -16,6 +16,9 @@ View = module.exports = Backbone.View.extend( {
         'click .task-delete' : 'deleteTask',
         'click .task-edit' : 'editTask'
     },
+    initialize: function( attrs ) {
+        this.options = attrs;
+    },
     render : function () {
         var html = Mustache.to_html( this.template, { items : this.collection.toJSON() } );
         this.$el.html( html );
@@ -33,7 +36,7 @@ View = module.exports = Backbone.View.extend( {
     },
     addTask : function () {
         "use strict";
-        window.app.router.navigate( '/projects/new', true );
+        window.app.router.navigate( '/tasks/' + this.options.projectname + '/new', true );
     },
     onShow : function () {
         // Table setup
@@ -41,7 +44,7 @@ View = module.exports = Backbone.View.extend( {
         // Setting datatable defaults
         // Basic responsive configuration
 
-
+        $( '.text-primary' ).html( this.options.projectname );
         // Basic responsive configuration
         $('.datatable-responsive').DataTable( {
             columnDefs: [{

@@ -28,13 +28,13 @@ module.exports.paginate = function ( req, res ) {
 
 module.exports.update = function ( task, res ) {
     "use strict";
-    helper.update( Task, Fields, bridge,  'taskname', task.taskname, helper.toNewSchema, helper.toExistSchema, res );
+    helper.update( Task, Fields, task,  'taskname', task.taskname, helper.toNewSchema, helper.toExistSchema, res );
 
 };
 
 module.exports.remove = function ( name, res ) {
     "use strict";
-    helper.remove( Bridge, 'taskname', name, res  );
+    helper.remove( Task, 'taskname', name, res  );
 };
 
 
