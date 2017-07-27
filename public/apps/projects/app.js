@@ -4,9 +4,12 @@
 var
     ProjectController = require( './controllers/projectController' ),
     BridgeController = require( './controllers/bridgeController' ),
+    TaskController = require( './controllers/taskController' ),
     ProjectCollection = require( './collections/projects' ),
+    TaskCollection = require( './collections/tasks' ),
     ProjectModel = require( './models/project' ),
     BridgeModel = require( './models/bridge' ),
+    BridgeCollection = require( './collections/bridges' ),
     AppBase = require( '../../utils/baseapp' ),
     _ = require( 'underscore' ),
     App;
@@ -39,18 +42,32 @@ App = function ( options ) {
 
     this.ShowBridgeList = function ( name ) {
         "use strict";
-        var projects = new ProjectCollection(),
-            me = this;
-        projects.fetch(
+        var me = this;
+        var bridges = new BridgeCollection();
+        bridges.fetch(
             {
+                data: $.param({ routename: name}),
                 success : function ( collection ) {
-                    if ( ! name ) {
-                        if ( collection && collection.length > 0 ) {
-                            name = collection.at(0).get( 'projectname' );
-                        }
-                    }
                     var bridgeList = me.startController(BridgeController);
-                    bridgeList.showList(collection, name);
+                    bridgeList.showList( collection, name );
+                },
+                error : function () {
+
+                }
+            }
+        );
+    };
+
+    this.ShowTaskList = function ( name ) {
+        "use strict";
+        var me = this;
+        var bridges = new TaskCollection();
+        bridges.fetch(
+            {
+                data: $.param({ routename: name}),
+                success : function ( collection ) {
+                    var taskList = me.startController(TaskController);
+                    taskList.showList( collection, name );
                 },
                 error : function () {
 

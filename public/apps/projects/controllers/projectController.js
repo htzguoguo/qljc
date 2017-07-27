@@ -18,10 +18,10 @@ ProjectList = module.exports = function ( options ) {
     _.extend( this, Backbone.Events );
     this.showList = function ( projects ) {
         var layout = new ProjectListLayout(),
-            actionbar = new ProjectListActionBar(),
+          /*  actionbar = new ProjectListActionBar(),*/
             projectList = new ProjectTable( {collection: projects} );
         this.mainRegion.show( layout );
-        layout.getRegion( 'actions' ).show( actionbar );
+      /*  layout.getRegion( 'actions' ).show( actionbar );*/
         layout.getRegion( 'list' ).show( projectList );
         this.listenTo(  projectList, 'item:project:delete', this.deleteProject );
     };
@@ -32,7 +32,7 @@ ProjectList = module.exports = function ( options ) {
             form = new ProjectForm( { model : project } );
         this.isNew = project.isNew();
         this.mainRegion.show( layout );
-        layout.getRegion( 'actions' ).show( actionbar );
+      /*  layout.getRegion( 'actions' ).show( actionbar );*/
         layout.getRegion( 'list' ).show( form );
         this.listenTo( form, 'form:cancel', this.cancel );
         this.listenTo( form, 'form:save', this.saveProject );

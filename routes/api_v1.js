@@ -10,6 +10,7 @@ var express = require( 'express' ),
     products = require( './products' ),
     projects = require( './projects' ),
     bridges = require( './bridges' ),
+    tasks = require( './task' ),
     files = require( './files' );
 
 
@@ -19,6 +20,7 @@ router.use( '/groups', groups );
 router.use( '/products', products );
 router.use( '/projects', projects );
 router.use( '/bridges', bridges );
+router.use( '/tasks', tasks );
 router.use(  '/files', files  );
 
 

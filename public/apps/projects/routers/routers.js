@@ -20,7 +20,9 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'bridges/:projectname' : 'bridgeListOfProject',
         'bridges/:projectname/new' : 'createBridge',
         'bridges/:projectname/:bridgename/view' : 'bridgeDetail',
-        'bridges/:projectname/:bridgename/edit' : 'editBridge'
+        'bridges/:projectname/:bridgename/edit' : 'editBridge',
+
+        'tasks/:projectname' : 'taskList'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -86,8 +88,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         var app = this.startApp();
         app.ShowBridgeList( projectname );
         updateNavigationBar(  [
-            {   title : '桥梁管理',
-                url : 'bridges'
+            {   title : '项目管理',
+                url : 'projects'
             },
             {   title : projectname,
                 url : 'bridges/' + projectname
@@ -100,8 +102,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         var app = this.startApp();
         app.ShowBridgeDetail( projectname, bridgename );
         updateNavigationBar(  [
-            {   title : '桥梁管理',
-                url : 'bridges'
+            {   title : '项目管理',
+                url : 'projects'
             },
             {   title : projectname,
                 url : 'bridges/' + projectname
@@ -120,8 +122,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         var app = this.startApp();
         app.ShowBridgeEditor( projectname, bridgename );
         updateNavigationBar(  [
-            {   title : '桥梁管理',
-                url : 'bridges'
+            {   title : '项目管理',
+                url : 'projects'
             },
             {   title : projectname,
                 url : 'bridges/' + projectname
@@ -139,14 +141,28 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         var app = this.startApp();
         app.ShowNewBridgeForm( projectname );
         updateNavigationBar(  [
-            {   title : '桥梁管理',
-                url : 'bridges'
+            {   title : '项目管理',
+                url : 'projects'
             },
             {   title : projectname,
                 url : 'bridges/' + projectname
             },
             {   title : '新建',
                 url : ''
+            }
+        ] );
+    },
+
+    taskList : function ( projectname ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowTaskList(  );
+        updateNavigationBar(  [
+            {   title : '项目管理',
+                url : 'projects'
+            },
+            {   title : projectname,
+                url : 'bridges/' + projectname
             }
         ] );
     },

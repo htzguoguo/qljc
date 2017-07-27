@@ -8,11 +8,9 @@
             <th>项目名称</th>
             <th>项目编号</th>
             <th>路线等级</th>
-            <th>功能类型</th>
             <th>设计荷载</th>
-            <th width="15%">管养单位</th>
+            <th >管养单位</th>
             <th>创建日期</th>
-            <th>创建人</th>
             <th class="text-center">操作</th>
         </tr>
         </thead>
@@ -22,24 +20,27 @@
                     <td>{{projectname}}</td>
                     <td>{{projectnumber}}</td>
                     <td>{{roadgrade}}</td>
-                    <td>{{functiontype}}</td>
                     <td>{{shejihezai}}</td>
                     <td>{{manageunit}}</td>
                     <td>{{createtime}}</td>
-                    <td>{{creater}}</td>
                     <td class="text-center">
                         <ul class="icons-list">
-                            <li><a href="javascript:void(0)" class="project-edit" data-index="{{projectname}}"><i class=" icon-pencil5"></i> 编辑</a></li>
-                            <li><a href="javascript:void(0)" class="project-delete" data-index="{{projectname}}"><i class=" icon-cross3"></i> 删除</a></li>
-                           <!-- <li class="dropdown">
+                           <!-- <li class="text-primary-600"><a href="javascript:void(0)" class="project-edit" data-index="{{projectname}}"><i class=" icon-pencil5"></i> 编辑</a></li>
+                            <li class="text-primary-600"><a href="javascript:void(0)" class="project-delete" data-index="{{projectname}}"><i class=" icon-cross3"></i> 删除</a></li>
+                            <li class="text-primary-600"><a href="javascript:void(0)" class="project-bridge" data-index="{{projectname}}"><i class=" icon-construction"></i> 桥梁</a></li>
+                            -->
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="icon-menu9"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="javascript:void(0)" class="project-edit" data-index="{{projectnumber}}"><i class=" icon-pencil5"></i> 编辑</a></li>
-                                    <li><a href="javascript:void(0)" class="project-delete" data-index="{{projectnumber}}"><i class=" icon-cross3"></i> 删除</a></li>
+                                    <li class="text-primary-600"><a href="javascript:void(0)" class="project-edit" data-index="{{projectname}}"><i class=" icon-pencil5"></i> 编辑</a></li>
+                                    <li class="text-primary-600"><a href="javascript:void(0)" class="project-delete" data-index="{{projectname}}"><i class=" icon-cross3"></i> 删除</a></li>
+                                    <li class="text-primary-600"><a href="javascript:void(0)" class="project-bridge" data-index="{{projectname}}"><i class=" icon-construction"></i> 桥梁</a></li>
+                                    <li class="text-primary-600"><a href="javascript:void(0)" class="project-task" data-index="{{projectname}}"><i class=" icon-rating3"></i> 任务</a></li>
+
                                 </ul>
-                            </li>-->
+                            </li>
                         </ul>
                     </td>
                 </tr>

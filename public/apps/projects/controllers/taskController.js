@@ -1,28 +1,14 @@
 /**
- * Created by Administrator on 2017/7/21.
+ * Created by Administrator on 2017/7/26.
  */
 
 var BridgeList,
     Backbone = require( 'backbone' ),
-    Bridges = require( '../collections/bridges' ),
-    SuperStructureCollection = require( '../collections/superstructures' ),
-    LowerStructureCollection = require( '../collections/lowerstructures' ),
-    TechCollection = require( '../collections/techassessments' ),
-    EngCollection = require( '../collections/engrecords' ),
-    File_Upload = require( '../../../utils/file_upload' ),
+    TaskCollection = require( '../collections/tasks' ),
     App = require( '../../../utils/basecontroller' ),
     _ = require( 'underscore' ),
     ProjectListLayout = require( '../views/projectListLayout' ),
-    ProjectListActionBar = require( '../views/projectListAction' ),
-    BridgeListLayout = require( '../views/bridgeListLayout' ),
-    ProjectSidebar = require( '../views/projectSidebar' ),
-    BridgeTable = require( '../views/bridgeTable' ),
-    BridgePreview = require( '../views/bridgePreview' ),
-    BridgeForm = require( '../views/bridgeForm' ),
-    BridgeForm_superstructure_view = require( '../views/bridgeForm_superstructure_list' ),
-    BridgeForm_lowerstructure_view = require( '../views/bridgeForm_lowerstructure_list' ),
-    BridgeForm_Tech_view = require( '../views/bridgeForm_techassessment_list' ),
-    BridgeForm_Eng_view = require( '../views/bridgeForm_engrecord_list' )
+    TaskTable = require( '../views/taskTable' )
     ;
 
 
@@ -31,45 +17,13 @@ BridgeList = module.exports = function ( options ) {
     this.mainRegion = options.mainRegion;
     this.isNew = false;
     _.extend( this, Backbone.Events );
-    this.showList = function ( bridges, projectname  ) {
+    this.showList = function ( tasks, projectname  ) {
         var layout = new ProjectListLayout(),
-          /*  actionbar = new ProjectListActionBar(),*/
-          /*  bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : bridges } ),*/
-            me = this;
-
-      /*  projectSidebar.selectedproject = name;*/
-      /*  this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
-            var bridges = new Bridges();
-            bridges.fetch(
-                {
-                    data: $.param({ routename: num}),
-                    success : function ( collection ) {
-                        var bb = new BridgeTable( { collection : collection, projectname : num } );
-                        bridgeListLayout.getRegion( 'bridgelist' ).show( bb );
-                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
-                    },
-                    error : function () {
-
-                    }
-                }
-            );
-        } );*/
+            taskTable = new TaskTable( { collection : tasks, projectname : projectname }  );
 
         this.mainRegion.show( layout );
-        var bb = new BridgeTable( { collection : bridges, projectname : projectname } );
-        layout.getRegion( 'list' ).show( bb );
-        this.listenTo(  bb, 'item:bridge:delete', this.deleteBridge );
-     /*   bridgeListLayout.getRegion( 'bridgelist' ).show( bb );*/
-
-     /*   layout.getRegion( 'actions' ).show( actionbar );*/
-       /* layout.getRegion( 'list' ).show( bridgeListLayout );
-        bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
-        if ( !bridges || bridges.length === 0 ) {
-            var bt = new BridgeTable();
-            bridgeListLayout.getRegion( 'bridgelist' ).show( bt );
-            this.listenTo(  bt, 'item:bridge:delete', this.deleteBridge );
-        }*/
+        layout.getRegion( 'list' ).show( taskTable );
+        this.listenTo(  taskTable, 'item:task:delete', this.deleteBridge );
     };
 
     this.showBridgeDetail = function ( bridge ) {
@@ -79,7 +33,7 @@ BridgeList = module.exports = function ( options ) {
 
 
         this.mainRegion.show( layout );
-      /*  layout.getRegion( 'actions' ).show( actionbar );*/
+        /*  layout.getRegion( 'actions' ).show( actionbar );*/
         layout.getRegion( 'list' ).show( bridgePreview );
     };
 
@@ -105,7 +59,7 @@ BridgeList = module.exports = function ( options ) {
 
         this.isNew = bridge.isNew();
         this.mainRegion.show( layout );
-     /*   layout.getRegion( 'actions' ).show( actionbar );*/
+        /*   layout.getRegion( 'actions' ).show( actionbar );*/
         layout.getRegion( 'list' ).show( form );
         form.getRegion( 'superstructures' ).show( superstructures );
         form.getRegion( 'lowerstructures' ).show( lowerstructures );
@@ -255,4 +209,5 @@ BridgeList = module.exports = function ( options ) {
 };
 
 _.extend( BridgeList.prototype, App );
+
 
