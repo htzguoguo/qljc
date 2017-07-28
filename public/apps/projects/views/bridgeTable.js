@@ -70,7 +70,7 @@ View = module.exports = Backbone.View.extend( {
         $('.datatable-responsive').DataTable( {
             columnDefs: [{
                 orderable: false,
-                targets: [ 6 ]
+                targets: [ 8 ]
             }],
         } );
 
