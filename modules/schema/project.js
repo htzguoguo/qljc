@@ -22,6 +22,7 @@ var mongoose = require( 'mongoose' ),
         shejihezai : String,
         manageunit : String,
         creater : String,
+        latesttask : String,
         createtime : Date,
         status : String,
         memo : String
