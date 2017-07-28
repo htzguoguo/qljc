@@ -23,7 +23,8 @@ View = module.exports = Backbone.View.extend( {
         'click .bridge-new' : 'addBridge',
         'click .bridge-delete' : 'deleteBridge',
         'click .bridge-edit' : 'editBridge',
-        'click .bridge-preview' : 'previewBridge'
+        'click .bridge-preview' : 'previewBridge',
+        'click .return-to' : 'returnTo'
     },
     render : function () {
         var html;
@@ -54,6 +55,9 @@ View = module.exports = Backbone.View.extend( {
     addBridge : function () {
         "use strict";
         window.app.router.navigate( '/bridges/' + this.options.projectname + '/new', true );
+    },
+    returnTo : function () {
+        window.app.router.navigate( '/projects', true );
     },
     onShow : function () {
         // Table setup

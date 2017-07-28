@@ -23,7 +23,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'bridges/:projectname/:bridgename/edit' : 'editBridge',
 
         'tasks/:projectname' : 'taskList',
-        'tasks/:projectname/new' : 'createTask'
+        'tasks/:projectname/new' : 'createTask',
+        'tasks/:projectname/:taskename/edit' : 'editTask'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -179,6 +180,26 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
                 url : 'tasks/' + projectname
             },
             {   title : '新建',
+                url : ''
+            }
+        ] );
+    },
+
+    editTask : function ( projectname, taskname ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowTaskEditor( projectname, taskname );
+        updateNavigationBar(  [
+            {   title : '项目管理',
+                url : 'projects'
+            },
+            {   title : projectname,
+                url : 'tasks/' + projectname
+            },
+            {   title : taskname,
+                url : 'tasks/' + projectname + '/' + taskname + '/edit'
+            },
+            {   title : '编辑',
                 url : ''
             }
         ] );

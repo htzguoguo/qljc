@@ -166,24 +166,34 @@ App = function ( options ) {
                     var taskEditor = me.startController(TaskController);
                     taskEditor.showEditor( task );
             });
-
-
-      /*  bridges.fetch( {
-            data: $.param({ routename: name}),
-            success : function ( data ) {
-                var taskEditor = me.startController(TaskController);
-                taskEditor.showEditor( new TaskModel( {
-                    routenumber : data.get( 'projectnumber' ),
-                    routename : data.get( 'projectname' )
-                } )  );
-            },
-            error : function () {
-
-            }
-        } );*/
-
-
     };
+
+    this.ShowTaskEditor = function ( projectname, taskname ) {
+        var task = new TaskModel( { routename : projectname, taskname : taskname } ),
+            bridges = new BridgeCollection(),
+            me = this;
+        $.when( bridges.fetch( { data: $.param({ routename: projectname}) } ), task.fetch() )
+            .done(
+                function(bb , tt ) {
+                    var
+                        tts = tt[0],
+                        eet = tts.bridges,
+                        bbs = bb[0];
+                    bbs.forEach(
+                        function(obj) {
+                            eet.forEach( function ( ee ) {
+                                if ( ee.bridgename === obj.bridgename ) {
+                                    obj.checked = true;
+                                }
+                            } );
+                        }
+                        );
+                    task.set( 'bridges', bbs );
+                    var taskEditor = me.startController(TaskController);
+                    taskEditor.showEditor( task );
+                });
+    };
+
 };
 
 _.extend( App.prototype, AppBase );

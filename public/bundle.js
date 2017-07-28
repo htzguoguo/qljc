@@ -32725,24 +32725,34 @@ App = function ( options ) {
                     var taskEditor = me.startController(TaskController);
                     taskEditor.showEditor( task );
             });
-
-
-      /*  bridges.fetch( {
-            data: $.param({ routename: name}),
-            success : function ( data ) {
-                var taskEditor = me.startController(TaskController);
-                taskEditor.showEditor( new TaskModel( {
-                    routenumber : data.get( 'projectnumber' ),
-                    routename : data.get( 'projectname' )
-                } )  );
-            },
-            error : function () {
-
-            }
-        } );*/
-
-
     };
+
+    this.ShowTaskEditor = function ( projectname, taskname ) {
+        var task = new TaskModel( { routename : projectname, taskname : taskname } ),
+            bridges = new BridgeCollection(),
+            me = this;
+        $.when( bridges.fetch( { data: $.param({ routename: projectname}) } ), task.fetch() )
+            .done(
+                function(bb , tt ) {
+                    var
+                        tts = tt[0],
+                        eet = tts.bridges,
+                        bbs = bb[0];
+                    bbs.forEach(
+                        function(obj) {
+                            eet.forEach( function ( ee ) {
+                                if ( ee.bridgename === obj.bridgename ) {
+                                    obj.checked = true;
+                                }
+                            } );
+                        }
+                        );
+                    task.set( 'bridges', bbs );
+                    var taskEditor = me.startController(TaskController);
+                    taskEditor.showEditor( task );
+                });
+    };
+
 };
 
 _.extend( App.prototype, AppBase );
@@ -33213,7 +33223,7 @@ _.extend( ProjectList.prototype, App );
  * Created by Administrator on 2017/7/26.
  */
 
-var BridgeList,
+var TaskList,
     Backbone = require( 'backbone' ),
     TaskCollection = require( '../collections/tasks' ),
     App = require( '../../../utils/basecontroller' ),
@@ -33224,7 +33234,7 @@ var BridgeList,
     ;
 
 
-BridgeList = module.exports = function ( options ) {
+TaskList = module.exports = function ( options ) {
     "use strict";
     this.mainRegion = options.mainRegion;
     this.isNew = false;
@@ -33232,11 +33242,9 @@ BridgeList = module.exports = function ( options ) {
     this.showList = function ( tasks, projectname  ) {
         var layout = new ProjectListLayout(),
             taskTable = new TaskTable( { collection : tasks, projectname : projectname }  );
-
-
         this.mainRegion.show( layout );
         layout.getRegion( 'list' ).show( taskTable );
-        this.listenTo(  taskTable, 'item:task:delete', this.deleteBridge );
+        this.listenTo(  taskTable, 'item:task:delete', this.deleteTask );
     };
 
     this.showEditor = function ( task ) {
@@ -33293,10 +33301,30 @@ BridgeList = module.exports = function ( options ) {
             }});
     };
 
+    this.deleteTask = function ( task ) {
+        console.log( 'deleteTask' );
+        var app = this,
+            routename = task.get( 'routename' );
+        this.askConfirmation( '确认要删除检测任务', false,  function ( isConfirm ) {
+            if ( isConfirm ) {
+                bridge.destroy( {
+                    success : function () {
+                        app.successMessage( '删除检测任务完成' );
 
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/tasks/' + routename , {trigger: true} );
+                        /* Backbone.history.loadUrl(Backbone.history.fragment);*/
+                    },
+                    error : function () {
+                        app.errorMessage( '删除操作没有成功' );
+                    }
+                } );
+            }
+        } );
+    };
 };
 
-_.extend( BridgeList.prototype, App );
+_.extend( TaskList.prototype, App );
 
 
 
@@ -33620,7 +33648,8 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'bridges/:projectname/:bridgename/edit' : 'editBridge',
 
         'tasks/:projectname' : 'taskList',
-        'tasks/:projectname/new' : 'createTask'
+        'tasks/:projectname/new' : 'createTask',
+        'tasks/:projectname/:taskename/edit' : 'editTask'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -33776,6 +33805,26 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
                 url : 'tasks/' + projectname
             },
             {   title : '新建',
+                url : ''
+            }
+        ] );
+    },
+
+    editTask : function ( projectname, taskname ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowTaskEditor( projectname, taskname );
+        updateNavigationBar(  [
+            {   title : '项目管理',
+                url : 'projects'
+            },
+            {   title : projectname,
+                url : 'tasks/' + projectname
+            },
+            {   title : taskname,
+                url : 'tasks/' + projectname + '/' + taskname + '/edit'
+            },
+            {   title : '编辑',
                 url : ''
             }
         ] );
@@ -34158,7 +34207,7 @@ View = module.exports = ModelView.extend( {
 var Backbone = require('backbone'),
     Mustache = require('mustache'),
     _ = require('underscore'),
-    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple bridge-new\"><i class=\"icon-plus3 position-left\"></i>创建桥梁</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>桥梁名称</th>\r\n        <th>桥梁编号</th>\r\n        <th>中心桩号</th>\r\n        <th>功能类型</th>\r\n        <th>设计荷载</th>\r\n\r\n\r\n        <th>管养单位</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{bridgename}}</td>\r\n        <td>{{bridgenumber}}</td>\r\n        <td>{{centerstation}}</td>\r\n        <td>{{functiontype}}</td>\r\n        <td>{{designload}}</td>\r\n        <td>{{custodyunit}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n             <!--   <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n-->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
+    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-info legitRipple return-to\"><i class=\"icon-rotate-ccw2 position-left\"></i>返回</button>\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple bridge-new\"><i class=\"icon-plus3 position-left\"></i>创建桥梁</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>桥梁名称</th>\r\n        <th>桥梁编号</th>\r\n        <th>中心桩号</th>\r\n        <th>功能类型</th>\r\n        <th>设计荷载</th>\r\n\r\n\r\n        <th>管养单位</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{bridgename}}</td>\r\n        <td>{{bridgenumber}}</td>\r\n        <td>{{centerstation}}</td>\r\n        <td>{{functiontype}}</td>\r\n        <td>{{designload}}</td>\r\n        <td>{{custodyunit}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i  ></i> 详细</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 编辑</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 删除</a></li>\r\n\r\n              <!--  <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>-->\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
     View;
 
 View = module.exports = Backbone.View.extend( {
@@ -34171,7 +34220,8 @@ View = module.exports = Backbone.View.extend( {
         'click .bridge-new' : 'addBridge',
         'click .bridge-delete' : 'deleteBridge',
         'click .bridge-edit' : 'editBridge',
-        'click .bridge-preview' : 'previewBridge'
+        'click .bridge-preview' : 'previewBridge',
+        'click .return-to' : 'returnTo'
     },
     render : function () {
         var html;
@@ -34202,6 +34252,9 @@ View = module.exports = Backbone.View.extend( {
     addBridge : function () {
         "use strict";
         window.app.router.navigate( '/bridges/' + this.options.projectname + '/new', true );
+    },
+    returnTo : function () {
+        window.app.router.navigate( '/projects', true );
     },
     onShow : function () {
         // Table setup
@@ -34371,7 +34424,7 @@ View = module.exports = Backbone.View.extend( {
  */
 var Backbone = require('backbone'),
     Mustache = require('mustache'),
-    template = "    <div class=\"panel-body\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createproject\"><i class=\"icon-plus3 position-left\"></i>创建检测项目</button>\r\n    </div>\r\n\r\n    <table class=\"table datatable-responsive\">\r\n        <thead>\r\n        <tr>\r\n            <th>项目名称</th>\r\n            <th>项目编号</th>\r\n            <th>路线等级</th>\r\n            <th>设计荷载</th>\r\n            <th >管养单位</th>\r\n            <th>创建日期</th>\r\n            <th class=\"text-center\">操作</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n            {{#items}}\r\n                <tr>\r\n                    <td>{{projectname}}</td>\r\n                    <td>{{projectnumber}}</td>\r\n                    <td>{{roadgrade}}</td>\r\n                    <td>{{shejihezai}}</td>\r\n                    <td>{{manageunit}}</td>\r\n                    <td>{{createtime}}</td>\r\n                    <td class=\"text-center\">\r\n                        <ul class=\"icons-list\">\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectname}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectname}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-bridge\" data-index=\"{{projectname}}\"><i class=\" icon-construction\"></i> 桥梁</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-task\" data-index=\"{{projectname}}\"><i class=\" icon-rating3\"></i> 任务</a></li>\r\n\r\n                           <!-- <li class=\"dropdown\">\r\n                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                    <i class=\"icon-menu9\"></i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu dropdown-menu-right\">\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectname}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectname}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-bridge\" data-index=\"{{projectname}}\"><i class=\" icon-construction\"></i> 桥梁</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-task\" data-index=\"{{projectname}}\"><i class=\" icon-rating3\"></i> 任务</a></li>\r\n\r\n                                </ul>\r\n                            </li>-->\r\n                        </ul>\r\n                    </td>\r\n                </tr>\r\n            {{/items}}\r\n        </tbody>\r\n    </table>\r\n",
+    template = "    <div class=\"panel-body\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createproject\"><i class=\"icon-plus3 position-left\"></i>创建检测项目</button>\r\n    </div>\r\n\r\n    <table class=\"table datatable-responsive\">\r\n        <thead>\r\n        <tr>\r\n            <th>项目名称</th>\r\n            <th>项目编号</th>\r\n            <th>路线等级</th>\r\n            <th>设计荷载</th>\r\n            <th >管养单位</th>\r\n            <th>创建日期</th>\r\n            <th class=\"text-center\">操作</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n            {{#items}}\r\n                <tr>\r\n                    <td>{{projectname}}</td>\r\n                    <td>{{projectnumber}}</td>\r\n                    <td>{{roadgrade}}</td>\r\n                    <td>{{shejihezai}}</td>\r\n                    <td>{{manageunit}}</td>\r\n                    <td>{{createtime}}</td>\r\n                    <td class=\"text-center\">\r\n                        <ul class=\"icons-list\">\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectname}}\"><i ></i> 编辑</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectname}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 删除</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-bridge\" data-index=\"{{projectname}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 桥梁</a></li>\r\n                            <li ><a href=\"javascript:void(0)\" class=\"project-task\" data-index=\"{{projectname}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 任务</a></li>\r\n\r\n                           <!-- <li class=\"dropdown\">\r\n                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                    <i class=\"icon-menu9\"></i>\r\n                                </a>\r\n                                <ul class=\"dropdown-menu dropdown-menu-right\">\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-edit\" data-index=\"{{projectname}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-delete\" data-index=\"{{projectname}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-bridge\" data-index=\"{{projectname}}\"><i class=\" icon-construction\"></i> 桥梁</a></li>\r\n                                    <li class=\"text-primary-600\"><a href=\"javascript:void(0)\" class=\"project-task\" data-index=\"{{projectname}}\"><i class=\" icon-rating3\"></i> 任务</a></li>\r\n\r\n                                </ul>\r\n                            </li>-->\r\n                        </ul>\r\n                    </td>\r\n                </tr>\r\n            {{/items}}\r\n        </tbody>\r\n    </table>\r\n",
     View;
 
 View = module.exports = Backbone.View.extend( {
@@ -34514,7 +34567,7 @@ View = module.exports = ModelView.extend( {
 
 var Backbone = require('backbone'),
     Mustache = require('mustache'),
-    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createtask\"><i class=\"icon-plus3 position-left\"></i>创建检测任务</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>任务名称</th>\r\n        <th>任务编号</th>\r\n        <th>创建人</th>\r\n        <th>创建时间</th>\r\n        <th>状态</th>\r\n\r\n\r\n        <th>备注</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{taskname}}</td>\r\n        <td>{{tasknumber}}</td>\r\n        <td>{{creator}}</td>\r\n        <td>{{createtime}}</td>\r\n        <td>{{status}}</td>\r\n        <td>{{memo}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n                <!--   <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                   <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                   <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n   -->\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-preview\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-edit\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"bridge-delete\" data-project=\"{{routename}}\" data-index=\"{{bridgename}}\"><i class=\" icon-cross3\"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
+    template = "<div class=\"panel-heading\">\r\n    <h6 class=\"panel-title\"> 当前项目： <span class=\"text-primary\"></span></h6>\r\n    <div class=\"heading-elements\">\r\n        <button type=\"button\" class=\"btn btn-info legitRipple return-to\"><i class=\"icon-rotate-ccw2 position-left\"></i>返回</button>\r\n        <button type=\"button\" class=\"btn btn-primary legitRipple createtask\"><i class=\"icon-plus3 position-left\"></i>创建检测任务</button>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<table class=\"table datatable-responsive\">\r\n    <thead>\r\n    <tr>\r\n        <th>任务名称</th>\r\n        <th>任务编号</th>\r\n        <th>创建人</th>\r\n        <th>创建时间</th>\r\n        <th>状态</th>\r\n\r\n\r\n        <th>备注</th>\r\n        <th class=\"text-center\">操作</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    {{#items}}\r\n    <tr>\r\n        <td>{{taskname}}</td>\r\n        <td>{{tasknumber}}</td>\r\n        <td>{{creator}}</td>\r\n        <td>{{createtime}}</td>\r\n        <td>{{status}}</td>\r\n        <td>{{memo}}</td>\r\n        <td class=\"text-center\">\r\n            <ul class=\"icons-list\">\r\n\r\n                <li><a href=\"javascript:void(0)\" class=\"task-preview\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i   ></i> 详细</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"task-edit\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 编辑</a></li>\r\n                <li><a href=\"javascript:void(0)\" class=\"task-delete\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i  style=\"border-left: 1px solid black;padding-right: 5px;\"></i> 删除</a></li>\r\n\r\n\r\n             <!--   <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">\r\n                        <i class=\"icon-menu9\"></i>\r\n                    </a>\r\n                    <ul class=\"dropdown-menu dropdown-menu-right\">\r\n                        <li><a href=\"javascript:void(0)\" class=\"task-preview\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i class=\"icon-search4\"></i> 详细</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"task-edit\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i class=\" icon-pencil5\"></i> 编辑</a></li>\r\n                        <li><a href=\"javascript:void(0)\" class=\"task-delete\" data-project=\"{{routename}}\" data-index=\"{{taskname}}\"><i class=\" icon-cross3 \"></i> 删除</a></li>\r\n\r\n                    </ul>\r\n                </li>-->\r\n            </ul>\r\n        </td>\r\n    </tr>\r\n    {{/items}}\r\n    </tbody>\r\n</table>\r\n",
     View;
 
 View = module.exports = Backbone.View.extend( {
@@ -34523,7 +34576,8 @@ View = module.exports = Backbone.View.extend( {
     events : {
         'click .createtask' : 'addTask',
         'click .task-delete' : 'deleteTask',
-        'click .task-edit' : 'editTask'
+        'click .task-edit' : 'editTask',
+        'click .return-to' : 'returnTo'
     },
     initialize: function( attrs ) {
         this.options = attrs;
@@ -34534,18 +34588,23 @@ View = module.exports = Backbone.View.extend( {
         return this;
     },
     deleteTask : function ( ev ) {
+
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
+        console.log( num, this.collection.get( num ) );
         this.trigger( 'item:task:delete',  this.collection.get( num ) );
     },
     editTask : function ( ev ) {
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
-        window.app.router.navigate( 'projects/edit/' +  num , true );
+        window.app.router.navigate( 'tasks/' + this.options.projectname +  '/' +  num  + '/edit', true );
     },
     addTask : function () {
         "use strict";
         window.app.router.navigate( '/tasks/' + this.options.projectname + '/new', true );
+    },
+    returnTo : function () {
+        window.app.router.navigate( '/projects', true );
     },
     onShow : function () {
         // Table setup
@@ -34558,7 +34617,7 @@ View = module.exports = Backbone.View.extend( {
         $('.datatable-responsive').DataTable( {
             columnDefs: [{
                 orderable: false,
-                targets: [ 8 ]
+                targets: [ 6 ]
             }],
         } );
 

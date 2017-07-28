@@ -14,7 +14,8 @@ View = module.exports = Backbone.View.extend( {
     events : {
         'click .createtask' : 'addTask',
         'click .task-delete' : 'deleteTask',
-        'click .task-edit' : 'editTask'
+        'click .task-edit' : 'editTask',
+        'click .return-to' : 'returnTo'
     },
     initialize: function( attrs ) {
         this.options = attrs;
@@ -25,18 +26,23 @@ View = module.exports = Backbone.View.extend( {
         return this;
     },
     deleteTask : function ( ev ) {
+
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
+        console.log( num, this.collection.get( num ) );
         this.trigger( 'item:task:delete',  this.collection.get( num ) );
     },
     editTask : function ( ev ) {
         "use strict";
         var num = this.$(ev.currentTarget).data('index');
-        window.app.router.navigate( 'projects/edit/' +  num , true );
+        window.app.router.navigate( 'tasks/' + this.options.projectname +  '/' +  num  + '/edit', true );
     },
     addTask : function () {
         "use strict";
         window.app.router.navigate( '/tasks/' + this.options.projectname + '/new', true );
+    },
+    returnTo : function () {
+        window.app.router.navigate( '/projects', true );
     },
     onShow : function () {
         // Table setup
@@ -49,7 +55,7 @@ View = module.exports = Backbone.View.extend( {
         $('.datatable-responsive').DataTable( {
             columnDefs: [{
                 orderable: false,
-                targets: [ 8 ]
+                targets: [ 6 ]
             }],
         } );
 

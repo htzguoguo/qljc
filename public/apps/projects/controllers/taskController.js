@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/7/26.
  */
 
-var BridgeList,
+var TaskList,
     Backbone = require( 'backbone' ),
     TaskCollection = require( '../collections/tasks' ),
     App = require( '../../../utils/basecontroller' ),
@@ -13,7 +13,7 @@ var BridgeList,
     ;
 
 
-BridgeList = module.exports = function ( options ) {
+TaskList = module.exports = function ( options ) {
     "use strict";
     this.mainRegion = options.mainRegion;
     this.isNew = false;
@@ -21,11 +21,9 @@ BridgeList = module.exports = function ( options ) {
     this.showList = function ( tasks, projectname  ) {
         var layout = new ProjectListLayout(),
             taskTable = new TaskTable( { collection : tasks, projectname : projectname }  );
-
-
         this.mainRegion.show( layout );
         layout.getRegion( 'list' ).show( taskTable );
-        this.listenTo(  taskTable, 'item:task:delete', this.deleteBridge );
+        this.listenTo(  taskTable, 'item:task:delete', this.deleteTask );
     };
 
     this.showEditor = function ( task ) {
@@ -82,9 +80,29 @@ BridgeList = module.exports = function ( options ) {
             }});
     };
 
+    this.deleteTask = function ( task ) {
+        console.log( 'deleteTask' );
+        var app = this,
+            routename = task.get( 'routename' );
+        this.askConfirmation( '确认要删除检测任务', false,  function ( isConfirm ) {
+            if ( isConfirm ) {
+                bridge.destroy( {
+                    success : function () {
+                        app.successMessage( '删除检测任务完成' );
 
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/tasks/' + routename , {trigger: true} );
+                        /* Backbone.history.loadUrl(Backbone.history.fragment);*/
+                    },
+                    error : function () {
+                        app.errorMessage( '删除操作没有成功' );
+                    }
+                } );
+            }
+        } );
+    };
 };
 
-_.extend( BridgeList.prototype, App );
+_.extend( TaskList.prototype, App );
 
 
