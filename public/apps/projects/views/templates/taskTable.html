@@ -11,11 +11,13 @@
 <table class="table datatable-responsive">
     <thead>
     <tr>
+        <th>序号</th>
         <th>任务名称</th>
         <th>任务编号</th>
+        <th>检测类型</th>
         <th>创建人</th>
         <th>创建时间</th>
-        <th>状态</th>
+
 
 
         <th>备注</th>
@@ -25,11 +27,12 @@
     <tbody>
     {{#items}}
     <tr>
+        <td>{{index}}</td>
         <td>{{taskname}}</td>
         <td>{{tasknumber}}</td>
+        <td>{{detectiontype}}</td>
         <td>{{creator}}</td>
         <td>{{createtime}}</td>
-        <td>{{status}}</td>
         <td>{{memo}}</td>
         <td class="text-center">
             <ul class="icons-list">
@@ -54,5 +57,6 @@
         </td>
     </tr>
     {{/items}}
+    {{resetIndex}}
     </tbody>
 </table>

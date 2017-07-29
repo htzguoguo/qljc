@@ -15,12 +15,27 @@ Bridge = module.exports = Backbone.Model.extend(
         },
         toJSON : function () {
             var result = Backbone.Model.prototype.toJSON.call( this );
+            this.initFillDate( result );
+            this.initStructures( result );
+            this.initBridgeRating( result );
+            return result;
+        },
+        initBridgeRating : function ( result ) {
+            var rat = this.get( 'technicalstatusassessment' );
+            if (  _.isArray( rat ) && rat.length > 0 ) {
+                console.log( rat );
+                result.bridgerating = rat[ rat.length - 1 ].bridgerating;
+            }
+        },
+        initFillDate : function ( result ) {
             if ( ! _.isEmpty( this.get( 'filldate' ) ) ) {
                 var  dt = new Date(Date.parse(this.get( 'filldate' ))) ;
                 if ( dt && _.isDate( dt ) ) {
                     result.filldate = dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate();
                 }
             }
+        },
+        initStructures : function ( result ) {
             var above = this.get( 'superstructure' ) || [];
             var blower = this.get( 'lowerstructure' ) || [];
             var i, len, data;
@@ -62,7 +77,6 @@ Bridge = module.exports = Backbone.Model.extend(
                 }
                 result.structures[ i ] = data;
             }
-            return result;
         },
         validation : {
             bridgename : {

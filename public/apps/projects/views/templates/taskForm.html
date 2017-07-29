@@ -16,9 +16,9 @@
             <form class="form-horizontal">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="routenumber" class="col-sm-4 control-label">路线编号</label>
+                        <label for="routename" class="col-sm-4 control-label">路线名称</label>
                         <div class="col-sm-8">
-                            <input id="routenumber" name="routenumber" type="text" class="form-control" placeholder="S6" value="{{routenumber}}" readonly/>
+                            <input id="routename" name="routename" type="text" class="form-control" placeholder="" value="{{routename}}"  readonly/>
                         </div>
                     </div>
 
@@ -38,9 +38,16 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="routename" class="col-sm-4 control-label">路线名称</label>
+                        <label for="detectiontype" class="col-sm-4 control-label">检测类型</label>
                         <div class="col-sm-8">
-                            <input id="routename" name="routename" type="text" class="form-control" placeholder="" value="{{routename}}"  readonly/>
+                           <!-- <input id="detectiontype" name="detectiontype" type="text" class="form-control" placeholder="" value="{{detectiontype}}"  />
+                           -->
+                            <select id="detectiontype" name="detectiontype" class="form-control" value="{{detectiontype}}" >
+                                <option value="经常性检查">经常性检查</option>
+                                <option value="定期检查">定期检查</option>
+                                <option value="特殊检查">特殊检查</option>
+                                <option value="专项检查">专项检查</option>
+                            </select>
                         </div>
                     </div>
 

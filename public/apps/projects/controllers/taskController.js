@@ -86,7 +86,7 @@ TaskList = module.exports = function ( options ) {
             routename = task.get( 'routename' );
         this.askConfirmation( '确认要删除检测任务', false,  function ( isConfirm ) {
             if ( isConfirm ) {
-                bridge.destroy( {
+                task.destroy( {
                     success : function () {
                         app.successMessage( '删除检测任务完成' );
 

@@ -19,6 +19,7 @@ var mongoose = require( 'mongoose' ),
         },
         routename : String,
         routenumber : String,
+        detectiontype : String,
         creator : String,
         createtime : Date,
         bridges : [

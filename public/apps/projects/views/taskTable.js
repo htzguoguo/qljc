@@ -21,7 +21,18 @@ View = module.exports = Backbone.View.extend( {
         this.options = attrs;
     },
     render : function () {
-        var html = Mustache.to_html( this.template, { items : this.collection.toJSON() } );
+        var data = {
+            items:  this.collection.toJSON(),
+            index: function() {
+                return ++window['INDEX']||(window['INDEX']=1);
+            }
+            , resetIndex: function() {
+            window['INDEX']=null;
+            return;
+        }
+        };
+
+        var html = Mustache.to_html( this.template, data );
         this.$el.html( html );
         return this;
     },

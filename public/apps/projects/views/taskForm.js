@@ -17,6 +17,8 @@ View = module.exports = ModelView.extend( {
         'click .cancel' : 'cancel',
         'keyup input[type=text]' : 'inputChanged',
         'change input[type=text]' : 'inputChanged',
+        'keyup select' : 'inputChanged',
+        'change select' : 'inputChanged',
         'click .project-list' : 'toProject',
         'click .bridge-list' : 'toBridge',
         'click .bridges-selectall' : 'selectAll',

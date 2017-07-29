@@ -11,6 +11,7 @@ Task = module.exports = Backbone.Model.extend(
         urlRoot : 'api/v1/tasks',
         idAttribute: 'taskname',
         defaults : {
+            detectiontype : '经常性检查',
             createtime : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()
         },
         toJSON : function () {
