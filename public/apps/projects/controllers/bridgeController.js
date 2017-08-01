@@ -32,44 +32,12 @@ BridgeList = module.exports = function ( options ) {
     this.isNew = false;
     _.extend( this, Backbone.Events );
     this.showList = function ( bridges, projectname  ) {
-        var layout = new ProjectListLayout(),
-          /*  actionbar = new ProjectListActionBar(),*/
-          /*  bridgeListLayout = new BridgeListLayout(),
-            projectSidebar = new ProjectSidebar( { collection : bridges } ),*/
-            me = this;
-
-      /*  projectSidebar.selectedproject = name;*/
-      /*  this.listenTo( projectSidebar, 'item:project:select',  function ( num ) {
-            var bridges = new Bridges();
-            bridges.fetch(
-                {
-                    data: $.param({ routename: num}),
-                    success : function ( collection ) {
-                        var bb = new BridgeTable( { collection : collection, projectname : num } );
-                        bridgeListLayout.getRegion( 'bridgelist' ).show( bb );
-                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
-                    },
-                    error : function () {
-
-                    }
-                }
-            );
-        } );*/
+        var layout = new ProjectListLayout();
 
         this.mainRegion.show( layout );
         var bb = new BridgeTable( { collection : bridges, projectname : projectname } );
         layout.getRegion( 'list' ).show( bb );
         this.listenTo(  bb, 'item:bridge:delete', this.deleteBridge );
-     /*   bridgeListLayout.getRegion( 'bridgelist' ).show( bb );*/
-
-     /*   layout.getRegion( 'actions' ).show( actionbar );*/
-       /* layout.getRegion( 'list' ).show( bridgeListLayout );
-        bridgeListLayout.getRegion( 'projectslist' ).show( projectSidebar );
-        if ( !bridges || bridges.length === 0 ) {
-            var bt = new BridgeTable();
-            bridgeListLayout.getRegion( 'bridgelist' ).show( bt );
-            this.listenTo(  bt, 'item:bridge:delete', this.deleteBridge );
-        }*/
     };
 
     this.showBridgeDetail = function ( bridge ) {
@@ -167,13 +135,13 @@ BridgeList = module.exports = function ( options ) {
     this.cancel = function ( bridge ) {
         var msg = '';
         if ( this.isNew ) {
-            msg = '确定要取消创建检测项目';
+            msg = '确定要取消创建检测桥梁';
         }else {
-            msg = '确定要取消编辑检测项目';
+            msg = '确定要取消编辑检测桥梁';
         }
         this.askConfirmation( msg, true, function ( isConfirm ) {
             if ( isConfirm ) {
-                window.app.router.navigate( '/bridges/' + bridge.get( 'routename' ) , true );
+                window.app.router.navigate( '/bridges', true );
             }
         } );
     };
@@ -210,7 +178,7 @@ BridgeList = module.exports = function ( options ) {
         }
         function notifyAndRedirect( msg ) {
             me.notifySuccess( msg );
-            window.app.router.navigate( '/bridges/' + bridge.get( 'routename' ), true );
+            window.app.router.navigate( '/bridges'  , true );
         }
         bridge.save( null , {
             success : function () {
@@ -241,8 +209,8 @@ BridgeList = module.exports = function ( options ) {
                     success : function () {
                         app.successMessage( '删除桥梁完成' );
 
-                        window.app.router.navigate( '/', {trigger: true} );
-                        window.app.router.navigate( '/bridges/' + routename , {trigger: true} );
+                        window.app.router.navigate( '/bridges/22' , {trigger: false} );
+                        window.app.router.navigate( '/bridges'  , {trigger: true} );
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {

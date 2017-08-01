@@ -37,9 +37,9 @@ View = module.exports = Backbone.View.extend( {
         return this;
     },
     previewBridge : function ( ev ) {
-        var bridgename = this.$(ev.currentTarget).data('index'),
-            routename = this.$(ev.currentTarget).data('project');
-        window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/view', true );
+        var id = this.$(ev.currentTarget).data('index'),
+            bridgename = this.$(ev.currentTarget).data('bridge');
+        window.app.router.navigate( 'bridges/' + bridgename + '/' + id + '/view', true );
     },
     deleteBridge : function ( ev ) {
         "use strict";
@@ -48,13 +48,13 @@ View = module.exports = Backbone.View.extend( {
     },
     editBridge : function ( ev ) {
         "use strict";
-        var bridgename = this.$(ev.currentTarget).data('index'),
-            routename = this.$(ev.currentTarget).data('project');
-        window.app.router.navigate( 'bridges/' + routename + '/' + bridgename + '/edit', true );
+        var id = this.$(ev.currentTarget).data('index'),
+            bridgename = this.$(ev.currentTarget).data('bridge');
+        window.app.router.navigate( 'bridges/' + bridgename + '/' + id + '/edit', true );
     },
     addBridge : function () {
         "use strict";
-        window.app.router.navigate( '/bridges/' + this.options.projectname + '/new', true );
+        window.app.router.navigate( '/bridges/bridge/new', true );
     },
     returnTo : function () {
         window.app.router.navigate( '/projects', true );
@@ -64,7 +64,7 @@ View = module.exports = Backbone.View.extend( {
         // ------------------------------
         // Setting datatable defaults
         // Basic responsive configuration
-        $( '.text-primary' ).html( this.options.projectname );
+      /*  $( '.text-primary' ).html( this.options.projectname );*/
 
         // Basic responsive configuration
         $('.datatable-responsive').DataTable( {

@@ -28,11 +28,11 @@ ProjectList = module.exports = function ( options ) {
 
     this.showEditor = function ( project ) {
         var layout = new ProjectListLayout(),
-            actionbar = new ProjectListActionBar(),
             form = new ProjectForm( { model : project } );
+
+        console.log( 'showEditor', project.bridges );
         this.isNew = project.isNew();
         this.mainRegion.show( layout );
-      /*  layout.getRegion( 'actions' ).show( actionbar );*/
         layout.getRegion( 'list' ).show( form );
         this.listenTo( form, 'form:cancel', this.cancel );
         this.listenTo( form, 'form:save', this.saveProject );
@@ -61,6 +61,7 @@ ProjectList = module.exports = function ( options ) {
             me.notifySuccess( msg );
             window.app.router.navigate( '/projects', true );
         }
+
         project.save( null , {
             success : function () {
                     if ( me.isNew ) {

@@ -22,6 +22,13 @@ var mongoose = require( 'mongoose' ),
         shejihezai : String,
         manageunit : String,
         creater : String,
+        bridges : [
+            {
+                id : String,
+                bridgename : String,
+                custodyunit : String
+            }
+        ],
         latesttask : String,
         createtime : Date,
         status : String,

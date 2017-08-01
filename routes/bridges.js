@@ -30,9 +30,9 @@ router.get( '/', function ( req, res, next ) {
     }
 } );
 
-router.get( '/:number', function ( req, res, next ) {
+router.get( '/:id', function ( req, res, next ) {
     "use strict";
-    bridges.query( req.params.number, res );
+    bridges.query( req.params.id, res );
 
 } );
 
@@ -41,14 +41,14 @@ router.post( '/', function ( req, res, next ) {
     bridges.update( req.body,  res);
 } );
 
-router.put( '/:name', function ( req, res, next ) {
+router.put( '/:id', function ( req, res, next ) {
     "use strict";
     bridges.update( req.body,  res);
 } );
 
-router.delete( '/:name', function ( req, res, next ) {
+router.delete( '/:id', function ( req, res, next ) {
     "use strict";
-    bridges.remove( req.params.name, res);
+    bridges.remove( req.params.id, res);
 } );
 
 module.exports = router;

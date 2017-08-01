@@ -10,8 +10,14 @@ Project = module.exports = Backbone.Model.extend(
     {
         urlRoot : 'api/v1/projects',
         idAttribute: 'projectname',
+        brs : {},
+        bridges : [],
         defaults : {
             createtime : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()
+        },
+        initialize : function () {
+            this.bridges = [];
+            this.brs = {};
         },
         toJSON : function () {
             var result = Backbone.Model.prototype.toJSON.call( this );
@@ -22,6 +28,78 @@ Project = module.exports = Backbone.Model.extend(
                 }
             }
             return result;
+        },
+        setDefaultBridges : function ( bridges )  {
+            var   units = [], custodyunit, bm, me = this;
+                _.each(bridges, function( bridge ) {
+                custodyunit = bridge['custodyunit'];
+                if (  custodyunit ) {
+                    bm = { id : bridge['id'], bridgename : bridge['bridgename'], custodyunit : bridge['custodyunit'], checked : false };
+                    if ( units.indexOf( custodyunit ) === -1 ) {
+                        units.push( custodyunit );
+                        me.brs[ custodyunit ] = [ bm ];
+                    }else {
+                        me.brs[ custodyunit ].push( bm );
+                    }
+                }
+            } );
+            this.set( 'units', units );
+        },
+        selectBridges : function ( unit ,items ) {
+            var i1, len1 = items.length, items2, i2, len2;
+            items2 = this.brs[ unit ];
+            len2 = items2.length;
+            for ( i1 = 0; i1 < len1; i1++ ) {
+
+                for ( i2 = 0; i2 < len2; i2++ ) {
+                    if ( items[i1].id === items2[ i2 ].id ) {
+                        items2[ i2 ].checked = true;
+                        break;
+                    }
+                }
+            }
+        },
+        unselectBridges : function ( unit ,items ) {
+            var i1, len1 = items.length, items2, i2, len2;
+            items2 = this.brs[ unit ];
+            len2 = items2.length;
+            for ( i1 = 0; i1 < len1; i1++ ) {
+
+                for ( i2 = 0; i2 < len2; i2++ ) {
+                    if ( items[i1].id === items2[ i2 ].id ) {
+                        items2[ i2 ].checked = false;
+                        break;
+                    }
+                }
+            }
+        },
+        addDefaultBridges : function ( items ) {
+            var i1, len1 = items.length, i2, len2, found =false;
+            for ( i1 = 0; i1 < len1; i1++ ) {
+                len2 = this.bridges.length;
+                found = false;
+                for ( i2 = 0; i2 < len2; i2++ ) {
+                    if ( items[i1].id === this.bridges[ i2 ].id ) {
+                         found = true;
+                        break;
+                    }
+                }
+                if ( ! found ) {
+                    this.bridges.push( items[ i1 ] );
+                }
+            }
+        },
+        removeDefaultBridges : function ( items ) {
+            var i1, len1 = items.length, i2, len2;
+            for ( i1 = 0; i1 < len1; i1++ ) {
+                len2 = this.bridges.length;
+                for ( i2 = 0; i2 < len2; i2++ ) {
+                    if ( items[i1].id === this.bridges[ i2 ].id ) {
+                        this.bridges.splice( i2, 1 ) ;
+                        break;
+                    }
+                }
+            }
         },
         validation : {
             projectname : {

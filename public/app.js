@@ -12,6 +12,8 @@ var BackBone = require( 'backbone' ),
     DefaultRouter = null,
     Application = null;
 
+require( './assets/js/core/app' );
+
 
 
 Application = {
@@ -54,7 +56,7 @@ Application = {
 
         this.currentSubapp = new SubApplication( { bodyRegion : this.bodyRegion ,mainRegion : this.mainRegion } );
 
-        require( './assets/js/core/app' );
+
 
         return this.currentSubapp;
     }
@@ -156,6 +158,12 @@ _.extend( BackboneValidation.callbacks, {
 
 
 module.exports = Application;
+
+function containerHeight() {
+    var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
+
+    $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
+}
 
 
 

@@ -32,9 +32,14 @@ $(function() {
 
     // Calculate min height
     function containerHeight() {
-        var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
+        if ( $('.page-container') && $('.page-container').length > 0 ) {
 
-        $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
+           /* var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
+*/
+            var availableHeight = $(window).height() - $('.page-container').offset().top ;
+
+            $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
+        }
     }
 
     // Initialize
@@ -563,6 +568,8 @@ $(function() {
     $(window).on('resize', function() {
         setTimeout(function() {
             containerHeight();
+
+            console.log(  'resize'  );
             
             if($(window).width() <= 768) {
 

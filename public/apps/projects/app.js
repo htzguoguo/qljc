@@ -47,7 +47,7 @@ App = function ( options ) {
         var bridges = new BridgeCollection();
         bridges.fetch(
             {
-                data: $.param({ routename: name}),
+              /*  data: $.param({ routename: name}),*/
                 success : function ( collection ) {
                     var bridgeList = me.startController(BridgeController);
                     bridgeList.showList( collection, name );
@@ -78,8 +78,8 @@ App = function ( options ) {
         );
     };
 
-    this.ShowBridgeDetail = function ( projectname, bridgename ) {
-        var bridge = new BridgeModel( { bridgename : bridgename } ),
+    this.ShowBridgeDetail = function ( bridgename, id ) {
+        var bridge = new BridgeModel( { id : id } ),
             me = this;
         bridge.fetch(
             {
@@ -94,29 +94,39 @@ App = function ( options ) {
         );
     };
 
-    this.ShowNewBridgeForm = function ( projectname ) {
-        var project = new ProjectModel( { projectname : projectname } ),
+    this.ShowNewBridgeForm = function (  ) {
+        var bridgeEditor = this.startController(BridgeController);
+        bridgeEditor.showEditor( new BridgeModel(  )  );
+    };
+
+    this.ShowBridgeEditor = function ( bridgename, id ) {
+        var bridge = new BridgeModel( { id : id } ),
             me = this;
-        project.fetch( {
+        bridge.fetch( {
             success : function ( data ) {
                 var bridgeEditor = me.startController(BridgeController);
-                bridgeEditor.showEditor( new BridgeModel( {
-                    routenumber : data.get( 'projectnumber' ),
-                    routename : data.get( 'projectname' ),
-                    routelevel : data.get( 'roadgrade' )
-                } )  );
+                bridgeEditor.showEditor( data );
             },
             error : function () {
 
             }
         } );
-
-
     };
 
     this.ShowNewProjectForm = function () {
-        var projectEditor = this.startController(ProjectController);
-        projectEditor.showEditor( new ProjectModel()  );
+        var bridges = new BridgeCollection(),
+           project, me = this;
+        bridges.fetch( {
+            success : function ( data ) {
+                project = new ProjectModel();
+                project.setDefaultBridges( data.toJSON() );
+                var projectEditor = me.startController(ProjectController);
+                projectEditor.showEditor( project  );
+            },
+            error : function () {
+                // window.app.router.navigate('login', {trigger: true});
+            }
+        } );
     };
 
     this.ShowProjectEditorById = function ( projectname ) {
@@ -131,20 +141,6 @@ App = function ( options ) {
             },
             error : function () {
                 // window.app.router.navigate('login', {trigger: true});
-            }
-        } );
-    };
-
-    this.ShowBridgeEditor = function ( projectname, bridgename ) {
-        var bridge = new BridgeModel( { routename : projectname, bridgename : bridgename } ),
-            me = this;
-        bridge.fetch( {
-            success : function ( data ) {
-                var bridgeEditor = me.startController(BridgeController);
-                bridgeEditor.showEditor( data );
-            },
-            error : function () {
-
             }
         } );
     };

@@ -24,6 +24,7 @@ var mongoose = require( 'mongoose' ),
         createtime : Date,
         bridges : [
             {
+                id : String,
                 bridgename : String,
                 bridgenumber : String
             }

@@ -3,6 +3,7 @@
  */
 
 var helper = require( './http_helper' );
+var crispy = require( 'crispy-string' );
 
 module.exports.query_by_arg = function ( schema, arg, value, res ) {
     "use strict";
@@ -158,6 +159,10 @@ module.exports.getFields = function ( schema ) {
     });
     return fields;
 };
+
+module.exports.makeId = function makeId() {
+    return crispy.base32String(20);
+}
 
 
 

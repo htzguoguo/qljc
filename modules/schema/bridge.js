@@ -9,6 +9,8 @@
 var mongoose = require( 'mongoose' ),
     mongoosePaginate = require( 'mongoose-paginate' ),
     bridgeSchema = new mongoose.Schema( {
+
+        id : String,
        /* 桥梁名称*/
         bridgename : {
             type : String,

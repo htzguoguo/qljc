@@ -14,7 +14,7 @@ module.exports.query_by_arg = function ( arg, value, res ) {
 };
 
 module.exports.query = function ( number, res ) {
-     helper.query( Bridge, 'bridgename', number, res );
+     helper.query( Bridge, 'id', number, res );
 };
 
 module.exports.list = function ( res ) {
@@ -28,13 +28,18 @@ module.exports.paginate = function ( req, res ) {
 
 module.exports.update = function ( bridge, res ) {
     "use strict";
-    helper.update( Bridge, Fields, bridge,  'bridgename', bridge.bridgename, helper.toNewSchema, helper.toExistSchema, res );
-
+    helper.update( Bridge, Fields, bridge,  'id', bridge.id, toNewSchema, helper.toExistSchema, res );
 };
 
 module.exports.remove = function ( name, res ) {
     "use strict";
-     helper.remove( Bridge, 'bridgename', name, res  );
+     helper.remove( Bridge, 'id', name, res  );
 };
+
+function toNewSchema( fields, body, schema ) {
+    var data = helper.toNewSchema( fields, body, schema );
+    data.id = helper.makeId();
+    return data;
+}
 
 

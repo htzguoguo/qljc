@@ -9,7 +9,7 @@ var Layout = require( '../../../utils/layout' ),
 
 ProjectListLayout = module.exports = Layout.extend( {
     template : template,
-    className : 'row page-container',
+
     regions : {
         actions : '.actions-bar-container',
         list : '.list-container'

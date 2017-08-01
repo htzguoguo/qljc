@@ -147,6 +147,8 @@ function toExistProject( data, project ) {
     data.createtime = project.createtime;
     data.status = project.status;
     data.memo = project.memo;
+
+    data.bridges = project.bridges;
 }
 
 function toNewProject( body ) {
@@ -164,7 +166,8 @@ function toNewProject( body ) {
             creater: body.creater,
             createtime: body.createtime,
             status: '正常',
-            memo: body.memo
+            memo: body.memo,
+            bridges: body.bridges
         });
 }
 

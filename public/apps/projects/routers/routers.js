@@ -18,9 +18,9 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
 
         'bridges' : 'bridgeList',
         'bridges/:projectname' : 'bridgeListOfProject',
-        'bridges/:projectname/new' : 'createBridge',
-        'bridges/:projectname/:bridgename/view' : 'bridgeDetail',
-        'bridges/:projectname/:bridgename/edit' : 'editBridge',
+        'bridges/bridge/new' : 'createBridge',
+        'bridges/:bridgename/:id/view' : 'bridgeDetail',
+        'bridges/:bridgename/:id/edit' : 'editBridge',
 
         'tasks/:projectname' : 'taskList',
         'tasks/:projectname/new' : 'createTask',
@@ -99,19 +99,16 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    bridgeDetail : function ( projectname, bridgename ) {
+    bridgeDetail : function ( bridgename, id ) {
         "use strict";
         var app = this.startApp();
-        app.ShowBridgeDetail( projectname, bridgename );
+        app.ShowBridgeDetail( bridgename, id );
         updateNavigationBar(  [
-            {   title : '项目管理',
-                url : 'projects'
-            },
-            {   title : projectname,
-                url : 'bridges/' + projectname
+            {   title : '桥梁管理',
+                url : 'bridges'
             },
             {   title : bridgename,
-                url : 'bridges/' + projectname + '/' + bridgename + '/view'
+                url : 'bridges/' + bridgename + '/' + id +  '/view'
             },
             {   title : '桥梁卡片',
                 url : ''
@@ -119,19 +116,16 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    editBridge : function ( projectname, bridgename ) {
+    editBridge : function ( bridgename, id ) {
         "use strict";
         var app = this.startApp();
-        app.ShowBridgeEditor( projectname, bridgename );
+        app.ShowBridgeEditor( bridgename, id );
         updateNavigationBar(  [
-            {   title : '项目管理',
-                url : 'projects'
-            },
-            {   title : projectname,
-                url : 'bridges/' + projectname
+            {   title : '桥梁管理',
+                url : 'bridges'
             },
             {   title : bridgename,
-                url : 'bridges/' + projectname + '/' + bridgename + '/view'
+                url : 'bridges/' + bridgename + '/' + id +  '/edit'
             },
             {   title : '编辑',
                 url : ''
@@ -139,15 +133,12 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    createBridge : function ( projectname ) {
+    createBridge : function (  ) {
         var app = this.startApp();
-        app.ShowNewBridgeForm( projectname );
+        app.ShowNewBridgeForm(  );
         updateNavigationBar(  [
-            {   title : '项目管理',
-                url : 'projects'
-            },
-            {   title : projectname,
-                url : 'bridges/' + projectname
+            {   title : '桥梁管理',
+                url : 'bridges'
             },
             {   title : '新建',
                 url : ''

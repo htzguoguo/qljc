@@ -1,100 +1,149 @@
+<div class="panel panel-white">
 
-<div class="panel-heading">
-    <h6 class="panel-title">
-        <i class="icon-cog3 position-left"></i>
-        <span class="project-title">创建检测项目</span>
-    </h6>
-    <div class="heading-elements">
-        <div class="heading-btn pull-right">
-            <button class="btn btn-default cancel">取消</button>
-            <button  class="btn btn-info save" >提交</button>
+    <div class="panel-heading">
+        <h6 class="panel-title">
+            <i class="icon-cog3 position-left"></i>
+            <span class="project-title">创建检测项目</span>
+        </h6>
+        <div class="heading-elements">
+            <div class="heading-btn pull-right">
+                <button class="btn btn-default cancel">取消</button>
+                <button  class="btn btn-info save" >提交</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="panel-body">
-    <form class="form-horizontal">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="projectname" class="col-sm-2 control-label">项目名称</label>
-                <div class="col-sm-10">
-                    <input id="projectname" name="projectname" type="text" class="form-control" placeholder="" value="{{projectname}}" />
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="projectname" class="col-sm-2 control-label">项目名称</label>
+                    <div class="col-sm-10">
+                        <input id="projectname" name="projectname" type="text" class="form-control" placeholder="" value="{{projectname}}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="roadgrade" class="col-sm-2 control-label">路线等级</label>
+                    <div class="col-sm-10">
+                        <input id="roadgrade" name="roadgrade" type="text" class="form-control" placeholder="地方高速公路" value="{{roadgrade}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="functiontype" class="col-sm-2 control-label">功能类型</label>
+                    <div class="col-sm-10">
+                        <input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectname" class="col-sm-2 control-label">创建日期</label>
+                    <div class="col-sm-10">
+                        <input id="createtime" name="createtime" type="text" class="form-control pickadate" placeholder="" value="{{createtime}}" />
+                        <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="roadgrade" class="col-sm-2 control-label">路线等级</label>
-                <div class="col-sm-10">
-                    <input id="roadgrade" name="roadgrade" type="text" class="form-control" placeholder="地方高速公路" value="{{roadgrade}}" />
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="projectname" class="col-sm-2 control-label">项目编号</label>
+                    <div class="col-sm-10">
+                        <input id="projectnumber" name="projectnumber" type="text" class="form-control" placeholder="" value="{{projectnumber}}" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="functiontype" class="col-sm-2 control-label">功能类型</label>
-                <div class="col-sm-10">
-                    <input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="projectname" class="col-sm-2 control-label">创建日期</label>
-                <div class="col-sm-10">
-                    <input id="createtime" name="createtime" type="text" class="form-control pickadate" placeholder="" value="{{createtime}}" />
-                    <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="projectname" class="col-sm-2 control-label">项目编号</label>
-                <div class="col-sm-10">
-                    <input id="projectnumber" name="projectnumber" type="text" class="form-control" placeholder="" value="{{projectnumber}}" />
-                </div>
-            </div>
 
 
-            <div class="form-group">
-                <label for="shejihezai" class="col-sm-2 control-label">设计荷载</label>
-                <div class="col-sm-10">
-                    <input id="shejihezai" name="shejihezai" type="text" class="form-control" placeholder="汽车-超20，挂车-120" value="{{shejihezai}}" />
+                <div class="form-group">
+                    <label for="shejihezai" class="col-sm-2 control-label">设计荷载</label>
+                    <div class="col-sm-10">
+                        <input id="shejihezai" name="shejihezai" type="text" class="form-control" placeholder="汽车-超20，挂车-120" value="{{shejihezai}}" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="manageunit" class="col-sm-2 control-label">管养单位</label>
-                <div class="col-sm-10">
-                    <input id="manageunit" name="manageunit" type="text" class="form-control" placeholder="天津天永高速公路有限公司" value="{{manageunit}}" />
+                <div class="form-group">
+                    <label for="manageunit" class="col-sm-2 control-label">管养单位</label>
+                    <div class="col-sm-10">
+                        <input id="manageunit" name="manageunit" type="text" class="form-control" placeholder="天津天永高速公路有限公司" value="{{manageunit}}" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="projectname" class="col-sm-2 control-label">创建人</label>
-                <div class="col-sm-10">
-                    <input id="creater" name="creater" type="text" class="form-control" placeholder="" value="{{creater}}" />
+                <div class="form-group">
+                    <label for="projectname" class="col-sm-2 control-label">创建人</label>
+                    <div class="col-sm-10">
+                        <input id="creater" name="creater" type="text" class="form-control" placeholder="" value="{{creater}}" />
+                    </div>
                 </div>
+
             </div>
 
-        </div>
 
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="memo" class="col-sm-2 control-label">备注</label>
-                <div class="col-sm-10">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="memo" class="col-sm-2 control-label">备注</label>
+                    <div class="col-sm-10">
                 <textarea id="memo" name="memo" value="{{memo}}" rows="5" cols="5" class="form-control" placeholder="" data-gramm="true" data-txt_gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" data-gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" spellcheck="false" data-gramm_editor="true" style="z-index: auto; position: relative; line-height: 20px; font-size: 13px; transition: none; background: transparent !important;">
 
                 </textarea>
+                    </div>
                 </div>
             </div>
+
+
+        </form>
+    </div>
+
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-body">
+
+        <div class="row bridges-selected">
+
         </div>
 
-
-    </form>
+    </div>
 </div>
-<div class="panel-footer" >
-    <div class="heading-elements">
-        <div class="heading-btn pull-right">
-            <button class="btn btn-default cancel">取消</button>
-            <button  class="btn btn-info save" >提交</button>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title">
+            <i class="  position-left"></i>
+            <span class="project-title">检测桥梁</span>
+        </h6>
+
+        <div class="heading-elements" style="margin-right: 150px;">
+                <div class="form-group  ">
+                    <select id="units" name="detectiontype" placeholder="养管单位" style="width: 200px;" class="form-control" value="{{detectiontype}}" >
+                        {{#units}}
+                        <option value="{{.}}">{{.}}</option>
+                        {{/units}}
+                    </select>
+                </div>
+        </div>
+
+        <div class="heading-elements">
+            <div class="heading-btn pull-right">
+                <button class="btn btn-primary btn-sm bridges-selectall">全选</button>
+                <button class="btn btn-primary btn-sm bridges-unselect">取消</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <div class="row bridges-select">
+
+
+        </div>
+
+    </div>
+    <div class="panel-footer" >
+        <div class="heading-elements">
+            <div class="heading-btn pull-right">
+                <button class="btn btn-default cancel">取消</button>
+                <button  class="btn btn-info save" >提交</button>
+            </div>
         </div>
     </div>
 </div>
+
+
 
 

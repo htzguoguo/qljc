@@ -4,13 +4,13 @@
 
 var $ = require( 'jquery' ),
     _ = require( 'underscore' ),
-    BackBone = require( 'backbone' ),
-    App = require( './app' );
+    BackBone = require( 'backbone' );
 
 global.$ = $;
 global.jQuery = $;
 BackBone.$ = $;
 
+var App = require( './app' );
 
 var dataTable = require( 'datatables.net' )();
 $.DataTable = dataTable;
