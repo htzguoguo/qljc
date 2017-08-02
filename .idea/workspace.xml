@@ -2,36 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e711e26-b7be-47f8-9db9-510c4f04fec6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app_tool_data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm_bridges.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm_selectedBridges.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/bridges_mongodb.js" afterPath="$PROJECT_DIR$/modules/bridges_mongodb.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/mongodb_helper.js" afterPath="$PROJECT_DIR$/modules/mongodb_helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/project_mongodb.js" afterPath="$PROJECT_DIR$/modules/project_mongodb.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/schema/bridge.js" afterPath="$PROJECT_DIR$/modules/schema/bridge.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/schema/project.js" afterPath="$PROJECT_DIR$/modules/schema/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/schema/task.js" afterPath="$PROJECT_DIR$/modules/schema/task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app.js" afterPath="$PROJECT_DIR$/public/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/app.js" afterPath="$PROJECT_DIR$/public/apps/projects/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/controllers/bridgeController.js" afterPath="$PROJECT_DIR$/public/apps/projects/controllers/bridgeController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/controllers/projectController.js" afterPath="$PROJECT_DIR$/public/apps/projects/controllers/projectController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/models/bridge.js" afterPath="$PROJECT_DIR$/public/apps/projects/models/bridge.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/models/project.js" afterPath="$PROJECT_DIR$/public/apps/projects/models/project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/routers/routers.js" afterPath="$PROJECT_DIR$/public/apps/projects/routers/routers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" afterPath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/projectForm.js" afterPath="$PROJECT_DIR$/public/apps/projects/views/projectForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/projectListLayout.js" afterPath="$PROJECT_DIR$/public/apps/projects/views/projectListLayout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" afterPath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/js/core/app.js" afterPath="$PROJECT_DIR$/public/assets/js/core/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bundle.js" afterPath="$PROJECT_DIR$/public/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/main.js" afterPath="$PROJECT_DIR$/public/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/bridges.js" afterPath="$PROJECT_DIR$/routes/bridges.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,8 +25,8 @@
       <file leaf-file-name="projectController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apps/projects/controllers/projectController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+            <state relative-caret-position="-46">
+              <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
               <folding>
                 <element signature="e#1566#1904#0" expanded="false" />
               </folding>
@@ -77,8 +50,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apps/projects/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="124" column="14" lean-forward="true" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
+            <state relative-caret-position="230">
+              <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
               <folding>
                 <element signature="e#957#1379#0" expanded="false" />
                 <element signature="e#1426#1905#0" expanded="false" />
@@ -139,8 +112,8 @@
       <file leaf-file-name="project.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/apps/projects/models/project.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            <state relative-caret-position="231">
+              <caret line="37" column="35" lean-forward="true" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -248,13 +221,13 @@
         <option value="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
         <option value="$PROJECT_DIR$/modules/schema/task.js" />
         <option value="$PROJECT_DIR$/modules/project_mongodb.js" />
-        <option value="$PROJECT_DIR$/public/apps/projects/app.js" />
         <option value="$PROJECT_DIR$/modules/schema/project.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm_selectedBridges.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm_bridges.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/projectForm.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/controllers/projectController.js" />
+        <option value="$PROJECT_DIR$/public/apps/projects/app.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/models/project.js" />
       </list>
     </option>
@@ -291,8 +264,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1066" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -687,18 +660,18 @@
       <workItem from="1500261830921" duration="40301000" />
       <workItem from="1500430322580" duration="41368000" />
       <workItem from="1500599004570" duration="104555000" />
-      <workItem from="1500975426360" duration="80247000" />
+      <workItem from="1500975426360" duration="82253000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269268000" />
+    <option name="totallyTimeSpent" value="271274000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11580217" sideWeight="0.48796147" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.063244045" sideWeight="0.48796147" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26636904" sideWeight="0.505618" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1169,14 +1142,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/schema/project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/project_mongodb.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="821">
@@ -1184,21 +1149,6 @@
           <folding>
             <element signature="e#363#971#0" expanded="false" />
             <element signature="e#1020#1435#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="124" column="14" lean-forward="true" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
-          <folding>
-            <element signature="e#957#1379#0" expanded="false" />
-            <element signature="e#1426#1905#0" expanded="false" />
-            <element signature="e#1950#2418#0" expanded="false" />
-            <element signature="e#2477#2873#0" expanded="false" />
-            <element signature="e#2919#3050#0" expanded="false" />
-            <element signature="e#3109#3457#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1217,18 +1167,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/controllers/projectController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        <state relative-caret-position="-46">
+          <caret line="34" column="39" lean-forward="true" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
           <folding>
             <element signature="e#1566#1904#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="137" column="23" lean-forward="true" selection-start-line="137" selection-start-column="23" selection-end-line="137" selection-end-column="23" />
+          <folding>
+            <element signature="e#957#1379#0" expanded="false" />
+            <element signature="e#1426#1905#0" expanded="false" />
+            <element signature="e#1950#2418#0" expanded="false" />
+            <element signature="e#2477#2873#0" expanded="false" />
+            <element signature="e#2919#3050#0" expanded="false" />
+            <element signature="e#3109#3457#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/schema/project.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="24" column="15" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/models/project.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        <state relative-caret-position="231">
+          <caret line="37" column="35" lean-forward="true" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
           <folding />
         </state>
       </provider>

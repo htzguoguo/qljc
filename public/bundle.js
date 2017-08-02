@@ -32697,19 +32697,22 @@ App = function ( options ) {
     };
 
     this.ShowProjectEditorById = function ( projectname ) {
-        var project = new ProjectModel( {
+        var pp = new ProjectModel( {
                 projectname : projectname
             } ),
+            bb = new BridgeCollection(),
+            project, bridges,
             app = this;
-        project.fetch( {
-            success : function ( project ) {
-                var projectViewer = app.startController(ProjectController);
-                projectViewer.showEditor(project);
-            },
-            error : function () {
-                // window.app.router.navigate('login', {trigger: true});
-            }
-        } );
+        $.when(pp.fetch(), bb.fetch( ) )
+            .done(
+                function(p , b ) {
+                   project = new ProjectModel( p[0] );
+                   bridges = new BridgeCollection( b[0] );
+                   project.setDefaultBridges( bridges.toJSON() );
+                   var projectEditor = app.startController(ProjectController);
+                   projectEditor.showEditor( project  );
+                }
+                );
     };
 
     this.ShowNewTaskForm = function ( projectname ) {
@@ -33486,10 +33489,11 @@ Project = module.exports = Backbone.Model.extend(
         brs : {},
         bridges : [],
         defaults : {
-            createtime : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate()
+            createtime : (new Date()).getFullYear() + '-' + ((new Date()).getMonth() + 1) + '-' + (new Date()).getDate(),
+            bridges : []
         },
         initialize : function () {
-            this.bridges = [];
+            this.bridges = this.get( 'bridges' );
             this.brs = {};
         },
         toJSON : function () {
@@ -33503,11 +33507,18 @@ Project = module.exports = Backbone.Model.extend(
             return result;
         },
         setDefaultBridges : function ( bridges )  {
-            var   units = [], custodyunit, bm, me = this;
+            var   units = [], custodyunit, bm, me = this, i, checked = false;
                 _.each(bridges, function( bridge ) {
                 custodyunit = bridge['custodyunit'];
                 if (  custodyunit ) {
-                    bm = { id : bridge['id'], bridgename : bridge['bridgename'], custodyunit : bridge['custodyunit'], checked : false };
+                    checked = false
+                    for ( i = 0; i < me.bridges.length; i++ ) {
+                        if ( bridge[ 'id'] === me.bridges[i]['id']  ) {
+                            checked = true;
+                            break;
+                        }
+                    }
+                    bm = { id : bridge['id'], bridgename : bridge['bridgename'], custodyunit : bridge['custodyunit'], checked : checked };
                     if ( units.indexOf( custodyunit ) === -1 ) {
                         units.push( custodyunit );
                         me.brs[ custodyunit ] = [ bm ];
@@ -33523,7 +33534,6 @@ Project = module.exports = Backbone.Model.extend(
             items2 = this.brs[ unit ];
             len2 = items2.length;
             for ( i1 = 0; i1 < len1; i1++ ) {
-
                 for ( i2 = 0; i2 < len2; i2++ ) {
                     if ( items[i1].id === items2[ i2 ].id ) {
                         items2[ i2 ].checked = true;

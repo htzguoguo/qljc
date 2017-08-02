@@ -130,19 +130,22 @@ App = function ( options ) {
     };
 
     this.ShowProjectEditorById = function ( projectname ) {
-        var project = new ProjectModel( {
+        var pp = new ProjectModel( {
                 projectname : projectname
             } ),
+            bb = new BridgeCollection(),
+            project, bridges,
             app = this;
-        project.fetch( {
-            success : function ( project ) {
-                var projectViewer = app.startController(ProjectController);
-                projectViewer.showEditor(project);
-            },
-            error : function () {
-                // window.app.router.navigate('login', {trigger: true});
-            }
-        } );
+        $.when(pp.fetch(), bb.fetch( ) )
+            .done(
+                function(p , b ) {
+                   project = new ProjectModel( p[0] );
+                   bridges = new BridgeCollection( b[0] );
+                   project.setDefaultBridges( bridges.toJSON() );
+                   var projectEditor = app.startController(ProjectController);
+                   projectEditor.showEditor( project  );
+                }
+                );
     };
 
     this.ShowNewTaskForm = function ( projectname ) {
