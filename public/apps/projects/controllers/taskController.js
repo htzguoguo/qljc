@@ -30,6 +30,7 @@ TaskList = module.exports = function ( options ) {
         var layout = new ProjectListLayout(),
             form = new TaskForm( { model : task } )
         ;
+        console.log( 'showEditor', task );
         this.isNew = task.isNew();
         this.mainRegion.show( layout );
         layout.getRegion( 'list' ).show( form );

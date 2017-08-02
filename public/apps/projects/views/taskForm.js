@@ -49,13 +49,15 @@ View = module.exports = ModelView.extend( {
     },
     saveTask : function ( event ) {
         event.preventDefault();
-        var bridges = [], name, number;
+        var bridges = [], name, unit, id;
         $.each( this.$( '.bridges-select span.checked input:first-child' ), function ( index, element ) {
-            name = $(element).data( 'index' );
-            number = $(element).data( 'value' );
+            name = $( element ).data( 'value' );
+            unit = $( element ).data( 'unit' );
+            id = $( element ).data( 'index' );
             bridges.push( {
+                id : id,
                 bridgename : name,
-                bridgenumber : number
+                custodyunit : unit
             } );
         } );
         this.model.set( 'bridges', bridges );

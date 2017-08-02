@@ -149,35 +149,39 @@ App = function ( options ) {
     };
 
     this.ShowNewTaskForm = function ( projectname ) {
-        var bridges = new BridgeCollection(),
+        var
             project = new ProjectModel( { projectname : projectname } ),
             me = this;
-        $.when(project.fetch(), bridges.fetch( { data: $.param({ routename: projectname}) } ) )
-            .done(
-                function(project , brs ) {
-                    var task =  new TaskModel( {
-                        routenumber : project[0]['projectnumber'],
-                        routename : project[0][ 'projectname']
-                    } );
-                    var bbs = brs[0];
-                    bbs.forEach(function(obj) { obj.checked = true; });
-                    task.set( 'bridges', bbs );
-                    var taskEditor = me.startController(TaskController);
-                    taskEditor.showEditor( task );
-            });
+        project.fetch( {
+            success : function ( data ) {
+                var task =  new TaskModel( {
+                    routenumber : data.get('projectnumber'),
+                    routename : data.get( 'projectname')
+                } );
+                var bbs = data.get( 'bridges' );
+                bbs.forEach(function(obj) { obj.checked = true; });
+                task.set( 'bridges', bbs );
+                console.log( 'ShowNewTaskForm', task );
+                var taskEditor = me.startController(TaskController);
+                taskEditor.showEditor( task );
+            },
+            error : function () {
+                // window.app.router.navigate('login', {trigger: true});
+            }
+        } );
     };
 
     this.ShowTaskEditor = function ( projectname, taskname ) {
         var task = new TaskModel( { routename : projectname, taskname : taskname } ),
-            bridges = new BridgeCollection(),
+            project = new ProjectModel( { projectname : projectname } ),
             me = this;
-        $.when( bridges.fetch( { data: $.param({ routename: projectname}) } ), task.fetch() )
+        $.when( project.fetch( ), task.fetch() )
             .done(
                 function(bb , tt ) {
                     var
                         tts = tt[0],
                         eet = tts.bridges,
-                        bbs = bb[0];
+                        bbs = bb[0].bridges;
                     bbs.forEach(
                         function(obj) {
                             eet.forEach( function ( ee ) {

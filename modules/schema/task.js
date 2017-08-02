@@ -26,7 +26,8 @@ var mongoose = require( 'mongoose' ),
             {
                 id : String,
                 bridgename : String,
-                bridgenumber : String
+                bridgenumber : String,
+                custodyunit : String
             }
         ],
         status : String,

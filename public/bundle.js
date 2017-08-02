@@ -32716,35 +32716,39 @@ App = function ( options ) {
     };
 
     this.ShowNewTaskForm = function ( projectname ) {
-        var bridges = new BridgeCollection(),
+        var
             project = new ProjectModel( { projectname : projectname } ),
             me = this;
-        $.when(project.fetch(), bridges.fetch( { data: $.param({ routename: projectname}) } ) )
-            .done(
-                function(project , brs ) {
-                    var task =  new TaskModel( {
-                        routenumber : project[0]['projectnumber'],
-                        routename : project[0][ 'projectname']
-                    } );
-                    var bbs = brs[0];
-                    bbs.forEach(function(obj) { obj.checked = true; });
-                    task.set( 'bridges', bbs );
-                    var taskEditor = me.startController(TaskController);
-                    taskEditor.showEditor( task );
-            });
+        project.fetch( {
+            success : function ( data ) {
+                var task =  new TaskModel( {
+                    routenumber : data.get('projectnumber'),
+                    routename : data.get( 'projectname')
+                } );
+                var bbs = data.get( 'bridges' );
+                bbs.forEach(function(obj) { obj.checked = true; });
+                task.set( 'bridges', bbs );
+                console.log( 'ShowNewTaskForm', task );
+                var taskEditor = me.startController(TaskController);
+                taskEditor.showEditor( task );
+            },
+            error : function () {
+                // window.app.router.navigate('login', {trigger: true});
+            }
+        } );
     };
 
     this.ShowTaskEditor = function ( projectname, taskname ) {
         var task = new TaskModel( { routename : projectname, taskname : taskname } ),
-            bridges = new BridgeCollection(),
+            project = new ProjectModel( { projectname : projectname } ),
             me = this;
-        $.when( bridges.fetch( { data: $.param({ routename: projectname}) } ), task.fetch() )
+        $.when( project.fetch( ), task.fetch() )
             .done(
                 function(bb , tt ) {
                     var
                         tts = tt[0],
                         eet = tts.bridges,
-                        bbs = bb[0];
+                        bbs = bb[0].bridges;
                     bbs.forEach(
                         function(obj) {
                             eet.forEach( function ( ee ) {
@@ -33227,6 +33231,7 @@ TaskList = module.exports = function ( options ) {
         var layout = new ProjectListLayout(),
             form = new TaskForm( { model : task } )
         ;
+        console.log( 'showEditor', task );
         this.isNew = task.isNew();
         this.mainRegion.show( layout );
         layout.getRegion( 'list' ).show( form );
@@ -34643,7 +34648,7 @@ View = module.exports = Backbone.View.extend( {
 
 var ModelView = require('../../../utils/modelview'),
     BackboneValidation = require('backbone-validation'),
-    template = "\r\n    <div class=\"panel panel-white\">\r\n        <div class=\"panel-heading\">\r\n            <h6 class=\"panel-title\">\r\n                <i class=\"position-left\"></i>\r\n                <span class=\"project-title\">检测任务基础数据</span>\r\n            </h6>\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-default cancel\">取消</button>\r\n                    <button  class=\"btn btn-info save\" >提交</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <form class=\"form-horizontal\">\r\n                <div class=\"col-md-6\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"routename\" class=\"col-sm-4 control-label\">路线名称</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"routename\" name=\"routename\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{routename}}\"  readonly/>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"tasknumber\" class=\"col-sm-4 control-label\">任务编号</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"tasknumber\" name=\"tasknumber\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{tasknumber}}\" />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creator\" class=\"col-sm-4 control-label\">创建人</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"creator\" name=\"creator\" type=\"text\" class=\"form-control\" placeholder=\"公路用\" value=\"{{creator}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"col-md-6\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"detectiontype\" class=\"col-sm-4 control-label\">检测类型</label>\r\n                        <div class=\"col-sm-8\">\r\n                           <!-- <input id=\"detectiontype\" name=\"detectiontype\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{detectiontype}}\"  />\r\n                           -->\r\n                            <select id=\"detectiontype\" name=\"detectiontype\" class=\"form-control\" value=\"{{detectiontype}}\" >\r\n                                <option value=\"经常性检查\">经常性检查</option>\r\n                                <option value=\"定期检查\">定期检查</option>\r\n                                <option value=\"特殊检查\">特殊检查</option>\r\n                                <option value=\"专项检查\">专项检查</option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"taskname\" class=\"col-sm-4 control-label\">任务名称</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"taskname\" name=\"taskname\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{taskname}}\" />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"createtime\" class=\"col-sm-4 control-label\">创建时间</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"createtime\" name=\"createtime\" type=\"text\" class=\"form-control pickadate\" placeholder=\"\" value=\"{{createtime}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"memo\" class=\"col-sm-2 control-label\">备注</label>\r\n                        <div class=\"col-sm-10\">\r\n                            <input id=\"memo\" name=\"memo\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{memo}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-white\">\r\n        <div class=\"panel-heading\">\r\n            <h6 class=\"panel-title\">\r\n                <i class=\"  position-left\"></i>\r\n                <span class=\"project-title\">检测桥梁</span>\r\n            </h6>\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-primary btn-sm bridges-selectall\">全选</button>\r\n                    <button class=\"btn btn-primary btn-sm bridges-unselect\">取消</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n\r\n            <div class=\"row bridges-select\">\r\n\r\n                {{#bridges}}\r\n                    <div class=\"col-md-3\">\r\n                        <div class=\"checkbox\">\r\n                            <label>\r\n                                <input type=\"checkbox\" class=\"control-primary\" data-index=\"{{bridgename}}\" data-value=\"{{bridgenumber}}\"\r\n                                        {{#checked}}\r\n                                            checked=\"checked\"\r\n                                        {{/checked}}\r\n                                >\r\n                                {{bridgename}}\r\n                            </label>\r\n                        </div>\r\n                    </div>\r\n                {{/bridges}}\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"panel-footer clearfix\">\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-default cancel\">取消</button>\r\n                    <button  class=\"btn btn-info save\" >提交</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n",
+    template = "\r\n    <div class=\"panel panel-white\">\r\n        <div class=\"panel-heading\">\r\n            <h6 class=\"panel-title\">\r\n                <i class=\"position-left\"></i>\r\n                <span class=\"project-title\">检测任务基础数据</span>\r\n            </h6>\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-default cancel\">取消</button>\r\n                    <button  class=\"btn btn-info save\" >提交</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <form class=\"form-horizontal\">\r\n                <div class=\"col-md-6\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"routename\" class=\"col-sm-4 control-label\">路线名称</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"routename\" name=\"routename\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{routename}}\"  readonly/>\r\n                        </div>\r\n                    </div>\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"tasknumber\" class=\"col-sm-4 control-label\">任务编号</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"tasknumber\" name=\"tasknumber\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{tasknumber}}\" />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"creator\" class=\"col-sm-4 control-label\">创建人</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"creator\" name=\"creator\" type=\"text\" class=\"form-control\" placeholder=\"公路用\" value=\"{{creator}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"col-md-6\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"detectiontype\" class=\"col-sm-4 control-label\">检测类型</label>\r\n                        <div class=\"col-sm-8\">\r\n                           <!-- <input id=\"detectiontype\" name=\"detectiontype\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{detectiontype}}\"  />\r\n                           -->\r\n                            <select id=\"detectiontype\" name=\"detectiontype\" class=\"form-control\" value=\"{{detectiontype}}\" >\r\n                                <option value=\"经常性检查\">经常性检查</option>\r\n                                <option value=\"定期检查\">定期检查</option>\r\n                                <option value=\"特殊检查\">特殊检查</option>\r\n                                <option value=\"专项检查\">专项检查</option>\r\n                            </select>\r\n                        </div>\r\n                    </div>\r\n\r\n\r\n                    <div class=\"form-group\">\r\n                        <label for=\"taskname\" class=\"col-sm-4 control-label\">任务名称</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"taskname\" name=\"taskname\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{taskname}}\" />\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"createtime\" class=\"col-sm-4 control-label\">创建时间</label>\r\n                        <div class=\"col-sm-8\">\r\n                            <input id=\"createtime\" name=\"createtime\" type=\"text\" class=\"form-control pickadate\" placeholder=\"\" value=\"{{createtime}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-md-12\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"memo\" class=\"col-sm-2 control-label\">备注</label>\r\n                        <div class=\"col-sm-10\">\r\n                            <input id=\"memo\" name=\"memo\" type=\"text\" class=\"form-control\" placeholder=\"\" value=\"{{memo}}\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-white\">\r\n        <div class=\"panel-heading\">\r\n            <h6 class=\"panel-title\">\r\n                <i class=\"  position-left\"></i>\r\n                <span class=\"project-title\">检测桥梁</span>\r\n            </h6>\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-primary btn-sm bridges-selectall\">全选</button>\r\n                    <button class=\"btn btn-primary btn-sm bridges-unselect\">取消</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n\r\n            <div class=\"row bridges-select\">\r\n\r\n                {{#bridges}}\r\n                    <div class=\"col-md-3\">\r\n                        <div class=\"checkbox\">\r\n                            <label>\r\n                                <input type=\"checkbox\" class=\"control-primary\" data-unit=\"{{custodyunit}}\"  data-index=\"{{id}}\"  data-value=\"{{bridgename}}\"\r\n                                        {{#checked}}\r\n                                            checked=\"checked\"\r\n                                        {{/checked}}\r\n                                >\r\n                                {{bridgename}}\r\n                            </label>\r\n                        </div>\r\n                    </div>\r\n                {{/bridges}}\r\n            </div>\r\n\r\n        </div>\r\n        <div class=\"panel-footer clearfix\">\r\n            <div class=\"heading-elements\">\r\n                <div class=\"heading-btn pull-right\">\r\n                    <button class=\"btn btn-default cancel\">取消</button>\r\n                    <button  class=\"btn btn-info save\" >提交</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n\r\n",
     View;
 
 View = module.exports = ModelView.extend( {
@@ -34686,13 +34691,15 @@ View = module.exports = ModelView.extend( {
     },
     saveTask : function ( event ) {
         event.preventDefault();
-        var bridges = [], name, number;
+        var bridges = [], name, unit, id;
         $.each( this.$( '.bridges-select span.checked input:first-child' ), function ( index, element ) {
-            name = $(element).data( 'index' );
-            number = $(element).data( 'value' );
+            name = $( element ).data( 'value' );
+            unit = $( element ).data( 'unit' );
+            id = $( element ).data( 'index' );
             bridges.push( {
+                id : id,
                 bridgename : name,
-                bridgenumber : number
+                custodyunit : unit
             } );
         } );
         this.model.set( 'bridges', bridges );
