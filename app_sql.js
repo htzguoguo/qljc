@@ -2,6 +2,8 @@ require('./modules/mongodb');
 var Connection = require('tedious').Connection;
 var Helper = require( './modules/mongodb_helper' );
 var Bridge = require( './modules/schema/bridge' );
+var Path = require( 'path' );
+var fs = require( 'fs' );
 var rows = [];
 
 //用户名，密码和数据库服务器,数据库  
@@ -32,6 +34,7 @@ connection.on('connect', function(err) {
     //getJSPDData();
     //getXJGCJLData();
     //getOthersData();
+    getPicData();
 });
 
 function getBasicData()
@@ -185,7 +188,30 @@ function getOthersData()
     connection.execSql(request);
 }
 
-
+function getPicData() {
+    var picPath = Path.join( __dirname + '/照片' ), frontFile, sideFile;
+    fs.readdir(picPath, function(err, files) {
+        if (err) return;
+        files.forEach(function (f) {
+            frontFile = Helper.makeId();
+            sideFile = Helper.makeId();
+            fs.createReadStream('./照片/' + f + '/正面照.jpg').pipe(fs.createWriteStream( './upload/' + frontFile + '.jpg'  ));
+            fs.createReadStream('./照片/' + f + '/立面照.jpg').pipe(fs.createWriteStream( './upload/' + sideFile + '.jpg'  ));
+            Bridge.findOne({bridgename: f }, function (error, data) {
+                if ( data ) {
+                    data.frontphoto = 'files/' + frontFile + '.jpg';
+                    data.sidephoto = 'files/' + sideFile + '.jpg';
+                    data.save(function (error) {
+                        if (!error) {
+                            data.save();
+                        }
+                    });
+                }
+            });
+            console.log( f , 'done' );
+        });
+    });
+}
 
 
 
@@ -328,5 +354,4 @@ function toNewBridge_BasicInfo( row ) {
     console.log( data );
 } );*/
 
-var fields = Helper.getFields( Bridge );
-console.log( fields );
+

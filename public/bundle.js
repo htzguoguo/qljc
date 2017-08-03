@@ -33183,7 +33183,7 @@ ProjectList = module.exports = function ( options ) {
                         app.successMessage( '删除检测项目完成' );
                       /*  window.app.router.navigate( '/projects', {trigger: true} );*/
 
-                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/projects/aaa', {trigger: false} );
                         window.app.router.navigate( '/projects', {trigger: true} );
                        /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
@@ -33292,7 +33292,7 @@ TaskList = module.exports = function ( options ) {
                     success : function () {
                         app.successMessage( '删除检测任务完成' );
 
-                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/tasks', {trigger: false} );
                         window.app.router.navigate( '/tasks/' + routename , {trigger: true} );
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },

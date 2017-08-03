@@ -91,7 +91,7 @@ TaskList = module.exports = function ( options ) {
                     success : function () {
                         app.successMessage( '删除检测任务完成' );
 
-                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/tasks', {trigger: false} );
                         window.app.router.navigate( '/tasks/' + routename , {trigger: true} );
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
