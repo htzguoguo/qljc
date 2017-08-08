@@ -24,7 +24,11 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
 
         'tasks/:projectname' : 'taskList',
         'tasks/:projectname/new' : 'createTask',
-        'tasks/:projectname/:taskename/edit' : 'editTask'
+        'tasks/:projectname/:taskename/edit' : 'editTask',
+
+        'managements' : 'managementList',
+        'managements/new' : 'createManagement',
+        'managements/:name/edit' : 'editManagement'
     },
     projectProfile : function ( id ) {
         "use strict";
@@ -189,6 +193,47 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
             },
             {   title : taskname,
                 url : 'tasks/' + projectname + '/' + taskname + '/edit'
+            },
+            {   title : '编辑',
+                url : ''
+            }
+        ] );
+    },
+
+    managementList : function (  ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowManagementList(  );
+        updateNavigationBar(  [
+            {   title : '管养单位',
+                url : 'managements'
+            }
+        ] );
+    },
+
+    createManagement : function (  ) {
+        var app = this.startApp();
+        app.ShowNewManagementForm(  );
+        updateNavigationBar(  [
+            {   title : '管养单位',
+                url : 'managements'
+            },
+            {   title : '新建',
+                url : ''
+            }
+        ] );
+    },
+
+    editManagement : function ( name ) {
+        "use strict";
+        var app = this.startApp();
+        app.ShowManagementEditorById( name);
+        updateNavigationBar(  [
+            {   title : '管养单位',
+                url : 'managements'
+            },
+            {   title : name,
+                url : 'managements/' + name +  '/edit'
             },
             {   title : '编辑',
                 url : ''

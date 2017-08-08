@@ -1,0 +1,20 @@
+<div class="sidebar-category">
+    <div class="category-title">
+        <span>管理单位</span>
+    </div>
+    <div class="category-content">
+        <div class="has-feedback has-feedback-left">
+            <input type="search" class="form-control" placeholder="管理单位">
+            <div class="form-control-feedback">
+                <i class="icon-search4 text-size-base text-muted"></i>
+            </div>
+        </div>
+    </div>
+    <div class="category-content no-padding">
+        <ul class="navigation navigation-main navigation-accordion navigation-bordered projects-container">
+            {{#projects}}
+            <li><a href="javascript:void(0)" class="legitRipple project-nav" data-index="{{projectname}}"><i class="icon-home4"></i> <span>{{projectname}}</span></a></li>
+            {{/projects}}
+        </ul>
+    </div>
+</div>

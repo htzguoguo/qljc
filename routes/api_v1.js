@@ -11,7 +11,8 @@ var express = require( 'express' ),
     projects = require( './projects' ),
     bridges = require( './bridges' ),
     tasks = require( './task' ),
-    files = require( './files' );
+    files = require( './files' ),
+    management = require( './management' );
 
 
 router.use( '/users', users );
@@ -22,6 +23,7 @@ router.use( '/projects', projects );
 router.use( '/bridges', bridges );
 router.use( '/tasks', tasks );
 router.use(  '/files', files  );
+router.use(  '/managements', management  );
 
 
 module.exports = router;

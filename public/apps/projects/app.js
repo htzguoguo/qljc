@@ -5,11 +5,14 @@ var
     ProjectController = require( './controllers/projectController' ),
     BridgeController = require( './controllers/bridgeController' ),
     TaskController = require( './controllers/taskController' ),
+    ManagementController = require( './controllers/managementController' ),
     ProjectCollection = require( './collections/projects' ),
     TaskCollection = require( './collections/tasks' ),
+    ManagementCollection = require( './collections/managements' ),
     ProjectModel = require( './models/project' ),
     BridgeModel = require( './models/bridge' ),
     TaskModel = require( './models/task' ),
+    ManagementModel = require( './models/management' ),
     BridgeCollection = require( './collections/bridges' ),
     AppBase = require( '../../utils/baseapp' ),
     _ = require( 'underscore' ),
@@ -196,6 +199,44 @@ App = function ( options ) {
                     taskEditor.showEditor( task );
                 });
     };
+
+    this.ShowManagementList = function (  ) {
+        "use strict";
+        var me = this;
+        var managements = new ManagementCollection();
+        managements.fetch(
+            {
+                success : function ( collection ) {
+                    var managementList = me.startController(ManagementController);
+                    managementList.showList( collection );
+
+                },
+                error : function () {
+
+                }
+            }
+        );
+    };
+
+    this.ShowNewManagementForm = function (  ) {
+        var managementEditor = this.startController(ManagementController);
+        managementEditor.showEditor( new ManagementModel(  )  );
+    };
+
+    this.ShowManagementEditorById = function ( name ) {
+        var management = new ManagementModel( { managementname : name } ),
+            me = this;
+        management.fetch( {
+            success : function ( data ) {
+                var managementEditor = me.startController(ManagementController);
+                managementEditor.showEditor( data );
+            },
+            error : function () {
+
+            }
+        } );
+    };
+
 
 };
 
