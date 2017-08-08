@@ -33108,7 +33108,7 @@ BridgeList = module.exports = function ( options ) {
         }
         this.askConfirmation( msg, true, function ( isConfirm ) {
             if ( isConfirm ) {
-                window.app.router.navigate( '/bridges', true );
+                window.app.router.navigate( '/bridges/' + bridge.get( 'custodyunit' ) , true );
             }
         } );
     };
@@ -34546,7 +34546,7 @@ EmailListItem = module.exports = ModelView.extend( {
  */
 
 var Layout = require('../../../utils/layout'),
-    template = "<div class=\"sidebar sidebar-main sidebar-default sidebar-separate\"  >\r\n    <div class=\"sidebar-content project-container\"  style=\"width:250px;\" >\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content-wrapper bridge-container\">\r\n\r\n\r\n</div>",
+    template = "<div class=\"sidebar sidebar-main sidebar-default sidebar-separate\"   style=\"padding-right: 10px;\">\r\n    <div class=\"sidebar-content project-container\"  style=\"width:250px;\" >\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content-wrapper bridge-container\">\r\n\r\n\r\n</div>",
     ProjectListLayout;
 
 ProjectListLayout = module.exports = Layout.extend( {
