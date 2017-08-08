@@ -17,7 +17,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'projects' : 'projectList',
 
         'bridges' : 'bridgeList',
-        'bridges/:projectname' : 'bridgeListOfProject',
+        'bridges/:managementname' : 'bridgeListOfProject',
         'bridges/bridge/new' : 'createBridge',
         'bridges/:bridgename/:id/view' : 'bridgeDetail',
         'bridges/:bridgename/:id/edit' : 'editBridge',
@@ -89,16 +89,16 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    bridgeListOfProject : function ( projectname ) {
+    bridgeListOfProject : function ( managementname ) {
         "use strict";
         var app = this.startApp();
-        app.ShowBridgeList( projectname );
+        app.ShowBridgeList( managementname );
         updateNavigationBar(  [
-            {   title : '项目管理',
-                url : 'projects'
+            {   title : '桥梁管理',
+                url : 'bridges'
             },
-            {   title : projectname,
-                url : 'bridges/' + projectname
+            {   title : managementname,
+                url : 'bridges/' + managementname
             }
         ] );
     },

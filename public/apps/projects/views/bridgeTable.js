@@ -64,7 +64,7 @@ View = module.exports = Backbone.View.extend( {
         // ------------------------------
         // Setting datatable defaults
         // Basic responsive configuration
-      /*  $( '.text-primary' ).html( this.options.projectname );*/
+        $( '.text-primary' ).html( this.options.managementname );
 
         // Basic responsive configuration
         $('.datatable-responsive').DataTable( {

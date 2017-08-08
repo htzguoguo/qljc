@@ -15,7 +15,7 @@ var BridgeList,
     ProjectListLayout = require( '../views/projectListLayout' ),
     ProjectListActionBar = require( '../views/projectListAction' ),
     BridgeListLayout = require( '../views/bridgeListLayout' ),
-    ProjectSidebar = require( '../views/projectSidebar' ),
+    ManagementSidebar = require( '../views/managementSidebar' ),
     BridgeTable = require( '../views/bridgeTable' ),
     BridgePreview = require( '../views/bridgePreview' ),
     BridgeForm = require( '../views/bridgeForm' ),
@@ -31,14 +31,34 @@ BridgeList = module.exports = function ( options ) {
     this.mainRegion = options.mainRegion;
     this.isNew = false;
     _.extend( this, Backbone.Events );
-    this.showList = function ( bridges, projectname  ) {
-        var layout = new ProjectListLayout();
-
+    this.showList = function ( managements, bridges, managementname  ) {
+        var layout = new BridgeListLayout();
         this.mainRegion.show( layout );
-        var bb = new BridgeTable( { collection : bridges, projectname : projectname } );
-        layout.getRegion( 'list' ).show( bb );
+        var bb = new BridgeTable( { collection : bridges, managementname : managementname } );
+        var sidebar = new ManagementSidebar( { collection : managements } );
+        var me = this;
+        sidebar.selectedManagement = managementname;
+        layout.getRegion( 'bridgelist' ).show( bb );
+        layout.getRegion( 'projectslist' ).show( sidebar );
         this.listenTo(  bb, 'item:bridge:delete', this.deleteBridge );
+        this.listenTo( sidebar, 'item:management:select',  function ( num ) {
+            var bridges = new Bridges();
+            bridges.fetch(
+                {
+                    data: $.param({ custodyunit: num}),
+                    success : function ( collection ) {
+                        bb = new BridgeTable( { collection : collection, managementname : num } );
+                        layout.getRegion( 'bridgelist' ).show( bb );
+                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
+                    },
+                    error : function () {
+
+                    }
+                }
+            );
+        } );
     };
+
 
     this.showBridgeDetail = function ( bridge ) {
         var layout = new ProjectListLayout(),
@@ -141,7 +161,7 @@ BridgeList = module.exports = function ( options ) {
         }
         this.askConfirmation( msg, true, function ( isConfirm ) {
             if ( isConfirm ) {
-                window.app.router.navigate( '/bridges', true );
+                window.app.router.navigate( '/bridges/' + bridge.get( 'custodyunit' ) , true );
             }
         } );
     };
@@ -178,7 +198,10 @@ BridgeList = module.exports = function ( options ) {
         }
         function notifyAndRedirect( msg ) {
             me.notifySuccess( msg );
-            window.app.router.navigate( '/bridges'  , true );
+            window.app.router.navigate( '/bridges/' + bridge.get( 'custodyunit' ), true );
+
+
+          /*  window.app.router.navigate( '/bridges'  , true );*/
         }
         bridge.save( null , {
             success : function () {
@@ -202,15 +225,18 @@ BridgeList = module.exports = function ( options ) {
 
     this.deleteBridge = function ( bridge ) {
         var app = this,
-            routename = bridge.get( 'routename' );
+            custodyunit = bridge.get( 'custodyunit' );
         this.askConfirmation( '确认要删除桥梁', false,  function ( isConfirm ) {
             if ( isConfirm ) {
                 bridge.destroy( {
                     success : function () {
                         app.successMessage( '删除桥梁完成' );
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/bridges/' + custodyunit , {trigger: true} );
 
-                        window.app.router.navigate( '/bridges/22' , {trigger: false} );
-                        window.app.router.navigate( '/bridges'  , {trigger: true} );
+
+                      /*  window.app.router.navigate( '/bridges/22' , {trigger: false} );
+                        window.app.router.navigate( '/bridges'  , {trigger: true} );*/
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {

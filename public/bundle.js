@@ -32615,18 +32615,46 @@ App = function ( options ) {
         "use strict";
         var me = this;
         var bridges = new BridgeCollection();
-        bridges.fetch(
-            {
-              /*  data: $.param({ routename: name}),*/
-                success : function ( collection ) {
-                    var bridgeList = me.startController(BridgeController);
-                    bridgeList.showList( collection, name );
+        var managements = new ManagementCollection();
+        if ( name ) {
+            $.when(managements.fetch(), bridges.fetch( { data: $.param({ custodyunit: name}) } ) )
+                .done(
+                    function(m , b ) {
+                        managements = new ManagementCollection( m[0] );
+                        bridges = new BridgeCollection( b[0] );
+                        var bridgeList = me.startController(BridgeController);
+                        bridgeList.showList( managements,bridges , name );
+                    }
+                );
+        }else {
+            managements.fetch( {
+                success : function ( data ) {
+                     if ( data.length > 0 ) {
+                         console.log( 'data', data.at(0) );
+                         var managementname = data.at(0).get( 'managementname' );
+                         bridges.fetch(
+                             {
+                                 data: $.param({ custodyunit: managementname}),
+                                 success : function ( data ) {
+                                     var bridgeList = me.startController(BridgeController);
+                                     bridgeList.showList( managements, data,  managementname );
+                                 },
+                                 error : function () {
+
+                                 }
+                             }
+                         );
+                     }else {
+                         var bridgeList = me.startController(BridgeController);
+                         bridgeList.showList( data, bridges,  '' );
+                     }
                 },
                 error : function () {
 
                 }
-            }
-        );
+            } );
+
+        }
     };
 
     this.ShowTaskList = function ( name ) {
@@ -32934,7 +32962,7 @@ var BridgeList,
     ProjectListLayout = require( '../views/projectListLayout' ),
     ProjectListActionBar = require( '../views/projectListAction' ),
     BridgeListLayout = require( '../views/bridgeListLayout' ),
-    ProjectSidebar = require( '../views/projectSidebar' ),
+    ManagementSidebar = require( '../views/managementSidebar' ),
     BridgeTable = require( '../views/bridgeTable' ),
     BridgePreview = require( '../views/bridgePreview' ),
     BridgeForm = require( '../views/bridgeForm' ),
@@ -32950,14 +32978,34 @@ BridgeList = module.exports = function ( options ) {
     this.mainRegion = options.mainRegion;
     this.isNew = false;
     _.extend( this, Backbone.Events );
-    this.showList = function ( bridges, projectname  ) {
-        var layout = new ProjectListLayout();
-
+    this.showList = function ( managements, bridges, managementname  ) {
+        var layout = new BridgeListLayout();
         this.mainRegion.show( layout );
-        var bb = new BridgeTable( { collection : bridges, projectname : projectname } );
-        layout.getRegion( 'list' ).show( bb );
+        var bb = new BridgeTable( { collection : bridges, managementname : managementname } );
+        var sidebar = new ManagementSidebar( { collection : managements } );
+        var me = this;
+        sidebar.selectedManagement = managementname;
+        layout.getRegion( 'bridgelist' ).show( bb );
+        layout.getRegion( 'projectslist' ).show( sidebar );
         this.listenTo(  bb, 'item:bridge:delete', this.deleteBridge );
+        this.listenTo( sidebar, 'item:management:select',  function ( num ) {
+            var bridges = new Bridges();
+            bridges.fetch(
+                {
+                    data: $.param({ custodyunit: num}),
+                    success : function ( collection ) {
+                        bb = new BridgeTable( { collection : collection, managementname : num } );
+                        layout.getRegion( 'bridgelist' ).show( bb );
+                        me.listenTo(  bb, 'item:bridge:delete', me.deleteBridge );
+                    },
+                    error : function () {
+
+                    }
+                }
+            );
+        } );
     };
+
 
     this.showBridgeDetail = function ( bridge ) {
         var layout = new ProjectListLayout(),
@@ -33097,7 +33145,10 @@ BridgeList = module.exports = function ( options ) {
         }
         function notifyAndRedirect( msg ) {
             me.notifySuccess( msg );
-            window.app.router.navigate( '/bridges'  , true );
+            window.app.router.navigate( '/bridges/' + bridge.get( 'custodyunit' ), true );
+
+
+          /*  window.app.router.navigate( '/bridges'  , true );*/
         }
         bridge.save( null , {
             success : function () {
@@ -33121,15 +33172,18 @@ BridgeList = module.exports = function ( options ) {
 
     this.deleteBridge = function ( bridge ) {
         var app = this,
-            routename = bridge.get( 'routename' );
+            custodyunit = bridge.get( 'custodyunit' );
         this.askConfirmation( '确认要删除桥梁', false,  function ( isConfirm ) {
             if ( isConfirm ) {
                 bridge.destroy( {
                     success : function () {
                         app.successMessage( '删除桥梁完成' );
+                        window.app.router.navigate( '/', {trigger: true} );
+                        window.app.router.navigate( '/bridges/' + custodyunit , {trigger: true} );
 
-                        window.app.router.navigate( '/bridges/22' , {trigger: false} );
-                        window.app.router.navigate( '/bridges'  , {trigger: true} );
+
+                      /*  window.app.router.navigate( '/bridges/22' , {trigger: false} );
+                        window.app.router.navigate( '/bridges'  , {trigger: true} );*/
                         /* Backbone.history.loadUrl(Backbone.history.fragment);*/
                     },
                     error : function () {
@@ -33144,7 +33198,7 @@ BridgeList = module.exports = function ( options ) {
 _.extend( BridgeList.prototype, App );
 
 
-},{"../../../utils/basecontroller":115,"../../../utils/file_upload":118,"../collections/bridges":41,"../collections/engrecords":42,"../collections/lowerstructures":43,"../collections/superstructures":46,"../collections/techassessments":48,"../views/bridgeForm":62,"../views/bridgeForm_engrecord_list":64,"../views/bridgeForm_lowerstructure_list":66,"../views/bridgeForm_superstructure_list":67,"../views/bridgeForm_techassessment_list":69,"../views/bridgeListLayout":71,"../views/bridgePreview":72,"../views/bridgeTable":73,"../views/projectListAction":77,"../views/projectListLayout":78,"../views/projectSidebar":79,"backbone":5,"underscore":11}],50:[function(require,module,exports){
+},{"../../../utils/basecontroller":115,"../../../utils/file_upload":118,"../collections/bridges":41,"../collections/engrecords":42,"../collections/lowerstructures":43,"../collections/superstructures":46,"../collections/techassessments":48,"../views/bridgeForm":62,"../views/bridgeForm_engrecord_list":64,"../views/bridgeForm_lowerstructure_list":66,"../views/bridgeForm_superstructure_list":67,"../views/bridgeForm_techassessment_list":69,"../views/bridgeListLayout":71,"../views/bridgePreview":72,"../views/bridgeTable":73,"../views/managementSidebar":75,"../views/projectListAction":78,"../views/projectListLayout":79,"backbone":5,"underscore":11}],50:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/8/7.
  */
@@ -33252,7 +33306,7 @@ _.extend( ManagementList.prototype, App );
 
 
 
-},{"../../../utils/basecontroller":115,"../collections/managements":44,"../views/managementForm":74,"../views/managementTable":75,"../views/projectListLayout":78,"backbone":5,"underscore":11}],51:[function(require,module,exports){
+},{"../../../utils/basecontroller":115,"../collections/managements":44,"../views/managementForm":74,"../views/managementTable":76,"../views/projectListLayout":79,"backbone":5,"underscore":11}],51:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/18.
  */
@@ -33361,7 +33415,7 @@ ProjectList = module.exports = function ( options ) {
 
 _.extend( ProjectList.prototype, App );
 
-},{"../../../utils/basecontroller":115,"../views/projectForm":76,"../views/projectListAction":77,"../views/projectListLayout":78,"../views/projectTable":80,"backbone":5,"underscore":11}],52:[function(require,module,exports){
+},{"../../../utils/basecontroller":115,"../views/projectForm":77,"../views/projectListAction":78,"../views/projectListLayout":79,"../views/projectTable":80,"backbone":5,"underscore":11}],52:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/26.
  */
@@ -33472,7 +33526,7 @@ _.extend( TaskList.prototype, App );
 
 
 
-},{"../../../utils/basecontroller":115,"../collections/tasks":47,"../views/projectListLayout":78,"../views/taskForm":81,"../views/taskTable":82,"backbone":5,"underscore":11}],53:[function(require,module,exports){
+},{"../../../utils/basecontroller":115,"../collections/tasks":47,"../views/projectListLayout":79,"../views/taskForm":81,"../views/taskTable":82,"backbone":5,"underscore":11}],53:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/21.
  */
@@ -33928,7 +33982,7 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         'projects' : 'projectList',
 
         'bridges' : 'bridgeList',
-        'bridges/:projectname' : 'bridgeListOfProject',
+        'bridges/:managementname' : 'bridgeListOfProject',
         'bridges/bridge/new' : 'createBridge',
         'bridges/:bridgename/:id/view' : 'bridgeDetail',
         'bridges/:bridgename/:id/edit' : 'editBridge',
@@ -34000,16 +34054,16 @@ ContactsRouters = module.exports = Backbone.Router.extend( {
         ] );
     },
 
-    bridgeListOfProject : function ( projectname ) {
+    bridgeListOfProject : function ( managementname ) {
         "use strict";
         var app = this.startApp();
-        app.ShowBridgeList( projectname );
+        app.ShowBridgeList( managementname );
         updateNavigationBar(  [
-            {   title : '项目管理',
-                url : 'projects'
+            {   title : '桥梁管理',
+                url : 'bridges'
             },
-            {   title : projectname,
-                url : 'bridges/' + projectname
+            {   title : managementname,
+                url : 'bridges/' + managementname
             }
         ] );
     },
@@ -34492,12 +34546,11 @@ EmailListItem = module.exports = ModelView.extend( {
  */
 
 var Layout = require('../../../utils/layout'),
-    template = "<div class=\"sidebar sidebar-main sidebar-default sidebar-separate\">\r\n    <div class=\"sidebar-content project-container\">\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content-wrapper bridge-container\">\r\n\r\n\r\n</div>",
+    template = "<div class=\"sidebar sidebar-main sidebar-default sidebar-separate\"  >\r\n    <div class=\"sidebar-content project-container\"  style=\"width:250px;\" >\r\n\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"content-wrapper bridge-container\">\r\n\r\n\r\n</div>",
     ProjectListLayout;
 
 ProjectListLayout = module.exports = Layout.extend( {
     template : template,
-    className : 'row page-container',
     regions : {
         projectslist : '.project-container',
         bridgelist : '.bridge-container'
@@ -34583,7 +34636,7 @@ View = module.exports = Backbone.View.extend( {
         // ------------------------------
         // Setting datatable defaults
         // Basic responsive configuration
-      /*  $( '.text-primary' ).html( this.options.projectname );*/
+        $( '.text-primary' ).html( this.options.managementname );
 
         // Basic responsive configuration
         $('.datatable-responsive').DataTable( {
@@ -34651,6 +34704,43 @@ View = module.exports = ModelView.extend( {
 } );
 
 },{"../../../utils/modelview":120,"backbone-validation":1}],75:[function(require,module,exports){
+/**
+ * Created by Administrator on 2017/8/8.
+ */
+
+var Backbone = require('backbone'),
+    Mustache = require('mustache'),
+    template = "<div class=\"sidebar-category\">\r\n    <div class=\"category-title\">\r\n        <span>管理单位</span>\r\n    </div>\r\n    <div class=\"category-content\">\r\n        <div class=\"has-feedback has-feedback-left\">\r\n            <input type=\"search\" class=\"form-control\" placeholder=\"管理单位\">\r\n            <div class=\"form-control-feedback\">\r\n                <i class=\"icon-search4 text-size-base text-muted\"></i>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"category-content no-padding\">\r\n        <ul class=\"navigation navigation-main navigation-accordion navigation-bordered management-container\">\r\n            {{#managements}}\r\n            <li><a href=\"javascript:void(0)\" class=\"legitRipple management-nav\" data-index=\"{{managementname}}\"><i class=\"icon-home4\"></i> <span>{{managementname}}</span></a></li>\r\n            {{/managements}}\r\n        </ul>\r\n    </div>\r\n</div>",
+    View;
+
+View = module.exports = Backbone.View.extend( {
+    className : 'panel panel-white',
+    template : template,
+    events : {
+        'click .management-nav' : 'selectManagement'
+    },
+    render : function () {
+        var html = Mustache.to_html( this.template, { managements : this.collection.toJSON() } );
+        this.$el.html( html );
+        return this;
+    },
+    onShow : function () {
+        if ( this.selectedManagement ) {
+            this.$( '.management-container li a[data-index=' + this.selectedManagement +  ']' ).trigger( 'click' );
+        }
+    },
+    selectManagement : function ( ev ) {
+        "use strict";
+        var num = this.$(ev.currentTarget).data('index');
+        this.trigger( 'item:management:select',  num );
+        this.$( '.management-container li' ).removeClass( 'active' );
+        this.$(ev.currentTarget).parent().addClass( 'active' );
+    }
+} );
+
+
+
+},{"backbone":5,"mustache":9}],76:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/8/7.
  */
@@ -34725,7 +34815,7 @@ View = module.exports = Backbone.View.extend( {
         });
     }
 } );
-},{"backbone":5,"mustache":9}],76:[function(require,module,exports){
+},{"backbone":5,"mustache":9}],77:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/19.
  */
@@ -34839,7 +34929,7 @@ ContactForm = module.exports = ModelView.extend( {
     }
 } );
 
-},{"../../../utils/modelview":120,"backbone-validation":1,"mustache":9,"underscore":11}],77:[function(require,module,exports){
+},{"../../../utils/modelview":120,"backbone-validation":1,"mustache":9,"underscore":11}],78:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/18.
  */
@@ -34865,7 +34955,7 @@ View = module.exports = ModelView.extend( {
     }
 } );
 
-},{"../../../utils/modelview":120}],78:[function(require,module,exports){
+},{"../../../utils/modelview":120}],79:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/6/1.
  */
@@ -34885,44 +34975,7 @@ ProjectListLayout = module.exports = Layout.extend( {
 
 
 
-},{"../../../utils/layout":119}],79:[function(require,module,exports){
-/**
- * Created by Administrator on 2017/7/21.
- */
-
-var Backbone = require('backbone'),
-    Mustache = require('mustache'),
-    template = "<div class=\"sidebar-category\">\r\n    <div class=\"category-title\">\r\n        <span>项目列表</span>\r\n    </div>\r\n    <div class=\"category-content\">\r\n            <div class=\"has-feedback has-feedback-left\">\r\n                <input type=\"search\" class=\"form-control\" placeholder=\"项目名称\">\r\n                <div class=\"form-control-feedback\">\r\n                    <i class=\"icon-search4 text-size-base text-muted\"></i>\r\n                </div>\r\n            </div>\r\n    </div>\r\n    <div class=\"category-content no-padding\">\r\n        <ul class=\"navigation navigation-main navigation-accordion navigation-bordered projects-container\">\r\n            {{#projects}}\r\n                <li><a href=\"javascript:void(0)\" class=\"legitRipple project-nav\" data-index=\"{{projectname}}\"><i class=\"icon-home4\"></i> <span>{{projectname}}</span></a></li>\r\n            {{/projects}}\r\n        </ul>\r\n    </div>\r\n</div>\r\n",
-    View;
-
-View = module.exports = Backbone.View.extend( {
-    className : 'panel panel-white',
-    template : template,
-    events : {
-        'click .project-nav' : 'selectProject'
-    },
-    render : function () {
-        var html = Mustache.to_html( this.template, { projects : this.collection.toJSON() } );
-        this.$el.html( html );
-        return this;
-    },
-    onShow : function () {
-       if ( this.selectedproject ) {
-           this.$( '.projects-container li a[data-index=' + this.selectedproject +  ']' ).trigger( 'click' );
-       }
-    },
-    selectProject : function ( ev ) {
-        "use strict";
-        var num = this.$(ev.currentTarget).data('index');
-        this.trigger( 'item:project:select',  num );
-        this.$( '.projects-container li' ).removeClass( 'active' );
-        this.$(ev.currentTarget).parent().addClass( 'active' );
-    }
-} );
-
-
-
-},{"backbone":5,"mustache":9}],80:[function(require,module,exports){
+},{"../../../utils/layout":119}],80:[function(require,module,exports){
 /**
  * Created by Administrator on 2017/7/18.
  */

@@ -48,18 +48,46 @@ App = function ( options ) {
         "use strict";
         var me = this;
         var bridges = new BridgeCollection();
-        bridges.fetch(
-            {
-              /*  data: $.param({ routename: name}),*/
-                success : function ( collection ) {
-                    var bridgeList = me.startController(BridgeController);
-                    bridgeList.showList( collection, name );
+        var managements = new ManagementCollection();
+        if ( name ) {
+            $.when(managements.fetch(), bridges.fetch( { data: $.param({ custodyunit: name}) } ) )
+                .done(
+                    function(m , b ) {
+                        managements = new ManagementCollection( m[0] );
+                        bridges = new BridgeCollection( b[0] );
+                        var bridgeList = me.startController(BridgeController);
+                        bridgeList.showList( managements,bridges , name );
+                    }
+                );
+        }else {
+            managements.fetch( {
+                success : function ( data ) {
+                     if ( data.length > 0 ) {
+                         console.log( 'data', data.at(0) );
+                         var managementname = data.at(0).get( 'managementname' );
+                         bridges.fetch(
+                             {
+                                 data: $.param({ custodyunit: managementname}),
+                                 success : function ( data ) {
+                                     var bridgeList = me.startController(BridgeController);
+                                     bridgeList.showList( managements, data,  managementname );
+                                 },
+                                 error : function () {
+
+                                 }
+                             }
+                         );
+                     }else {
+                         var bridgeList = me.startController(BridgeController);
+                         bridgeList.showList( data, bridges,  '' );
+                     }
                 },
                 error : function () {
 
                 }
-            }
-        );
+            } );
+
+        }
     };
 
     this.ShowTaskList = function ( name ) {

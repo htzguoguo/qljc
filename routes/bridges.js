@@ -16,10 +16,8 @@ router.get( '/', function ( req, res, next ) {
     }else {
         console.log( 'get_params', get_params, get_params[ 'page' ], get_params[ 'page' ] !== null );
         if ( get_params[ 'page' ] !== undefined   || get_params[ 'limit' ] !== undefined ) {
-            console.log( 'bridges.paginate' );
             bridges.paginate( req, res );
         }else {
-            console.log( 'bridges.query_by_arg' );
             key = [], value= [];
             Object.keys( get_params ).forEach( function ( para ) {
                 key.push( para );
