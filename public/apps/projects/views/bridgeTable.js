@@ -21,6 +21,7 @@ View = module.exports = Backbone.View.extend( {
     },
     events : {
         'click .bridge-new' : 'addBridge',
+        'click .managementunit' : 'toManagementunit',
         'click .bridge-delete' : 'deleteBridge',
         'click .bridge-edit' : 'editBridge',
         'click .bridge-preview' : 'previewBridge',
@@ -28,8 +29,18 @@ View = module.exports = Backbone.View.extend( {
     },
     render : function () {
         var html;
+        var data = {
+            items:  this.collection.toJSON(),
+            index: function() {
+                return ++window['INDEX']||(window['INDEX']=1);
+            }
+            , resetIndex: function() {
+                window['INDEX']=null;
+                return;
+            }
+        };
         if ( this.collection ) {
-            html = Mustache.to_html( this.template, {  items : this.collection.toJSON() } );
+            html = Mustache.to_html( this.template, data );
         }else {
             html = Mustache.to_html( this.template, {   items : [] } );
         }
@@ -51,6 +62,10 @@ View = module.exports = Backbone.View.extend( {
         var id = this.$(ev.currentTarget).data('index'),
             bridgename = this.$(ev.currentTarget).data('bridge');
         window.app.router.navigate( 'bridges/' + bridgename + '/' + id + '/edit', true );
+    },
+    toManagementunit : function () {
+        "use strict";
+        window.app.router.navigate( '/managements', true );
     },
     addBridge : function () {
         "use strict";

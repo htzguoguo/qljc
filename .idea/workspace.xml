@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e711e26-b7be-47f8-9db9-510c4f04fec6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" afterPath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" afterPath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bundle.js" afterPath="$PROJECT_DIR$/public/bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,21 +24,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bridgeTable.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js">
+      <file leaf-file-name="bridgeTable.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bridgeTable.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
+      <file leaf-file-name="projectTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/projectTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+            <state relative-caret-position="-641">
+              <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projectTable.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bridgeTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/routers/routers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="88" column="12" lean-forward="true" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
+              <folding>
+                <element signature="e#1038#1331#0" expanded="false" />
+                <element signature="e#1363#1584#0" expanded="false" />
+                <element signature="e#1618#1888#0" expanded="false" />
+                <element signature="e#1924#2201#0" expanded="false" />
+                <element signature="n#!!block;n#updateNavigationBar#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shell.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/shell/views/templates/shell.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="taskTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/taskTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="32" column="10" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="32" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="taskTable.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskTable.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="49" lean-forward="false" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -79,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" />
         <option value="$PROJECT_DIR$/modules/schema/bridge.js" />
         <option value="$PROJECT_DIR$/app_tool_data.js" />
         <option value="$PROJECT_DIR$/modules/mongodb_helper.js" />
@@ -111,7 +177,6 @@
         <option value="$PROJECT_DIR$/public/apps/projects/models/management.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/collections/managements.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/managementTable.html" />
-        <option value="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/managementForm.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/controllers/managementController.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/managementForm.js" />
@@ -128,8 +193,10 @@
         <option value="$PROJECT_DIR$/public/apps/projects/controllers/bridgeController.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/routers/routers.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeListLayout.html" />
-        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html" />
+        <option value="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
       </list>
     </option>
   </component>
@@ -497,18 +564,18 @@
       <workItem from="1500430322580" duration="41368000" />
       <workItem from="1500599004570" duration="104555000" />
       <workItem from="1500975426360" duration="94864000" />
-      <workItem from="1502021354289" duration="28908000" />
+      <workItem from="1502021354289" duration="33861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312793000" />
+    <option name="totallyTimeSpent" value="317746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13318452" sideWeight="0.48154092" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29166666" sideWeight="0.48154092" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17931548" sideWeight="0.5184591" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -561,14 +628,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/models/project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app_tool_data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -715,50 +774,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskTable.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/projectTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-219">
-          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/taskTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-304">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="84" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/models/management.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
           <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/shell/views/templates/shell.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="49" column="20" lean-forward="false" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -990,10 +1009,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeListLayout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="230" column="18" lean-forward="false" selection-start-line="230" selection-start-column="18" selection-end-line="230" selection-end-column="18" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#tr#2;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#tr#3;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#3;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#4;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#5;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#6;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#7;n#tr#5;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+            <marker date="1502262464969" expanded="false" signature="7678:7690" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="7747:7760" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="7817:7828" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="7885:7896" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="7953:7966" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="8023:8034" ph="..." />
+            <marker date="1502262464969" expanded="false" signature="8091:8102" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/taskTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="32" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/routers/routers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+        <state relative-caret-position="532">
+          <caret line="88" column="12" lean-forward="true" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
           <folding>
             <element signature="e#1038#1331#0" expanded="false" />
             <element signature="e#1363#1584#0" expanded="false" />
@@ -1004,29 +1074,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeListLayout.html">
+    <entry file="file://$PROJECT_DIR$/public/apps/shell/views/templates/shell.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="230">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        <state relative-caret-position="364">
+          <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/projectTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-641">
+          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskTable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="49" lean-forward="false" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
           <folding />
         </state>
       </provider>
