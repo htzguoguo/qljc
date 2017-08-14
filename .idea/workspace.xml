@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e711e26-b7be-47f8-9db9-510c4f04fec6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" afterPath="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgePreview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" afterPath="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tech.html" afterPath="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tech.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bundle.js" afterPath="$PROJECT_DIR$/public/bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,88 +23,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bridgeTable.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
+      <file leaf-file-name="bridgeForm_superstructure_item.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            <state relative-caret-position="332">
+              <caret line="42" column="13" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="42" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projectTable.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/projectTable.js">
+      <file leaf-file-name="bridgeForm_tab.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-641">
-              <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="projectTable.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bridgeTable.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routers.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/routers/routers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="88" column="12" lean-forward="true" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
+            <state relative-caret-position="382">
+              <caret line="316" column="45" lean-forward="true" selection-start-line="309" selection-start-column="35" selection-end-line="316" selection-end-column="45" />
               <folding>
-                <element signature="e#1038#1331#0" expanded="false" />
-                <element signature="e#1363#1584#0" expanded="false" />
-                <element signature="e#1618#1888#0" expanded="false" />
-                <element signature="e#1924#2201#0" expanded="false" />
-                <element signature="n#!!block;n#updateNavigationBar#0" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shell.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/shell/views/templates/shell.html">
+      <file leaf-file-name="bridgeForm_engrecord_item.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_engrecord_item.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="taskTable.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/taskTable.js">
+      <file leaf-file-name="bridgeForm_tech.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tech.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="32" column="10" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="32" selection-end-column="10" />
+            <state relative-caret-position="217">
+              <caret line="61" column="38" lean-forward="true" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="taskTable.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskTable.html">
+      <file leaf-file-name="taskForm.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskForm.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="49" lean-forward="false" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="49" />
-              <folding />
+            <state relative-caret-position="404">
+              <caret line="51" column="26" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="51" selection-end-column="26" />
+              <folding>
+                <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#1;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,9 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/modules/schema/bridge.js" />
-        <option value="$PROJECT_DIR$/app_tool_data.js" />
-        <option value="$PROJECT_DIR$/modules/mongodb_helper.js" />
         <option value="$PROJECT_DIR$/modules/bridges_mongodb.js" />
         <option value="$PROJECT_DIR$/public/main.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/models/bridge.js" />
@@ -197,6 +163,9 @@
         <option value="$PROJECT_DIR$/public/apps/shell/views/templates/shell.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/bridgeTable.js" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tech.html" />
       </list>
     </option>
   </component>
@@ -389,38 +358,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qljc_node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qljc_node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qljc_node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qljc_node" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="schema" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -564,18 +501,18 @@
       <workItem from="1500430322580" duration="41368000" />
       <workItem from="1500599004570" duration="104555000" />
       <workItem from="1500975426360" duration="94864000" />
-      <workItem from="1502021354289" duration="33861000" />
+      <workItem from="1502021354289" duration="36988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="317746000" />
+    <option name="totallyTimeSpent" value="320873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29166666" sideWeight="0.48154092" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08556548" sideWeight="0.48154092" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17931548" sideWeight="0.5184591" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -628,35 +565,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app_tool_data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/contacts_mongodb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-944">
-          <caret line="268" column="56" lean-forward="false" selection-start-line="268" selection-start-column="38" selection-end-line="268" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/upload_files.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_sql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="212" column="7" lean-forward="true" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -779,18 +687,6 @@
         <state relative-caret-position="406">
           <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="106" column="36" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#1;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,7 +996,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
+        <state relative-caret-position="395">
           <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="26" />
           <folding />
         </state>
@@ -1116,8 +1012,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeTable.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        <state relative-caret-position="152">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/taskForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="51" column="26" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="51" selection-end-column="26" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="42" column="13" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_engrecord_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="316" column="45" lean-forward="true" selection-start-line="309" selection-start-column="35" selection-end-line="316" selection-end-column="45" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tech.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="61" column="38" lean-forward="true" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
           <folding />
         </state>
       </provider>

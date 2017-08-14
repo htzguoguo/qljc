@@ -1,13 +1,47 @@
-<td width="20%">
-    <input id="holenumber" name="holenumber" type="text" class="form-control description" placeholder="" value="{{holenumber}} " />
+<td width="30%">
+
+        <div class="col-sm-4">
+            <select id="detectiontype" name="detectiontype" class="form-control"  >
+                <option value="多孔号">多孔号</option>
+                <option value="多孔号">单孔号</option>
+            </select>
+        </div>
+        <div class="col-sm-8">
+            <input id="holenumber" name="holenumber" type="text" class="form-control description" placeholder="" value="{{holenumber}} " />
+        </div>
 </td>
 <td width="20%">
     <input id="span" name="span" type="text" class="form-control description" placeholder="" value="{{span}} " />
 </td>
 <td width="20%">
-    <input id="form" name="form" type="text" class="form-control description" placeholder="" value="{{form}} " />
+  <!--  <input id="form" name="form" type="text" class="form-control description" placeholder="" value="{{form}} " />-->
+
+    <select id="form" name="form" name="detectiontype" class="form-control description"  value="{{form}}">
+       <option value="钢筋混凝土空心板梁">钢筋混凝土空心板梁</option>
+        <option value="先张预应力混凝土空心板梁">先张预应力混凝土空心板梁</option>
+        <option value="后张预应力混凝土空心板梁">后张预应力混凝土空心板梁</option>
+        <option value="混凝土整体板梁">混凝土整体板梁</option>
+        <option value="钢筋混凝土箱梁">钢筋混凝土箱梁</option>
+        <option value="预应力钢筋混凝土箱梁">预应力钢筋混凝土箱梁</option>
+        <option value="钢筋混凝土T梁">钢筋混凝土T梁</option>
+        <option value="预应力混凝土T梁">预应力混凝土T梁</option>
+        <option value="预应力混凝土小箱梁">预应力混凝土小箱梁</option>
+        <option value="混凝土组合梁">混凝土组合梁</option>
+        <option value="钢箱梁">钢箱梁</option>
+        <option value="钢主梁">钢主梁</option>
+        <option value="钢横梁">钢横梁</option>
+        <option value="钢纵梁">钢纵梁</option>
+        <option value="钢桁架">钢桁架</option>
+        <option value="钢桥面板">钢桥面板</option>
+    </select>
 </td>
 <td width="20%">
-    <input id="material" name="material" type="text" class="form-control description" placeholder="" value="{{material}} " />
+    <select id="material" name="material"  class="form-control description"  value="{{material}}">
+        <option value="C30混凝土">C30混凝土</option>
+        <option value="C40混凝土">C40混凝土</option>
+        <option value="C50混凝土">C50混凝土</option>
+    </select>
+
+   <!-- <input id="material" name="material" type="text" class="form-control description" placeholder="" value="{{material}} " />-->
 </td>
-<td width="20%"><a href="#" class="pull-rigth delete">删除</a></td>
+<td width="10%"><a href="#" class="pull-rigth delete">删除</a></td>

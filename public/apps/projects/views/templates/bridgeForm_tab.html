@@ -224,11 +224,11 @@
                             <table class="table ">
                                 <thead>
                                 <tr>
-                                    <th width="20%">孔号</th>
+                                    <th width="30%">孔号</th>
                                     <th width="20%">跨径(m)</th>
                                     <th width="20%">形式</th>
                                     <th width="20%">材料</th>
-                                    <th width="20%"></th>
+                                    <th width="10%"></th>
                                 </tr>
                                 </thead>
                             </table>
@@ -275,7 +275,16 @@
                             <div class="form-group">
                                 <label for="expansionjointtype" class="col-sm-4 control-label">伸缩缝类型</label>
                                 <div class="col-sm-8">
-                                    <input id="expansionjointtype" name="expansionjointtype" type="text" class="form-control" placeholder="S6" value="{{expansionjointtype}}" />
+                                 <!--   <input id="expansionjointtype" name="expansionjointtype" type="text" class="form-control" placeholder="S6" value="{{expansionjointtype}}" />-->
+                                    <select id="expansionjointtype" name="expansionjointtype"  class="form-control description"  value="{{expansionjointtype}}">
+                                        <option value="TS8型钢型伸缩装置">TS8型钢型伸缩装置</option>
+                                        <option value="TST弹塑体伸缩装置">TST弹塑体伸缩装置</option>
+                                        <option value="GQF-80型">GQF-80型</option>
+                                        <option value="GQF-160型">GQF-160型</option>
+                                        <option value="钢板A3">钢板A3</option>
+                                        <option value="MS-8">MS-8</option>
+                                        <option value="MS-16">MS-16</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -297,7 +306,15 @@
                             <div class="form-group">
                                 <label for="bearingform" class="col-sm-4 control-label">支座形式</label>
                                 <div class="col-sm-8">
-                                    <input id="bearingform" name="bearingform" type="text" class="form-control" placeholder="" value="{{bearingform}}"  />
+                                   <!-- <input id="bearingform" name="bearingform" type="text" class="form-control" placeholder="" value="{{bearingform}}"  />-->
+                                    <select id="bearingform" name="bearingform"  class="form-control description"  value="{{bearingform}}">
+                                        <option value="板式支座">板式支座</option>
+                                        <option value="盆式支座">盆式支座</option>
+                                        <option value="钢支座">钢支座</option>
+                                        <option value="砼支座">砼支座</option>
+                                        <option value="活动支座">活动支座</option>
+                                        <option value="油毛毡支座">油毛毡支座</option>
+                                    </select>
                                 </div>
                             </div>
 
