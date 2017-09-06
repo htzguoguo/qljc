@@ -14,79 +14,39 @@
     </div>
     <div class="panel-body">
         <form class="form-horizontal">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="projectname" class="col-sm-2 control-label">项目名称</label>
-                    <div class="col-sm-10">
-                        <input id="projectname" name="projectname" type="text" class="form-control" placeholder="" value="{{projectname}}" />
-                    </div>
-                </div>
+            <table class="datalist">
+                <tr>
+                    <th>项目名称</th>
+                    <td><input id="projectname" name="projectname" type="text" class="form-control" placeholder="" value="{{projectname}}" /></td>
+                    <th>项目编号</th>
+                    <td><input id="projectnumber" name="projectnumber" type="text" class="form-control" placeholder="" value="{{projectnumber}}" /></td>
+                </tr>
+                <tr>
+                    <th>路线等级</th>
+                    <td><input id="roadgrade" name="roadgrade" type="text" class="form-control" placeholder="地方高速公路" value="{{roadgrade}}" /></td>
+                    <th>设计荷载</th>
+                    <td><input id="shejihezai" name="shejihezai" type="text" class="form-control" placeholder="汽车-超20，挂车-120" value="{{shejihezai}}" /></td>
+                </tr>
+                <tr>
+                    <th>功能类型</th>
+                    <td><input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" /></td>
+                    <th>管养单位</th>
+                    <td><input id="manageunit" name="manageunit" type="text" class="form-control" placeholder="天津天永高速公路有限公司" value="{{manageunit}}" /></td>
+                </tr>
+                <tr>
+                    <th>创建日期</th>
+                    <td><input id="createtime" name="createtime" type="text" class="form-control pickadate" placeholder="" value="{{createtime}}" />
+                        <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">--></td>
+                    <th>创建人</th>
+                    <td><input id="creater" name="creater" type="text" class="form-control" placeholder="" value="{{creater}}" /></td>
+                </tr>
+                <tr>
+                    <th colspan="3">备注</th>
+                    <td><textarea id="memo" name="memo" value="{{memo}}" rows="5" cols="5" class="form-control" placeholder="" data-gramm="true" data-txt_gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" data-gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" spellcheck="false" data-gramm_editor="true" style="z-index: auto; position: relative; line-height: 20px; font-size: 13px; transition: none; background: transparent !important;">
 
-                <div class="form-group">
-                    <label for="roadgrade" class="col-sm-2 control-label">路线等级</label>
-                    <div class="col-sm-10">
-                        <input id="roadgrade" name="roadgrade" type="text" class="form-control" placeholder="地方高速公路" value="{{roadgrade}}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="functiontype" class="col-sm-2 control-label">功能类型</label>
-                    <div class="col-sm-10">
-                        <input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="projectname" class="col-sm-2 control-label">创建日期</label>
-                    <div class="col-sm-10">
-                        <input id="createtime" name="createtime" type="text" class="form-control pickadate" placeholder="" value="{{createtime}}" />
-                        <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="projectname" class="col-sm-2 control-label">项目编号</label>
-                    <div class="col-sm-10">
-                        <input id="projectnumber" name="projectnumber" type="text" class="form-control" placeholder="" value="{{projectnumber}}" />
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="shejihezai" class="col-sm-2 control-label">设计荷载</label>
-                    <div class="col-sm-10">
-                        <input id="shejihezai" name="shejihezai" type="text" class="form-control" placeholder="汽车-超20，挂车-120" value="{{shejihezai}}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="manageunit" class="col-sm-2 control-label">管养单位</label>
-                    <div class="col-sm-10">
-                        <input id="manageunit" name="manageunit" type="text" class="form-control" placeholder="天津天永高速公路有限公司" value="{{manageunit}}" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="projectname" class="col-sm-2 control-label">创建人</label>
-                    <div class="col-sm-10">
-                        <input id="creater" name="creater" type="text" class="form-control" placeholder="" value="{{creater}}" />
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="memo" class="col-sm-2 control-label">备注</label>
-                    <div class="col-sm-10">
-                <textarea id="memo" name="memo" value="{{memo}}" rows="5" cols="5" class="form-control" placeholder="" data-gramm="true" data-txt_gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" data-gramm_id="609ba2bb-1d6d-9f0d-12f3-f8359015f421" spellcheck="false" data-gramm_editor="true" style="z-index: auto; position: relative; line-height: 20px; font-size: 13px; transition: none; background: transparent !important;">
-
-                </textarea>
-                    </div>
-                </div>
-            </div>
-
-
+                </textarea></td>
+                </tr>
+            </table>
         </form>
     </div>
 

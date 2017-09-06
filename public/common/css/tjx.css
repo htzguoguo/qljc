@@ -16,13 +16,234 @@ table > th,td {
     margin: 0;
 }
 
-/*.navbar {
-    background-color: #2f353f;
+.navbar{
+    background:#168bd8;
+    line-height:60px;
+    height:60px;
+    padding-top:4px;
+}
+.navbar-brand,.navbar-brand a{
+    font-size:24px;
+    color:#FFF!important;
+}
+.navbar-brand a:hover,.navbar-brand a:focus{
+    color:#67CBFF !important;
+}
+.navcolor li a{
+    color:#fff!important;
+    text-decoration:none;
+}
+.navcolor li a:hover{
+    color:#67CBFF !important;
+}
+.navbar-nav{
+    font-size:15px;
+}
+.dropdown-toggle img{
+    max-height: 30px !important;
+    margin-top:2px!important;
+}
+.dropdown-toggle i{
+    color:#FFF;
+}
+.dropdown-menu{
+    margin-top: 10px!important;
 }
 
-.navbar a {
-    color: #a7b1c2;
-}*/
+
+/*#tjx-shell-main{*/
+    /*padding:10px 20px!important;*/
+/*}*/
+/*.panel{*/
+    /*padding:20px;*/
+    /*border:6px solid #7BC7F0;*/
+    /*border-radius:5px;*/
+/*}*/
+/*.panel-title{*/
+    /*font-size:16px!important;*/
+    /*color:#ff8000;*/
+    /*font-weight:bold;*/
+/*}*/
+/*.table th{*/
+    /*background: #A5D9F0;*/
+    /*font-size:14px;*/
+    /*font-weight:bold;*/
+/*}*/
+/*.table tr td,.table tr th{*/
+    /*border-top-color:#66AED9 !important;*/
+    /*border-bottom-color:#66AED9!important;*/
+/*}*/
+/*.datatable-header,.panel-heading{*/
+    /*border-bottom-color:#66AED9!important;*/
+/*}*/
+/*.panel-body+.dataTables_wrapper,.datatable-footer,.panel-footer{*/
+    /*border-top-color:#66AED9 !important;*/
+/*}*/
+/*.dataTables_filter > label:after{*/
+    /*font-size:16px;*/
+    /*color:#FF7F00;*/
+/*}*/
+/*.form-group:nth-child(odd){*/
+    /*background:#F4F6F8;*/
+/*}*/
+    /*
+    .navbar a {
+        color: #a7b1c2;
+    }*/
+#tjx-shell-main{
+    padding:10px!important;
+    background:#fafafa;
+}
+.panel{
+    padding:6px;
+    /*    border:1px solid #7BC7F0;
+        border:1px solid #AAD2EA;*/
+    background:#89B5E9;
+}
+.panel-body{background:#fff;border:1px solid #6392C8;}
+.sidebar-category{
+    border:1px solid #6392C8;
+    /* -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    box-shadow:0 0 0!important;
+    -webkit-box-shadow:0 0 0 !important;
+}
+.category-title{
+    padding:10px 0;
+    border-bottom:none;
+}
+.category-title span{
+    text-align: left;
+    font-size:16px!important;
+    line-height: 2.6!important;
+    color:#000!important;
+    background:#C1D9F3;
+    line-height:45px;
+    height:45px;
+    padding:20px 0 0 20px;
+}
+.category-content{
+    border-top:1px solid #6392C8!important;
+    padding:10px 20px;
+}
+.navigation li{border:none!important;background:#C1D9F3;}
+.panel-heading,.dataTables_wrapper{border:1px solid #6392C8;}
+.panel-heading{padding:7px 0;}
+.panel-heading .panel-title{background:#C1D9F3;    padding: 14px 17px;}
+.datatable-header,.datatable-footer{padding:0 15px 6px 0; background:#fff;}
+.datatable-footer{padding-top:6px;}
+.datatable-scroll-wrap{background:#fff;}
+.heading-elements{background:none; }
+.dataTables_filter,.dataTables_length,.dataTables_info,.dataTables_paginate{margin:0; }
+.list-container{padding:10px;}
+.panel-title{
+    font-size:16px!important;
+    color:#6392C8;
+    font-weight:bold;
+}
+.table th{
+    background: #C1D9F3;
+    font-size:14px;
+    font-weight:bold;
+}
+.table tr td,.table tr th{
+    border-top-color:#66AED9 !important;
+    border-bottom-color:#66AED9!important;
+}
+.table tr:nth-child(odd){background:#EFF5FB}
+.table > tbody > tr > td{padding:6px 20px;}
+.datatable-header,.panel-heading{
+    border-bottom-color:#66AED9!important;
+}
+.panel-body+.dataTables_wrapper,.datatable-footer,.panel-footer{
+    border-top-color:#66AED9 !important;
+}
+
+.dataTables_filter > label:after{
+    font-size:16px;
+    color:#FF7F00;
+}
+.form-group:nth-child(odd){
+    background:#F4F6F8;
+}
+.col-md-6,.col-md-12{border:1px solid #DDDDDD;}
+.nav-tabs.nav-tabs-bottom > li.active > a:after {
+    background-color:#FF7F00;
+}
+
+
+.datalist{
+    border:1px solid #A8BFDE;	/* 表格边框 */
+    /*border:1px solid #66AED9;	!* 表格边框 *!*/
+    font-family:Arial;
+    border-collapse:collapse;	/* 边框重叠 */
+    background-color:#FFF;	/* 表格背景色 */
+    font-size:12px;
+    width:100%;
+    line-height:18px;
+}
+.datalist caption{
+    padding-bottom:5px;
+    text-align:left;
+}
+.datalist tr th{
+    border:1px solid #A8BFDE;	/* 行名称边框 */
+    /*border:1px solid #66AED9;	!* 行名称边框 *!*/
+    /*background-color:#EFF5FB;	!* 行名称背景色 *!*/
+    background-color:#D3DFED;	/* 行名称背景色 */
+    color:#5A7EA0;				/* 行名称颜色 */
+    font-weight:bold;
+    padding:10px 4px;
+    text-align:center;}
+.datalist th{
+    border:1px solid #A8BFDE;	/* 行名称边框 */
+    /*border:1px solid #66AED9;	!* 行名称边框 *!*/
+    /*background-color:#EFF5FB;	!* 行名称背景色 *!*/
+    background-color:#D3DFED;	/* 行名称背景色 */
+    color:#5A7EA0;				/* 行名称颜色 */
+    font-weight:bold;
+    padding:4px;
+    text-align:center;
+}
+.datalist td{
+    /*border:1px solid #66AED9;	!* 单元格边框 *!*/
+    border:1px solid #A8BFDE;	/* 单元格边框 */
+    padding:2px;
+}
+.datalist .form-control{border-bottom:none;}
+
+
+.datatb{
+    border:1px solid #A8BFDE;	/* 表格边框 */
+    font-family:Arial;
+    border-collapse:collapse;	/* 边框重叠 */
+    background-color:#FFF;	/* 表格背景色 */
+    font-size:12px;
+    width:100%;
+    line-height:18px;
+    border-top:none;
+}
+.datatb td{
+    /*border:1px solid #66AED9;	!* 单元格边框 *!*/
+    border:1px solid #A8BFDE;	/* 单元格边框 */
+    border-top:none;
+    padding:4px;
+}
+.addtitle{
+    height: 50px;
+    line-height: 40px;
+    border: 1px solid #A8BFDE;
+    border-top: none;
+    border-bottom: none;
+    padding: 6px;
+    background: #F5F9FC;
+    font-weight: bold;
+    font-size: 15px;
+    color: #5A7EA0;
+}
+
+
+
+
 
 .container {
     min-height: 100%;

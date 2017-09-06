@@ -19,447 +19,207 @@
             <li class=""><a href="#bottom-justified-tab6" data-toggle="tab" class="legitRipple" aria-expanded="false">桥梁照片</a></li>
         </ul>
 
-        <div class="tab-content">
+        <div class="tab-content" >
             <div class="tab-pane active" id="bottom-justified-tab1">
                 <form class="form-horizontal">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="routenumber" class="col-sm-4 control-label">路线编号</label>
-                            <div class="col-sm-8">
-                                <input id="routenumber" name="routenumber" type="text" class="form-control" placeholder="S6" value="{{routenumber}}" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bridgenumber" class="col-sm-4 control-label">桥梁编号</label>
-                            <div class="col-sm-8">
-                                <input id="bridgenumber" name="bridgenumber" type="text" class="form-control" placeholder="S6120223L0430" value="{{bridgenumber}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="functiontype" class="col-sm-4 control-label">功能类型</label>
-                            <div class="col-sm-8">
-                                <input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="designload" class="col-sm-4 control-label">设计荷载</label>
-                            <div class="col-sm-8">
-                                <input id="designload" name="designload" type="text" class="form-control " placeholder="" value="{{designload}}" />
-                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="designload" class="col-sm-4 control-label">桥面铺装</label>
-                            <div class="col-sm-8">
-                                <input id="deckpavement" name="deckpavement" type="text" class="form-control " placeholder="" value="{{deckpavement}}" />
-                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="routename" class="col-sm-4 control-label">路线名称</label>
-                            <div class="col-sm-8">
-                                <input id="routename" name="routename" type="text" class="form-control" placeholder="" value="{{routename}}"  />
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="bridgename" class="col-sm-4 control-label">桥梁名称</label>
-                            <div class="col-sm-8">
-                                <input id="bridgename" name="bridgename" type="text" class="form-control" placeholder="争光渠桥" value="{{bridgename}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="underchannelname" class="col-sm-4 control-label">下穿通道名</label>
-                            <div class="col-sm-8">
-                                <input id="underchannelname" name="underchannelname" type="text" class="form-control" placeholder="" value="{{underchannelname}}" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="trafficload" class="col-sm-4 control-label">通行载重</label>
-                            <div class="col-sm-8">
-                                <input id="trafficload" name="trafficload" type="text" class="form-control" placeholder="" value="{{trafficload}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="designload" class="col-sm-4 control-label">管养单位</label>
-                            <div class="col-sm-8">
-                                <input id="custodyunit" name="custodyunit" type="text" class="form-control " placeholder="" value="{{custodyunit}}" />
-                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="routelevel" class="col-sm-4 control-label">路线等级</label>
-                            <div class="col-sm-8">
-                                <input id="routelevel" name="routelevel" type="text" class="form-control" placeholder="" value="{{routelevel}}" />
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="centerstation" class="col-sm-4 control-label">桥位中心桩号</label>
-                            <div class="col-sm-8">
-                                <input id="centerstation" name="centerstation" type="text" class="form-control" placeholder="" value="{{centerstation}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="underchannelcenterstation" class="col-sm-4 control-label">下穿通道中心桩号</label>
-                            <div class="col-sm-8">
-                                <input id="underchannelcenterstation" name="underchannelcenterstation" type="text" class="form-control" placeholder="" value="{{underchannelcenterstation}}" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="skewslope" class="col-sm-4 control-label">弯斜坡度</label>
-                            <div class="col-sm-8">
-                                <input id="skewslope" name="skewslope" type="text" class="form-control" placeholder="" value="{{skewslope}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="designload" class="col-sm-4 control-label">建成年限/设计使用年限</label>
-                            <div class="col-sm-8">
-                                <input id="buildyear" name="buildyear" type="text" class="form-control " placeholder="" value="{{buildyear}}" />
-                            </div>
-                        </div>
-                    </div>
-
+                    <table class="datalist">
+                        <tbody>
+                        <tr>
+                            <th>路线编号</th>
+                            <td><input id="routenumber" name="routenumber" type="text" class="form-control" placeholder="S6" value="{{routenumber}}" /></td>
+                            <th>路线名称</th>
+                            <td><input id="routename" name="routename" type="text" class="form-control" placeholder="" value="{{routename}}"  /></td>
+                            <th>路线等级</th>
+                            <td><input id="routelevel" name="routelevel" type="text" class="form-control" placeholder="" value="{{routelevel}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>桥梁编号</th>
+                            <td><input id="bridgenumber" name="bridgenumber" type="text" class="form-control" placeholder="S6120223L0430" value="{{bridgenumber}}" /></td>
+                            <th>桥梁名称</th>
+                            <td><input id="bridgename" name="bridgename" type="text" class="form-control" placeholder="争光渠桥" value="{{bridgename}}" /></td>
+                            <th>桥位中心桩号</th>
+                            <td><input id="centerstation" name="centerstation" type="text" class="form-control" placeholder="" value="{{centerstation}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>功能类型</th>
+                            <td><input id="functiontype" name="functiontype" type="text" class="form-control" placeholder="公路用" value="{{functiontype}}" /></td>
+                            <th>下穿通道名</th>
+                            <td><input id="underchannelname" name="underchannelname" type="text" class="form-control" placeholder="" value="{{underchannelname}}" /></td>
+                            <th>下穿通道中心桩号</th>
+                            <td><input id="underchannelcenterstation" name="underchannelcenterstation" type="text" class="form-control" placeholder="" value="{{underchannelcenterstation}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>设计荷载</th>
+                            <td><input id="designload" name="designload" type="text" class="form-control " placeholder="" value="{{designload}}" /></td>
+                            <th>通行载重</th>
+                            <td><input id="trafficload" name="trafficload" type="text" class="form-control" placeholder="" value="{{trafficload}}" /></td>
+                            <th>弯斜坡度</th>
+                            <td><input id="skewslope" name="skewslope" type="text" class="form-control" placeholder="" value="{{skewslope}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>桥面铺装</th>
+                            <td> <input id="deckpavement" name="deckpavement" type="text" class="form-control " placeholder="" value="{{deckpavement}}" /></td>
+                            <th>管养单位</th>
+                            <td><input id="custodyunit" name="custodyunit" type="text" class="form-control " placeholder="" value="{{custodyunit}}" /></td>
+                            <th>建成年限/设计使用年限</th>
+                            <td><input id="buildyear" name="buildyear" type="text" class="form-control " placeholder="" value="{{buildyear}}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </form>
-
-
             </div>
 
             <div class="tab-pane" id="bottom-justified-tab2">
-                <div class="panel-body">
                     <form class="form-horizontal">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="bridgelength" class="col-sm-4 control-label">桥长(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="bridgelength" name="bridgelength" type="text" class="form-control" placeholder="" value="{{bridgelength}}" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="bridgeelevation" class="col-sm-4 control-label">桥面标高(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="bridgeelevation" name="bridgeelevation" type="text" class="form-control" placeholder="" value="{{bridgeelevation}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="approachwidth" class="col-sm-4 control-label">引道总宽(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="approachwidth" name="approachwidth" type="text" class="form-control" placeholder="" value="{{approachwidth}}" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="bridgewidth" class="col-sm-4 control-label">桥面总宽(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="bridgewidth" name="bridgewidth" type="text" class="form-control" placeholder="" value="{{bridgewidth}}"  />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="undernetheight" class="col-sm-4 control-label">桥下净高(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="undernetheight" name="undernetheight" type="text" class="form-control" placeholder="" value="{{undernetheight}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="approachroadwide" class="col-sm-4 control-label">引道路面宽(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="approachroadwide" name="approachroadwide" type="text" class="form-control" placeholder="" value="{{approachroadwide}}" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="drivewaywidth" class="col-sm-4 control-label">车行道宽(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="drivewaywidth" name="drivewaywidth" type="text" class="form-control" placeholder="" value="{{drivewaywidth}}" />
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="abovenetheight" class="col-sm-4 control-label">桥上净高(m)</label>
-                                <div class="col-sm-8">
-                                    <input id="abovenetheight" name="abovenetheight" type="text" class="form-control" placeholder="" value="{{abovenetheight}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="leadline" class="col-sm-4 control-label">引道线形</label>
-                                <div class="col-sm-8">
-                                    <input id="leadline" name="leadline" type="text" class="form-control" placeholder="" value="{{leadline}}" />
-                                </div>
-                            </div>
-                        </div>
+                        <table class="datalist">
+                            <tr>
+                                <th width="16.6%">桥长(m)</th>
+                                <td width="16.6%"><input id="bridgelength" name="bridgelength" type="text" class="form-control" placeholder="" value="{{bridgelength}}" /></td>
+                                <th width="16.6%">桥面总宽(m)</th>
+                                <td width="16.6%"><input id="bridgewidth" name="bridgewidth" type="text" class="form-control" placeholder="" value="{{bridgewidth}}"  /></td>
+                                <th width="16.6%">车行道宽(m)</th>
+                                <td width="16.6%"><input id="drivewaywidth" name="drivewaywidth" type="text" class="form-control" placeholder="" value="{{drivewaywidth}}" /></td>
+                            </tr>
+                            <tr>
+                                <th>桥面标高(m)</th>
+                                <td><input id="bridgeelevation" name="bridgeelevation" type="text" class="form-control" placeholder="" value="{{bridgeelevation}}" /></td>
+                                <th>桥下净高(m)</th>
+                                <td><input id="undernetheight" name="undernetheight" type="text" class="form-control" placeholder="" value="{{undernetheight}}" /></td>
+                                <th>桥上净高(m)</th>
+                                <td><input id="abovenetheight" name="abovenetheight" type="text" class="form-control" placeholder="" value="{{abovenetheight}}" /></td>
+                            </tr>
+                            <tr>
+                                <th>引道总宽(m)</th>
+                                <td><input id="approachwidth" name="approachwidth" type="text" class="form-control" placeholder="" value="{{approachwidth}}" /></td>
+                                <th>引道路面宽(m)</th>
+                                <td><input id="approachroadwide" name="approachroadwide" type="text" class="form-control" placeholder="" value="{{approachroadwide}}" /></td>
+                                <th>引道线形</th>
+                                <td><input id="leadline" name="leadline" type="text" class="form-control" placeholder="" value="{{leadline}}" /></td>
+                            </tr>
+                        </table>
                     </form>
-                </div>
-                <div class="panel-heading">
-                    <h6 class="panel-title">
-                        <span class="project-title">上部结构</span>
-                    </h6>
-                    <div class="heading-elements">
-                        <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm add-superstructure">添加上部结构</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
+                    <div class="addtitle">上部结构<button class="btn btn-primary btn-sm add-superstructure pull-right">添加上部结构</button></div>
                     <form class="form-horizontal">
-                        <div class="table-responsive">
-                            <table class="table ">
-                                <thead>
-                                <tr>
-                                    <th width="30%">孔号</th>
-                                    <th width="20%">跨径(m)</th>
-                                    <th width="20%">形式</th>
-                                    <th width="20%">材料</th>
-                                    <th width="10%"></th>
-                                </tr>
-                                </thead>
-                            </table>
-                            <table class="table superstructure_list">
-
-                            </table>
-                        </div>
+                    <table class="datalist">
+                        <tr>
+                            <th width="30%">孔号</th>
+                            <th width="20%">跨径(m)</th>
+                            <th width="20%">形式</th>
+                            <th width="20%">材料</th>
+                            <th width="10%">操作</th>
+                        </tr>
+                    </table>
+                    <table class="datatb superstructure_list">
+                    </table>
                     </form>
-                </div>
-                <div class="panel-heading">
-                    <h6 class="panel-title">
-                        <span class="project-title">下部结构</span>
-                    </h6>
-                    <div class="heading-elements">
-                        <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm add-lowerstructure">添加下部结构</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
+                    <div class="addtitle">下部结构<button class="btn btn-primary btn-sm add-lowerstructure pull-right">添加下部结构</button></div>
                     <form class="form-horizontal">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th width="20%">墩台</th>
-                                    <th width="20%">形式</th>
-                                    <th width="20%">材料</th>
-                                    <th width="20%">基础形式</th>
-                                    <th width="20%"></th>
-                                </tr>
-                                </thead>
-                            </table>
-                            <table class="table lowerstructure_list">
-
-                            </table>
-                        </div>
+                    <table class="datalist">
+                        <tr>
+                            <th width="30%">墩台</th>
+                            <th width="20%">形式</th>
+                            <th width="20%">材料</th>
+                            <th width="20%">基础形式</th>
+                            <th width="10%">操作</th>
+                        </tr>
+                    </table>
+                    <table class="datatb lowerstructure_list">
+                    </table>
                     </form>
-                </div>
-                <div class="panel-body">
                     <form class="form-horizontal">
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="expansionjointtype" class="col-sm-4 control-label">伸缩缝类型</label>
-                                <div class="col-sm-8">
-                                 <!--   <input id="expansionjointtype" name="expansionjointtype" type="text" class="form-control" placeholder="S6" value="{{expansionjointtype}}" />-->
-                                    <select id="expansionjointtype" name="expansionjointtype"  class="form-control description"  value="{{expansionjointtype}}">
-                                        <option value="TS8型钢型伸缩装置">TS8型钢型伸缩装置</option>
-                                        <option value="TST弹塑体伸缩装置">TST弹塑体伸缩装置</option>
-                                        <option value="GQF-80型">GQF-80型</option>
-                                        <option value="GQF-160型">GQF-160型</option>
-                                        <option value="钢板A3">钢板A3</option>
-                                        <option value="MS-8">MS-8</option>
-                                        <option value="MS-16">MS-16</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="abutmentslope" class="col-sm-4 control-label">桥台护坡</label>
-                                <div class="col-sm-8">
-                                    <input id="abutmentslope" name="abutmentslope" type="text" class="form-control" placeholder="" value="{{abutmentslope}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="oftenwaterlevel" class="col-sm-4 control-label">常水位</label>
-                                <div class="col-sm-8">
-                                    <input id="oftenwaterlevel" name="oftenwaterlevel" type="text" class="form-control" placeholder="公路用" value="{{oftenwaterlevel}}" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="bearingform" class="col-sm-4 control-label">支座形式</label>
-                                <div class="col-sm-8">
-                                   <!-- <input id="bearingform" name="bearingform" type="text" class="form-control" placeholder="" value="{{bearingform}}"  />-->
-                                    <select id="bearingform" name="bearingform"  class="form-control description"  value="{{bearingform}}">
-                                        <option value="板式支座">板式支座</option>
-                                        <option value="盆式支座">盆式支座</option>
-                                        <option value="钢支座">钢支座</option>
-                                        <option value="砼支座">砼支座</option>
-                                        <option value="活动支座">活动支座</option>
-                                        <option value="油毛毡支座">油毛毡支座</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="protectpier" class="col-sm-4 control-label">护墩体</label>
-                                <div class="col-sm-8">
-                                    <input id="protectpier" name="protectpier" type="text" class="form-control" placeholder="" value="{{protectpier}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="designwaterlevel" class="col-sm-4 control-label">设计水位</label>
-                                <div class="col-sm-8">
-                                    <input id="designwaterlevel" name="designwaterlevel" type="text" class="form-control" placeholder="" value="{{designwaterlevel}}" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="groundmotion" class="col-sm-4 control-label">地震动峰值加速度系数</label>
-                                <div class="col-sm-8">
-                                    <input id="groundmotion" name="groundmotion" type="text" class="form-control" placeholder="" value="{{groundmotion}}" />
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="conditioningstructure" class="col-sm-4 control-label">调治构造物</label>
-                                <div class="col-sm-8">
-                                    <input id="conditioningstructure" name="conditioningstructure" type="text" class="form-control" placeholder="" value="{{conditioningstructure}}" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="historicalfloodlevel" class="col-sm-4 control-label">历史洪水位</label>
-                                <div class="col-sm-8">
-                                    <input id="historicalfloodlevel" name="historicalfloodlevel" type="text" class="form-control" placeholder="" value="{{historicalfloodlevel}}" />
-                                </div>
-                            </div>
-                        </div>
+                    <table class="datalist" style="border-top:none;">
+                        <tr>
+                            <th width="16.6%" style="border-top:none;">伸缩缝类型</th>
+                            <td width="16.6%" style="border-top:none;">                                 <!--   <input id="expansionjointtype" name="expansionjointtype" type="text" class="form-control" placeholder="S6" value="{{expansionjointtype}}" />-->
+                                <select id="expansionjointtype" name="expansionjointtype"  class="form-control description"  value="{{expansionjointtype}}">
+                                    <option value="TS8型钢型伸缩装置">TS8型钢型伸缩装置</option>
+                                    <option value="TST弹塑体伸缩装置">TST弹塑体伸缩装置</option>
+                                    <option value="GQF-80型">GQF-80型</option>
+                                    <option value="GQF-160型">GQF-160型</option>
+                                    <option value="钢板A3">钢板A3</option>
+                                    <option value="MS-8">MS-8</option>
+                                    <option value="MS-16">MS-16</option>
+                                </select></td>
+                            <th width="16.6%" style="border-top:none;">支座形式</th>
+                            <td width="16.6%" style="border-top:none;">                                   <!-- <input id="bearingform" name="bearingform" type="text" class="form-control" placeholder="" value="{{bearingform}}"  />-->
+                                <select id="bearingform" name="bearingform"  class="form-control description"  value="{{bearingform}}">
+                                    <option value="板式支座">板式支座</option>
+                                    <option value="盆式支座">盆式支座</option>
+                                    <option value="钢支座">钢支座</option>
+                                    <option value="砼支座">砼支座</option>
+                                    <option value="活动支座">活动支座</option>
+                                    <option value="油毛毡支座">油毛毡支座</option>
+                                </select></td>
+                            <th width="16.6%" style="border-top:none;">地震动峰值加速度系数</th>
+                            <td width="16.6%" style="border-top:none;"><input id="groundmotion" name="groundmotion" type="text" class="form-control" placeholder="" value="{{groundmotion}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>桥台护坡</th>
+                            <td><input id="abutmentslope" name="abutmentslope" type="text" class="form-control" placeholder="" value="{{abutmentslope}}" /></td>
+                            <th>护墩体</th>
+                            <td> <input id="protectpier" name="protectpier" type="text" class="form-control" placeholder="" value="{{protectpier}}" /></td>
+                            <th>调治构造物</th>
+                            <td><input id="conditioningstructure" name="conditioningstructure" type="text" class="form-control" placeholder="" value="{{conditioningstructure}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>常水位</th>
+                            <td><input id="oftenwaterlevel" name="oftenwaterlevel" type="text" class="form-control" placeholder="公路用" value="{{oftenwaterlevel}}" /></td>
+                            <th>设计水位</th>
+                            <td><input id="designwaterlevel" name="designwaterlevel" type="text" class="form-control" placeholder="" value="{{designwaterlevel}}" /></td>
+                            <th>历史洪水位</th>
+                            <td><input id="historicalfloodlevel" name="historicalfloodlevel" type="text" class="form-control" placeholder="" value="{{historicalfloodlevel}}" /></td>
+                        </tr>
+                    </table>
                     </form>
-                </div>
+
             </div>
 
             <div class="tab-pane" id="bottom-justified-tab3">
                 <form class="form-horizontal">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="designdrawings" class="col-sm-4 control-label">设计图纸</label>
-                            <div class="col-sm-8">
-                                <input id="designdrawings" name="designdrawings" type="text" class="form-control" placeholder="" value="{{designdrawings}}" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="finisheddrawings" class="col-sm-4 control-label">竣工图纸</label>
-                            <div class="col-sm-8">
-                                <input id="finisheddrawings" name="finisheddrawings" type="text" class="form-control" placeholder="" value="{{finisheddrawings}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="periodicalcheckreport" class="col-sm-4 control-label">定期检查报告</label>
-                            <div class="col-sm-8">
-                                <input id="periodicalcheckreport" name="periodicalcheckreport" type="text" class="form-control" placeholder="" value="{{periodicalcheckreport}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="filenumber" class="col-sm-4 control-label">档案号</label>
-                            <div class="col-sm-8">
-                                <input id="filenumber" name="filenumber" type="text" class="form-control " placeholder="" value="{{filenumber}}" />
-                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="designingdocuments" class="col-sm-4 control-label">设计文件</label>
-                            <div class="col-sm-8">
-                                <input id="designingdocuments" name="designingdocuments" type="text" class="form-control" placeholder="" value="{{designingdocuments}}"  />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="acceptancedocuments" class="col-sm-4 control-label">验收文件</label>
-                            <div class="col-sm-8">
-                                <input id="acceptancedocuments" name="acceptancedocuments" type="text" class="form-control" placeholder="" value="{{acceptancedocuments}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialinspectionreport" class="col-sm-4 control-label">特殊检查报告</label>
-                            <div class="col-sm-8">
-                                <input id="specialinspectionreport" name="specialinspectionreport" type="text" class="form-control" placeholder="" value="{{specialinspectionreport}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="archive" class="col-sm-4 control-label">存档案</label>
-                            <div class="col-sm-8">
-                                <input id="archive" name="archive" type="text" class="form-control " placeholder="" value="{{archive}}" />
-                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="constructiondocuments" class="col-sm-4 control-label">施工文件</label>
-                            <div class="col-sm-8">
-                                <input id="constructiondocuments" name="routelevel" type="text" class="form-control" placeholder="" value="{{constructiondocuments}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="administrativedocuments" class="col-sm-4 control-label">行政文件</label>
-                            <div class="col-sm-8">
-                                <input id="administrativedocuments" name="administrativedocuments" type="text" class="form-control" placeholder="" value="{{administrativedocuments}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="previousmaintenanceinformation" class="col-sm-4 control-label">历次维修资料</label>
-                            <div class="col-sm-8">
-                                <input id="previousmaintenanceinformation" name="previousmaintenanceinformation" type="text" class="form-control" placeholder="" value="{{previousmaintenanceinformation}}" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="filetime" class="col-sm-4 control-label">建档时间</label>
-                            <div class="col-sm-8">
-                                <input id="filetime" name="filetime" type="text" class="form-control" placeholder="" value="{{filetime}}" />
-                            </div>
-                        </div>
-                    </div>
-
+                    <table class="datalist">
+                        <tr>
+                            <th>设计图纸</th>
+                            <td><input id="designdrawings" name="designdrawings" type="text" class="form-control" placeholder="" value="{{designdrawings}}" /></td>
+                            <th>设计文件</th>
+                            <td><input id="designingdocuments" name="designingdocuments" type="text" class="form-control" placeholder="" value="{{designingdocuments}}"  /></td>
+                            <th>施工文件</th>
+                            <td><input id="constructiondocuments" name="routelevel" type="text" class="form-control" placeholder="" value="{{constructiondocuments}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>竣工图纸</th>
+                            <td><input id="finisheddrawings" name="finisheddrawings" type="text" class="form-control" placeholder="" value="{{finisheddrawings}}" /></td>
+                            <th>验收文件</th>
+                            <td><input id="acceptancedocuments" name="acceptancedocuments" type="text" class="form-control" placeholder="" value="{{acceptancedocuments}}" /></td>
+                            <th>行政文件</th>
+                            <td> <input id="administrativedocuments" name="administrativedocuments" type="text" class="form-control" placeholder="" value="{{administrativedocuments}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>定期检查报告</th>
+                            <td><input id="periodicalcheckreport" name="periodicalcheckreport" type="text" class="form-control" placeholder="" value="{{periodicalcheckreport}}" /></td>
+                            <th>特殊检查报告</th>
+                            <td><input id="specialinspectionreport" name="specialinspectionreport" type="text" class="form-control" placeholder="" value="{{specialinspectionreport}}" /></td>
+                            <th>历次维修资料</th>
+                            <td><input id="previousmaintenanceinformation" name="previousmaintenanceinformation" type="text" class="form-control" placeholder="" value="{{previousmaintenanceinformation}}" /></td>
+                        </tr>
+                        <tr>
+                            <th>档案号</th>
+                            <td><input id="filenumber" name="filenumber" type="text" class="form-control " placeholder="" value="{{filenumber}}" />
+                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">--></td>
+                            <th>存档案</th>
+                            <td><input id="archive" name="archive" type="text" class="form-control " placeholder="" value="{{archive}}" />
+                                <!--<input type="text" class="form-control pickadate" placeholder="Try me&hellip;">--></td>
+                            <th>建档时间</th>
+                            <td><input id="filetime" name="filetime" type="text" class="form-control" placeholder="" value="{{filetime}}" /></td>
+                        </tr>
+                    </table>
                 </form>
             </div>
 
             <div class="tab-pane" id="bottom-justified-tab4">
-                <div class="panel-heading">
-                    <div class="heading-elements">
-                        <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm add-tech">添加新评定</button>
-                        </div>
-                    </div>
-                </div>
+                <div style="height:50px;"><button class="btn btn-primary btn-sm add-tech pull-right">添加新评定</button></div>
                 <form class="form-horizontal">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="datalist">
                             <tr>
                                 <th width="8%">检查年月</th>
                                 <th width="8%">定期或特殊检查</th>
@@ -474,26 +234,18 @@
                                 <th width="8%">下次检查年份</th>
                                 <th width="8%"></th>
                             </tr>
-                            </thead>
                         </table>
-                        <table class="table tech_list">
+                        <table class="datatb tech_list">
 
                         </table>
                     </div>
                 </form>
             </div>
             <div class="tab-pane" id="bottom-justified-tab5">
-                <div class="panel-heading">
-                    <div class="heading-elements">
-                        <div class="heading-btn pull-right">
-                            <button class="btn btn-primary btn-sm add-eng">添加新记录</button>
-                        </div>
-                    </div>
-                </div>
+                <div style="height:50px;"><button class="btn btn-primary btn-sm add-eng pull-right">添加新记录</button></div>
                 <form class="form-horizontal">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="datalist">
                             <tr>
                                 <th width="8%">开工</th>
                                 <th width="8%">竣工</th>
@@ -509,9 +261,8 @@
                                 <th width="8%">监理单位</th>
                                 <th width="8%"></th>
                             </tr>
-                            </thead>
                         </table>
-                        <table class="table eng_list">
+                        <table class="datatb eng_list">
 
                         </table>
                     </div>
@@ -528,71 +279,48 @@
                 </form>
             </div>
             <div class="tab-pane" id="bottom-justified-tab6">
-                <div class="col-md-6">
-                    <div class="panel-heading">
-                        正面照片
-                    </div>
-                    <div class="panel-body">
-                        <span class="notice">请点击照片替换</span>
-                        <div class="box thumbnail">
-                            <div class="photo">
-                                {{#frontphoto}}
-                                <img src="{{frontphoto}}" class="img-frontphoto" alt="正面照片" />
-                                {{/frontphoto}}
-                                {{^frontphoto}}
-                                <img src="./common/images/contact.png" class="img-frontphoto" alt="正面照片" />
-                                {{/frontphoto}}
-                                <input type="file" class="upload-frontphoto-file"  data-index="frontphoto" name="avatar" style="display: none;"/>
+                <table class="datalist">
+                    <tr>
+                        <td colspan="3" width="50%">
+                            正面照片<br>
+                            <span class="notice">请点击照片替换</span>
+                            <div class="box thumbnail">
+                                <div class="photo">
+                                    {{#frontphoto}}
+                                    <img src="{{frontphoto}}" class="img-frontphoto" alt="正面照片" />
+                                    {{/frontphoto}}
+                                    {{^frontphoto}}
+                                    <img src="./common/images/contact.png" class="img-frontphoto" alt="正面照片" />
+                                    {{/frontphoto}}
+                                    <input type="file" class="upload-frontphoto-file"  data-index="frontphoto" name="avatar" style="display: none;"/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel-heading">
-                        立面照片
-                    </div>
-                    <div class="panel-body">
-                        <span class="notice">请点击照片替换</span>
-                        <div class="box thumbnail">
-                            <div class="photo">
-                                {{#sidephoto}}
-                                <img src="{{sidephotol}}" class="img-sidephoto" alt="立面照片" />
-                                {{/sidephoto}}
-                                {{^sidephoto}}
-                                <img src="./common/images/contact.png" class="img-sidephoto" alt="立面照片" />
-                                {{/sidephoto}}
-                                <input type="file" class="upload-sidephoto-file" data-index="sidephoto"  name="avatar" style="display: none;"/>
+                        </td>
+                        <td colspan="3">
+                            立面照片<br>
+                            <span class="notice">请点击照片替换</span>
+                            <div class="box thumbnail">
+                                <div class="photo">
+                                    {{#sidephoto}}
+                                    <img src="{{sidephotol}}" class="img-sidephoto" alt="立面照片" />
+                                    {{/sidephoto}}
+                                    {{^sidephoto}}
+                                    <img src="./common/images/contact.png" class="img-sidephoto" alt="立面照片" />
+                                    {{/sidephoto}}
+                                    <input type="file" class="upload-sidephoto-file" data-index="sidephoto"  name="avatar" style="display: none;"/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="personincharge" class="col-sm-4 control-label">主管负责人</label>
-                        <div class="col-sm-8">
-                            <input id="personincharge" name="personincharge" type="text" class="form-control" placeholder="" value="{{personincharge}}" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="fillcardpeople" class="col-sm-4 control-label">填卡人</label>
-                        <div class="col-sm-8">
-                            <input id="fillcardpeople" name="fillcardpeople" type="text" class="form-control" placeholder="" value="{{fillcardpeople}}"  />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="filldate" class="col-sm-4 control-label">填卡日期</label>
-                        <div class="col-sm-8">
-                            <input id="filldate" name="filldate" type="text" class="form-control" placeholder="" value="{{filldate}}" />
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>主管负责人</th>
+                        <td><input id="personincharge" name="personincharge" type="text" class="form-control" placeholder="" value="{{personincharge}}" /></td>
+                        <th>填卡人</th>
+                        <td><input id="fillcardpeople" name="fillcardpeople" type="text" class="form-control" placeholder="" value="{{fillcardpeople}}"  /></td>
+                        <th>填卡日期</th>
+                        <td><input id="filldate" name="filldate" type="text" class="form-control" placeholder="" value="{{filldate}}" /></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
