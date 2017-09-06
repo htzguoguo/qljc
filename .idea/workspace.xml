@@ -23,11 +23,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bridgeForm_panel.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bridgeForm_panel.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_panel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
+            <state relative-caret-position="4644">
               <caret line="350" column="436" selection-start-line="350" selection-start-column="436" selection-end-line="350" selection-end-column="436" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bridgeForm_superstructure_item.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="44" column="87" selection-start-line="44" selection-start-column="87" selection-end-line="44" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projectForm.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="508">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -46,8 +66,8 @@
       <file leaf-file-name="bridgeForm_tab.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="116" column="42" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="42" />
+            <state relative-caret-position="1862">
+              <caret line="323" column="18" selection-start-line="323" selection-start-column="18" selection-end-line="323" selection-end-column="18" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#table#0;n#form#3;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -165,13 +185,13 @@
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_lowerstructure_item.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectTable.html" />
-        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/managementForm.html" />
         <option value="$PROJECT_DIR$/public/common/css/tjx.css" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/managementTable.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/taskForm.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/taskTable.html" />
         <option value="$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_panel.html" />
+        <option value="$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html" />
       </list>
     </option>
   </component>
@@ -702,12 +722,12 @@
       <workItem from="1504056543835" duration="598000" />
       <workItem from="1504489058371" duration="3200000" />
       <workItem from="1504577982897" duration="13361000" />
-      <workItem from="1504660470720" duration="12643000" />
+      <workItem from="1504660470720" duration="13634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372160000" />
+    <option name="totallyTimeSpent" value="373151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
@@ -998,22 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/common/css/tjx.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
@@ -1072,22 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_engrecord_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_lowerstructure_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectListItem.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-108">
@@ -1136,10 +1124,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_panel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4644">
+          <caret line="350" column="436" selection-start-line="350" selection-start-column="436" selection-end-line="350" selection-end-column="436" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_tab.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="116" column="42" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="42" />
+        <state relative-caret-position="1862">
+          <caret line="323" column="18" selection-start-line="323" selection-start-column="18" selection-end-line="323" selection-end-column="18" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
             <element signature="n#style#0;n#table#0;n#form#3;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -1155,10 +1151,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_panel.html">
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_lowerstructure_item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="350" column="436" selection-start-line="350" selection-start-column="436" selection-end-line="350" selection-end-column="436" />
+        <state relative-caret-position="216">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_engrecord_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-140">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/bridgeForm_superstructure_item.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="44" column="87" selection-start-line="44" selection-start-column="87" selection-end-line="44" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apps/projects/views/templates/projectForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
